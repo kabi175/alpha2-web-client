@@ -1,4 +1,3 @@
-import Image from "next/image";
 import AlphaNav from "@/components/AlphaNav";
 import { AlphaHero } from "@/components/AlphaHero";
 import { AlphaLogo } from "@/components/AlphaLogo";

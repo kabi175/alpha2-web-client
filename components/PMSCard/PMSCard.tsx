@@ -8,11 +8,7 @@ interface PMSCardProps {
   isPartial?: boolean;
 }
 
-export const PMSCard: React.FC<PMSCardProps> = ({
-  title,
-  percentage,
-  isPartial = false,
-}) => {
+export const PMSCard: React.FC<PMSCardProps> = ({ title, percentage }) => {
   //   if (isPartial) {
   //     return (
   //       <article className="flex overflow-hidden flex-col self-stretch pb-28 my-auto rounded-3xl bg-zinc-900 w-[305px] max-md:pb-24">
