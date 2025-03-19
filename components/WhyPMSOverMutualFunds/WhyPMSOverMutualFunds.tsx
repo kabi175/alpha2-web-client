@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ComparisonCard } from "./ComparisonCard";
+import ConnectWithExpert from "@/components/elements/button/ConnectWithExpert";
 
 const WhyPMSOverMutualFunds: React.FC = () => {
   return (
@@ -47,9 +48,7 @@ const WhyPMSOverMutualFunds: React.FC = () => {
         </div>
 
         <div className="flex items-start self-center mt-12 text-xl font-semibold tracking-tighter text-center text-white max-md:mt-10">
-          <button className="overflow-hidden gap-2 self-stretch px-9 py-4 bg-blue-600 rounded-2xl min-w-60 max-md:px-5">
-            Connect 1-1 with our Experts*
-          </button>
+          <ConnectWithExpert />
         </div>
       </div>
     </section>

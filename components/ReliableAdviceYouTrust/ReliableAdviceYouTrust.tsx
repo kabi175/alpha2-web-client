@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { InfoCard } from "./InfoCard";
-import { CTAButton } from "./CTAButton";
+import ConnectWithExpert from "@/components/elements/button/ConnectWithExpert";
 
 export const ReliableAdviceYouTrust: React.FC = () => {
   return (
@@ -53,7 +53,7 @@ export const ReliableAdviceYouTrust: React.FC = () => {
           </div>
 
           <div className="flex items-start justify-center mt-16 max-md:mt-10">
-            <CTAButton>Connect 1-1 with our Experts*</CTAButton>
+            <ConnectWithExpert />
           </div>
         </div>
       </div>

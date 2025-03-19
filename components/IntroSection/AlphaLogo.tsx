@@ -1,4 +1,4 @@
-export const AlphaLogo = () => {
+const AlphaLogo = () => {
   return (
     <h2 className="relative text-4xl font-bold text-white">
       <span>alph</span>
@@ -9,3 +9,5 @@ export const AlphaLogo = () => {
     </h2>
   );
 };
+
+export default AlphaLogo;

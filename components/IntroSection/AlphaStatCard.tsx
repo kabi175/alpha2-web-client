@@ -1,3 +1,5 @@
+import { deflateSync } from "zlib";
+
 interface AlphaStatCardProps {
   label: string;
   value: string;
@@ -11,7 +13,7 @@ interface AlphaStatCardProps {
   isOdd: boolean;
 }
 
-export const AlphaStatCard: React.FC<AlphaStatCardProps> = ({
+const AlphaStatCard: React.FC<AlphaStatCardProps> = ({
   label,
   value,
   suffix,
@@ -61,3 +63,5 @@ export const AlphaStatCard: React.FC<AlphaStatCardProps> = ({
     </article>
   );
 };
+
+export default AlphaStatCard;
