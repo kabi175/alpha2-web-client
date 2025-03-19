@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
       links: [
         { text: "Calculators", href: "/calculators" },
         { text: "Explore PMS", href: "/pms" },
-        { text: "Connect w/ Experts", href: "/experts" },
+        { text: "Connect with our Experts", href: "/experts" },
       ],
     },
     useful: {
