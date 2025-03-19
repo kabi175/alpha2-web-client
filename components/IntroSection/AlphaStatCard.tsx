@@ -1,5 +1,3 @@
-import { deflateSync } from "zlib";
-
 interface AlphaStatCardProps {
   label: string;
   value: string;

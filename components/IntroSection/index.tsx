@@ -1,5 +1,4 @@
 import AlphaBackground from "./AlphaBackground";
-import AlphaLogo from "./AlphaLogo";
 import AlphaNav from "./AlphaNav";
 import AlphaHero from "./AlphaHero";
 import AlphaStatCard from "./AlphaStatCard";
