@@ -28,7 +28,7 @@ export const ComparisonCard: React.FC<ComparisonCardProps> = ({
             </div>
           </div>
           <div className="ml-5 w-[39%] max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col self-stretch my-auto text-lg max-md:mt-10">
+            <div className="flex flex-col self-stretch my-auto text-lg max-md:mt-10 pl-8">
               <MutualFundLabel />
               <p className="mt-4 text-neutral-300">{mutualFundDescription}</p>
             </div>
