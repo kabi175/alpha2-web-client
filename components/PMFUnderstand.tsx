@@ -1,6 +1,7 @@
 // import { SectionTitle } from "./SectionTitle";
 import PMSCard from "@/components/PMSCard";
 import AlphaSection from "@/components/AlphaSection";
+import PMSInfoCard from "@/components/PMSInfoCard";
 
 const PMFUnderstand: React.FC = () => {
   return (
@@ -18,16 +19,9 @@ const PMFUnderstand: React.FC = () => {
             marginBottom: "-20px",
           }}
         >
-          <PMSCard title="PMS Title Placeholder" percentage="9.50%" />
-          <PMSCard title="PMS Title Placeholder" percentage="8.75%" />
-          <PMSCard title="PMS Title Placeholder" percentage="8.25%" />
-          <PMSCard title="PMS Title Placeholder" percentage="7.90%" />
-          <PMSCard title="PMS Title Placeholder" percentage="7.50%" />
-          <PMSCard title="PMS Title Placeholder" percentage="7.25%" />
-          <PMSCard title="PMS Title Placeholder" percentage="7.00%" />
-          <PMSCard title="PMS Title Placeholder" percentage="6.75%" />
-          <PMSCard title="PMS Title Placeholder" percentage="6.50%" />
-          <PMSCard title="PMS Title Placeholder" percentage="6.25%" isPartial />
+          <PMSInfoCard />
+          <PMSInfoCard />
+          <PMSInfoCard />
         </div>
       </div>
     </AlphaSection>

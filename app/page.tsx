@@ -5,6 +5,9 @@ import { AlphaStatCard } from "@/components/AlphaStatCard";
 import { AlphaBackground } from "@/components/AlphaBackground";
 import Top10PMS from "@/components/Top10PMS";
 import PMFUnderstand from "@/components/PMFUnderstand";
+import WhyPMSOverMutualFunds from "@/components/WhyPMSOverMutualFunds";
+import ReliableAdviceYouTrust from "@/components/ReliableAdviceYouTrust";
+import FaqSection from "@/components/FAQSection";
 
 export default function Home() {
   return (
@@ -65,6 +68,9 @@ export default function Home() {
 
       <Top10PMS />
       <PMFUnderstand />
+      <WhyPMSOverMutualFunds />
+      <ReliableAdviceYouTrust />
+      <FaqSection />
     </>
   );
 }
