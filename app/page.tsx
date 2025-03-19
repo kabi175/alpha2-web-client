@@ -1,5 +1,5 @@
 import IntroSection from "@/components/IntroSection";
-import Top10PMS from "@/components/Top10PMS";
+import Top10PMS from "@/components/Top10PMSSection/Top10PMS";
 import PMFUnderstand from "@/components/PMFUnderstand";
 import WhyPMSOverMutualFunds from "@/components/WhyPMSOverMutualFunds";
 import ReliableAdviceYouTrust from "@/components/ReliableAdviceYouTrust";

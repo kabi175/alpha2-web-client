@@ -1,5 +1,5 @@
 // import { SectionTitle } from "./SectionTitle";
-import PMSCard from "@/components/PMSCard";
+import PMSCard from "@/components/Top10PMSSection/PMSCard";
 import AlphaSection from "@/components/AlphaSection";
 
 const Top10PMS: React.FC = () => {
@@ -12,7 +12,7 @@ const Top10PMS: React.FC = () => {
 
       <div className="w-full overflow-x-auto pb-4 mt-24 max-md:mt-10 custom-scrollbar">
         <div
-          className="flex gap-7 items-center px-20 max-md:px-5 min-w-min"
+          className="flex gap-5 items-center max-md:px-5 min-w-min"
           style={{
             paddingBottom: "20px",
             marginBottom: "-20px",
