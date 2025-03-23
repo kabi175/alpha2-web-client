@@ -13,7 +13,7 @@ export default function ReturnsDashboard() {
   const [timeframe, setTimeframe] = useState<string>("1Y");
   const [fund1, setFund1] = useState<string>("");
   const [fund2, setFund2] = useState<string>("");
-  const [chatData, setChartData] = useState<any[]>([]); //@typescript-eslint/no-explicit-any
+  const [chatData, setChartData] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -184,7 +184,8 @@ export default function ReturnsDashboard() {
   );
 }
 
-const transformData = (reports: any[], fundName: string): any[] => { //@typescript-eslint/no-explicit-any
+const transformData = (reports: any[], fundName: string): any[] => {
+  //@typescript-eslint/no-explicit-any
   return reports.map((report) => {
     // Convert report date to a readable format (e.g., "Jan 23")
     const date = new Date(report.ReportDate);
