@@ -93,7 +93,7 @@ export default function ReturnsDashboard() {
     };
 
     fetchData();
-  }, [fund1, fund2, timeframe]);
+  }, [fund1, fund2, timeframe, fundList]);
 
   return (
     <>
