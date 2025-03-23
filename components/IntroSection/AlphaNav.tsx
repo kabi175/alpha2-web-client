@@ -8,7 +8,7 @@ export default function AlphaNav() {
         <Image src="/nav-home.svg" width={24} height={24} alt="Home" />
       </div>
       <a
-        href="#calculator"
+        href="calculator"
         className="text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >
         Calculator

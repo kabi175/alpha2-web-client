@@ -8,14 +8,6 @@ export default function Intro() {
   return (
     <>
       <main className="overflow-hidden relative px-5 py-10 mx-auto my-0 max-w-[1440px] max-md:max-w-[991px] max-sm:max-w-screen-sm">
-        <header className="mt-10 mb-10 flex items-center justify-between">
-          {/* <AlphaLogo /> */}
-
-          <Image src="/logo.svg" alt="logo" width={102.05} height={48.36} />
-
-          <AlphaNav />
-          <div className="w-64" />
-        </header>
         <AlphaHero />
         <section className="grid gap-8 grid-cols-[repeat(4,1fr)] max-md:grid-cols-[repeat(2,1fr)] max-sm:grid-cols-[1fr]">
           <AlphaStatCard
