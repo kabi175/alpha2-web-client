@@ -2,7 +2,6 @@ import AlphaBackground from "./AlphaBackground";
 import AlphaNav from "./AlphaNav";
 import AlphaHero from "./AlphaHero";
 import AlphaStatCard from "./AlphaStatCard";
-import Image from "next/image";
 
 export default function Intro() {
   return (

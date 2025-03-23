@@ -9,7 +9,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import _ from "lodash";
 
 export interface LineChartData {
   entries: any[];
@@ -28,15 +27,6 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function Component(props: LineChartData) {
-  const maxPerPlot = props.plots.map((plot) => {
-    return _.maxBy(props.entries, plot);
-  });
-  const mimPerPlot = props.plots.map((plot) => {
-    return _.minBy(props.entries, plot);
-  });
-  const maxPlot = _.maxBy(maxPerPlot);
-  const minPlot = _.minBy(mimPerPlot);
-
   return (
     <Card className="w-7xl bg-background">
       <CardContent>

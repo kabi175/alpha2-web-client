@@ -1,7 +1,6 @@
 "use client";
 
 import SearchBar from "@/components/elements/SearchBar";
-import { LineChartData } from "@/components/elements/chart/LineChart";
 import LineChart from "@/components/elements/chart/LineChart";
 import { useEffect, useState } from "react";
 import { fetchAllFunds, fetchTrailingReturns } from "@/api";
@@ -14,7 +13,7 @@ export default function ReturnsDashboard() {
   const [timeframe, setTimeframe] = useState<string>("1Y");
   const [fund1, setFund1] = useState<string>("");
   const [fund2, setFund2] = useState<string>("");
-  const [chatData, setChartData] = useState<any[]>([]);
+  const [chatData, setChartData] = useState<any[]>([]); //@typescript-eslint/no-explicit-any
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +76,8 @@ export default function ReturnsDashboard() {
         transformData(report2, fund2)
       );
       const data = Object.values(_.groupBy(reports, "month")).map(
-        (reports: any) => {
+        (reports: any[]) => {
+          // @typescript-eslint/no-explicit-any
           const data = {
             month: reports[0].month,
             [fund1Label]:
@@ -89,7 +89,7 @@ export default function ReturnsDashboard() {
         }
       );
 
-      setChartData(data as any[]);
+      setChartData(data);
     };
 
     fetchData();
@@ -184,7 +184,7 @@ export default function ReturnsDashboard() {
   );
 }
 
-const transformData = (reports: any[], fundName: string): any[] => {
+const transformData = (reports: any[], fundName: string): any[] => { //@typescript-eslint/no-explicit-any
   return reports.map((report) => {
     // Convert report date to a readable format (e.g., "Jan 23")
     const date = new Date(report.ReportDate);
