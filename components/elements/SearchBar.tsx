@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -26,16 +25,14 @@ interface Option {
 interface SearchBarProps {
   placeholder: string;
   options: Option[];
-  onValueChange?: (value: string) => void;
+  selected?: Option;
+  onValueChange?: (option: Option) => void;
   onBeforeOpen?: () => void;
 }
 
 export default function SearchBar(props: SearchBarProps) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
-  useEffect(() => {
-    props.onValueChange?.(value);
-  }, [value]);
+  const [value, setValue] = [props.selected?.value, props.onValueChange];
 
   return (
     <Popover
@@ -72,7 +69,12 @@ export default function SearchBar(props: SearchBarProps) {
                   value={option.value}
                   keywords={[option.label]}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    const option = props.options.find(
+                      (o) => o.value === currentValue
+                    );
+                    if (option && setValue) {
+                      setValue(option);
+                    }
                     setOpen(false);
                   }}
                 >

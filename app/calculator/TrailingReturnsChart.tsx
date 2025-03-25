@@ -29,7 +29,7 @@ export default function TrailingReturnsChart(props: TrailingReturnsChartProps) {
         setChartData(data);
       }
     })();
-  });
+  }, []);
 
   return (
     <LineChart

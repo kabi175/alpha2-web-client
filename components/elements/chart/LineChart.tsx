@@ -29,7 +29,7 @@ const chartConfig = {
 export default function Component(props: LineChartData) {
   const lastDay = getLastDateOfLastMonthFormatted();
   return (
-    <Card className="w-7xl bg-background">
+    <Card className="w-full bg-background">
       <CardContent>
         <ChartContainer config={chartConfig}>
           <LineChart
@@ -67,7 +67,7 @@ export default function Component(props: LineChartData) {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          As reported to SEBI as at {lastDay}
+          As reported to SEBI as at {getLastDateOfLastMonthFormatted()}
         </div>
       </CardFooter>
     </Card>
@@ -76,5 +76,6 @@ export default function Component(props: LineChartData) {
 
 function getLastDateOfLastMonthFormatted() {
   const lastDay = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
-  return lastDay.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+  const month = lastDay.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
+  return `${lastDay.getDate()} ${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
 }

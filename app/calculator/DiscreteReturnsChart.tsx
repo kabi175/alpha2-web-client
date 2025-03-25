@@ -39,7 +39,7 @@ export default function DiscreteReturnsChart(props: DiscreteReturnsChartProps) {
     })();
   }, [props.fundA, props.fundB, props.period]);
   return (
-    <Card className="w-7xl bg-background">
+    <Card className="w-full bg-background">
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={chatData}>
@@ -54,14 +54,14 @@ export default function DiscreteReturnsChart(props: DiscreteReturnsChartProps) {
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey={props.fundA.label} fill="#EEB04599" radius={4} />
-            <Bar dataKey={props.fundB.label} fill="#2261D6" radius={4} />
+            <Bar dataKey={props.fundA.label} fill="#EEB04599" barSize={27} />
+            <Bar dataKey={props.fundB.label} fill="#2261D6" barSize={27} />
           </BarChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          As reported to SEBI as at {getLastDateOfLastMonthFormatted()}
+          *As reported to SEBI as at {getLastDateOfLastMonthFormatted()}
         </div>
       </CardFooter>
     </Card>
@@ -69,7 +69,8 @@ export default function DiscreteReturnsChart(props: DiscreteReturnsChartProps) {
 }
 function getLastDateOfLastMonthFormatted() {
   const lastDay = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
-  return lastDay.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+  const month = lastDay.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
+  return `${lastDay.getDate()} ${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
 }
 
 const fetchData = async (
