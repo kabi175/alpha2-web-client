@@ -1,10 +1,8 @@
 "use client";
 
 import SearchBar from "@/components/elements/SearchBar";
-import TrailingReturnsChart from "./TrailingReturnsChart";
 import { useEffect, useState } from "react";
 import { fetchAllFunds } from "@/api";
-import _ from "lodash";
 import DiscreteReturnsChart from "./DiscreteReturnsChart";
 
 export default function ReturnsDashboard() {
