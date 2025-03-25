@@ -27,7 +27,6 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function Component(props: LineChartData) {
-  const lastDay = getLastDateOfLastMonthFormatted();
   return (
     <Card className="w-full bg-background">
       <CardContent>
