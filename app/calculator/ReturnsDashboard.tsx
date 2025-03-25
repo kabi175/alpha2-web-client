@@ -5,6 +5,7 @@ import TrailingReturnsChart from "./TrailingReturnsChart";
 import { useEffect, useState } from "react";
 import { fetchAllFunds } from "@/api";
 import _ from "lodash";
+import DiscreteReturnsChart from "./DiscreteReturnsChart";
 
 export default function ReturnsDashboard() {
   const [fundList, setFundList] = useState<{ value: string; label: string }[]>(
@@ -118,9 +119,8 @@ export default function ReturnsDashboard() {
                 const option = fundList.find((f) => f.value === val);
                 if (!option) {
                   //TODO: hit search API
-                } else {
-                  setFund1(option);
                 }
+                setFund1(option);
               }}
             />
             <SearchBar
@@ -135,12 +135,13 @@ export default function ReturnsDashboard() {
       </div>
 
       {fund1 && fund2 && (
-        <TrailingReturnsChart
-          fundA={fund1}
-          fundB={fund2}
-          startDate={startDate}
-          endDate={endDate}
-        />
+        // <TrailingReturnsChart
+        //   fundA={fund1}
+        //   fundB={fund2}
+        //   startDate={startDate}
+        //   endDate={endDate}
+        // />
+        <DiscreteReturnsChart fundA={fund1} fundB={fund2} />
       )}
     </>
   );

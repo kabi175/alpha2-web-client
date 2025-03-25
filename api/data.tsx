@@ -30,6 +30,25 @@ const fetchTrailingReturns = async (
   }
 };
 
+const fetchDiscreteReturns = async (
+  fundId: Number,
+  period: "Y" | "Q"
+): Promise<ReturnsData[]> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/fund/${fundId}/discrete-returns?period=${period}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    return data.discrete_returns;
+  } catch (error) {
+    console.error("Error fetching trailing returns:", error);
+    return [];
+  }
+};
+
 const fetchAllFunds = async (): Promise<FundDetails[]> => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/funds`);
@@ -44,4 +63,4 @@ const fetchAllFunds = async (): Promise<FundDetails[]> => {
   }
 };
 
-export { fetchTrailingReturns, fetchAllFunds };
+export { fetchTrailingReturns, fetchDiscreteReturns, fetchAllFunds };

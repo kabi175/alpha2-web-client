@@ -1,3 +1,7 @@
-import { fetchTrailingReturns, fetchAllFunds } from "@/api/data";
+import {
+  fetchTrailingReturns,
+  fetchDiscreteReturns,
+  fetchAllFunds,
+} from "@/api/data";
 
-export { fetchTrailingReturns, fetchAllFunds };
+export { fetchTrailingReturns, fetchDiscreteReturns, fetchAllFunds };
