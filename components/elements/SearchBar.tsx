@@ -86,7 +86,7 @@ export default function SearchBar(props: SearchBarProps) {
                       value={option.value}
                       keywords={[option.label]}
                       onSelect={(currentValue) => {
-                        const option = props.options.find(
+                        const option = groupedOptions[group].find(
                           (o) => o.value === currentValue
                         );
                         if (option && setValue) {
