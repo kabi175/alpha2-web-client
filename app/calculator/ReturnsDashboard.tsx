@@ -8,9 +8,9 @@ import TrailingReturnsChart from "./TrailingReturnsChart";
 import DatePicker from "@/components/elements/DatePicker";
 
 export default function ReturnsDashboard() {
-  const [fundList, setFundList] = useState<{ value: string; label: string }[]>(
-    []
-  );
+  const [fundList, setFundList] = useState<
+    { value: string; label: string; group: string | undefined }[]
+  >([]);
   const [timeframe, setTimeframe] = useState<string>("5Y");
   const [period, setPeriod] = useState<"Y" | "Q">("Y");
   const [fund1, setFund1] = useState<{ value: string; label: string }>();
@@ -33,6 +33,7 @@ export default function ReturnsDashboard() {
         return {
           value: fund.id.toString(),
           label: fund.name,
+          group: fund.manager,
         };
       });
 

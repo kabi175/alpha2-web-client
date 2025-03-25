@@ -16,6 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import _ from "lodash";
 
 interface Option {
   value: string;
@@ -33,6 +34,7 @@ interface SearchBarProps {
 export default function SearchBar(props: SearchBarProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = [props.selected?.value, props.onValueChange];
+  const groupedOptions = _.groupBy(props.options, "group");
 
   return (
     <Popover
@@ -62,32 +64,37 @@ export default function SearchBar(props: SearchBarProps) {
           <CommandInput placeholder={props.placeholder} />
           <CommandList>
             <CommandEmpty>No Fund found.</CommandEmpty>
-            <CommandGroup>
-              {props.options.map((option) => (
-                <CommandItem
-                  key={option.value}
-                  value={option.value}
-                  keywords={[option.label]}
-                  onSelect={(currentValue) => {
-                    const option = props.options.find(
-                      (o) => o.value === currentValue
-                    );
-                    if (option && setValue) {
-                      setValue(option);
-                    }
-                    setOpen(false);
-                  }}
-                >
-                  {option.label}
-                  <Check
-                    className={cn(
-                      "ml-auto",
-                      value === option.label ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                </CommandItem>
-              ))}
-            </CommandGroup>
+            {Object.keys(groupedOptions).map((group) => {
+              const opts = groupedOptions[group];
+              return (
+                <CommandGroup key={group} heading={group} value={group}>
+                  {opts.map((option) => (
+                    <CommandItem
+                      key={option.value}
+                      value={option.value}
+                      keywords={[option.label]}
+                      onSelect={(currentValue) => {
+                        const option = props.options.find(
+                          (o) => o.value === currentValue
+                        );
+                        if (option && setValue) {
+                          setValue(option);
+                        }
+                        setOpen(false);
+                      }}
+                    >
+                      {option.label}
+                      <Check
+                        className={cn(
+                          "ml-auto",
+                          value === option.label ? "opacity-100" : "opacity-0"
+                        )}
+                      />
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              );
+            })}
           </CommandList>
         </Command>
       </PopoverContent>
