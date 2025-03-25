@@ -108,8 +108,8 @@ export default function ReturnsDashboard() {
           >
             {/* Point to Point Return Section */}
             {dataOption == "trailing" && (
-              <div className="bg-gray-700 flex rounded-md text-gray-400">
-                <span className=" px-3 py-1 flex items-center">
+              <div className="bg-gray-700 flex rounded-md text-gray-400 items-baseline">
+                <span className=" px-4 py-2 flex items-center">
                   Point to Point Return
                 </span>
                 {["All", "5Y", "4Y", "3Y", "2Y", "1Y", "6M"].map(
@@ -117,7 +117,7 @@ export default function ReturnsDashboard() {
                     <button
                       onClick={() => onTimeframeChange(label)}
                       key={index}
-                      className={`px-3 py-1  flex items-center ${
+                      className={`px-4 py-2  flex items-center ${
                         label === timeframe
                           ? "text-white font-semibold"
                           : "text-gray-400"
