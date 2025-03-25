@@ -2,13 +2,14 @@
 
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { TrendingUp } from "lucide-react";
 
 export interface LineChartData {
   entries: any[];
@@ -27,6 +28,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function Component(props: LineChartData) {
+  const lastDay = getLastDateOfLastMonthFormatted();
   return (
     <Card className="w-7xl bg-background">
       <CardContent>
@@ -64,6 +66,16 @@ export default function Component(props: LineChartData) {
           </LineChart>
         </ChartContainer>
       </CardContent>
+      <CardFooter className="flex-col items-start gap-2 text-sm">
+        <div className="leading-none text-muted-foreground">
+          As reported to SEBI as at {lastDay}
+        </div>
+      </CardFooter>
     </Card>
   );
+}
+
+function getLastDateOfLastMonthFormatted() {
+  const lastDay = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
+  return lastDay.toISOString().split("T")[0]; // Format as YYYY-MM-DD
 }

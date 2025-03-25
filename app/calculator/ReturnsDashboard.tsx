@@ -114,9 +114,14 @@ export default function ReturnsDashboard() {
             <SearchBar
               placeholder="Select PMS or MFs"
               options={fundList}
-              onValueChange={(val) =>
-                setFund1(fundList.find((f) => f.value === val))
-              }
+              onValueChange={(val) => {
+                const option = fundList.find((f) => f.value === val);
+                if (!option) {
+                  //TODO: hit search API
+                } else {
+                  setFund1(option);
+                }
+              }}
             />
             <SearchBar
               placeholder="Select PMS or MFs"
