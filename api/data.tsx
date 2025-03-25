@@ -6,6 +6,7 @@ interface ReturnsData {
 interface FundDetails {
   id: number;
   name: string;
+  manager: string;
 }
 
 const fetchTrailingReturns = async (
@@ -49,9 +50,11 @@ const fetchDiscreteReturns = async (
   }
 };
 
-const fetchAllFunds = async (): Promise<FundDetails[]> => {
+const fetchAllFunds = async (name?: string): Promise<FundDetails[]> => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/funds`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/funds${name ? `?name=${name}` : ""}`
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch data");
     }

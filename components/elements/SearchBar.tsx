@@ -28,13 +28,16 @@ interface SearchBarProps {
   options: Option[];
   selected?: Option;
   onValueChange?: (option: Option) => void;
+  onSearch?: (query?: string) => Promise<Array<Option>>;
   onBeforeOpen?: () => void;
 }
 
 export default function SearchBar(props: SearchBarProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = [props.selected?.value, props.onValueChange];
-  const groupedOptions = _.groupBy(props.options, "group");
+  const [groupedOptions, setDroupedOptions] = React.useState(
+    _.groupBy(props.options, "group")
+  );
 
   return (
     <Popover
@@ -61,7 +64,16 @@ export default function SearchBar(props: SearchBarProps) {
       </PopoverTrigger>
       <PopoverContent className="w-[478px] p-0">
         <Command>
-          <CommandInput placeholder={props.placeholder} />
+          <CommandInput
+            placeholder={props.placeholder}
+            onValueChange={async (search) => {
+              if (!props.onSearch) {
+                return;
+              }
+              const opts = await props.onSearch(search);
+              setDroupedOptions(_.groupBy(opts, "group"));
+            }}
+          />
           <CommandList>
             <CommandEmpty>No Fund found.</CommandEmpty>
             {Object.keys(groupedOptions).map((group) => {

@@ -25,22 +25,21 @@ export default function ReturnsDashboard() {
     "trailing" | "rolling" | "discrete"
   >("trailing");
 
+  const fetchData = async (search?: string) => {
+    // Fetch data from the API
+    const funds = await fetchAllFunds(search);
+    const flist = funds.map((fund) => {
+      return {
+        value: fund.id.toString(),
+        label: fund.name,
+        group: fund.manager,
+      };
+    });
+    return flist;
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      // Fetch data from the API
-      const funds = await fetchAllFunds();
-      const flist = funds.map((fund) => {
-        return {
-          value: fund.id.toString(),
-          label: fund.name,
-          group: fund.manager,
-        };
-      });
-
-      setFundList(flist);
-    };
-
-    fetchData();
+    fetchData().then((f) => setFundList(f));
   }, []);
 
   const onTimeframeChange = async (timeframe: string) => {
@@ -180,12 +179,14 @@ export default function ReturnsDashboard() {
               options={fundList}
               selected={fund1}
               onValueChange={setFund1}
+              onSearch={fetchData}
             />
             <SearchBar
               placeholder="Select PMS or MFs"
               options={fundList}
               selected={fund2}
               onValueChange={setFund2}
+              onSearch={fetchData}
             />
           </div>
 
