@@ -18,6 +18,7 @@ interface Fund {
 interface DiscreteReturnsChartProps {
   fundA: Fund;
   fundB: Fund;
+  period: "Y" | "Q";
 }
 
 const chartConfig = {
@@ -31,12 +32,12 @@ export default function DiscreteReturnsChart(props: DiscreteReturnsChartProps) {
   const [chatData, setChartData] = useState<any[]>([]);
   useEffect(() => {
     (async () => {
-      const data = await fetchData(props.fundA, props.fundB);
+      const data = await fetchData(props.fundA, props.fundB, props.period);
       if (data) {
         setChartData(data);
       }
     })();
-  }, [props.fundA, props.fundB]);
+  }, [props.fundA, props.fundB, props.period]);
   return (
     <Card className="w-7xl bg-background">
       <CardContent>
@@ -71,10 +72,13 @@ function getLastDateOfLastMonthFormatted() {
   return lastDay.toISOString().split("T")[0]; // Format as YYYY-MM-DD
 }
 
-const fetchData = async (fundA: Fund, fundB: Fund): Promise<any[]> => {
+const fetchData = async (
+  fundA: Fund,
+  fundB: Fund,
+  period: "Y" | "Q"
+): Promise<any[]> => {
   const fund1Label = fundA.label;
   const fund2Label = fundB.label;
-  const period = "Q";
 
   const report1 = await fetchDiscreteReturns(
     Number.parseInt(fundA.value),

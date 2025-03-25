@@ -4,16 +4,26 @@ import SearchBar from "@/components/elements/SearchBar";
 import { useEffect, useState } from "react";
 import { fetchAllFunds } from "@/api";
 import DiscreteReturnsChart from "./DiscreteReturnsChart";
+import TrailingReturnsChart from "./TrailingReturnsChart";
+import DatePicker from "@/components/elements/DatePicker";
 
 export default function ReturnsDashboard() {
   const [fundList, setFundList] = useState<{ value: string; label: string }[]>(
     []
   );
-  const [timeframe, setTimeframe] = useState<string>("1Y");
+  const [timeframe, setTimeframe] = useState<string>("5Y");
+  const [period, setPeriod] = useState<"Y" | "Q">("Y");
   const [fund1, setFund1] = useState<{ value: string; label: string }>();
   const [fund2, setFund2] = useState<{ value: string; label: string }>();
-  const [startDate, setStartDate] = useState<Date>(new Date());
-  const [endDate] = useState<Date>(new Date());
+  const [startDate, setStartDate] = useState<Date>(() => {
+    const date = new Date();
+    date.setFullYear(date.getFullYear() - 5);
+    return date;
+  });
+  const [endDate, setEndDate] = useState<Date>(new Date());
+  const [dataOption, setDataOption] = useState<
+    "trailing" | "rolling" | "discrete"
+  >("trailing");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,41 +65,95 @@ export default function ReturnsDashboard() {
 
   return (
     <>
-      <div className="w-full  flex flex-col items-center justify-center">
+      <div className="w-full  flex flex-col items-center justify-center pb-8">
         <div className="p-4 rounded-lg w-full ">
           {/* Tab Section */}
-          <div className="flex space-x-4">
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg">
+          <div className="flex ">
+            <button
+              className={`px-4 py-2 rounded-l-lg ${
+                dataOption === "trailing"
+                  ? "bg-blue-600 text-white font-semibold"
+                  : "bg-gray-700 text-gray-400"
+              }`}
+              onClick={() => setDataOption("trailing")}
+            >
               Trailing Returns
             </button>
-            <button className="px-4 py-2 bg-gray-700 text-gray-400 rounded-lg">
+            <button
+              className={`px-4 py-2  ${
+                dataOption === "discrete"
+                  ? "bg-blue-600 text-white font-semibold"
+                  : "bg-gray-700 text-gray-400"
+              }`}
+              onClick={() => setDataOption("discrete")}
+            >
               Discrete Returns
             </button>
-            <button className="px-4 py-2 bg-gray-700 text-gray-400 rounded-lg">
+            <button
+              className={`px-4 py-2 rounded-r-lg ${
+                dataOption === "rolling"
+                  ? "bg-blue-600 text-white font-semibold"
+                  : "bg-gray-700 text-gray-400"
+              }`}
+              onClick={() => setDataOption("rolling")}
+            >
               Rolling Returns
             </button>
           </div>
 
-          <div className="flex flex-row justify-between mt-6">
+          <div
+            className={`flex flex-row  mt-6 ${
+              dataOption == "rolling" ? "justify-end" : "justify-between"
+            }`}
+          >
             {/* Point to Point Return Section */}
-            <div className="bg-gray-700 flex rounded-md text-gray-400">
-              <span className=" px-3 py-1 flex items-center">
-                Point to Point Return
-              </span>
-              {["All", "5Y", "4Y", "3Y", "2Y", "1Y", "6M"].map(
-                (label, index) => (
-                  <button
-                    onClick={() => onTimeframeChange(label)}
-                    key={index}
-                    className={`px-3 py-1  flex items-center ${
-                      label === timeframe ? "text-white" : "text-gray-400"
-                    }`}
-                  >
-                    {label}
-                  </button>
-                )
-              )}
-            </div>
+            {dataOption == "trailing" && (
+              <div className="bg-gray-700 flex rounded-md text-gray-400">
+                <span className=" px-3 py-1 flex items-center">
+                  Point to Point Return
+                </span>
+                {["All", "5Y", "4Y", "3Y", "2Y", "1Y", "6M"].map(
+                  (label, index) => (
+                    <button
+                      onClick={() => onTimeframeChange(label)}
+                      key={index}
+                      className={`px-3 py-1  flex items-center ${
+                        label === timeframe
+                          ? "text-white font-semibold"
+                          : "text-gray-400"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  )
+                )}
+              </div>
+            )}
+
+            {dataOption == "discrete" && (
+              <div className="bg-gray-700 flex rounded-md text-gray-400">
+                <button
+                  onClick={() => setPeriod("Y")}
+                  className={`px-3 py-1  flex items-center ${
+                    period === "Y"
+                      ? "text-white font-semibold"
+                      : "text-gray-400"
+                  }`}
+                >
+                  Annually
+                </button>
+                <button
+                  onClick={() => setPeriod("Q")}
+                  className={`px-3 py-1  flex items-center ${
+                    period === "Q"
+                      ? "text-white font-semibold"
+                      : "text-gray-400"
+                  }`}
+                >
+                  Quarterly
+                </button>
+              </div>
+            )}
 
             {/* Selected Funds Section */}
             <div className="flex space-x-4">
@@ -129,36 +193,35 @@ export default function ReturnsDashboard() {
               }
             />
           </div>
+
+          {dataOption == "rolling" && (
+            <div className="mt-6 flex space-x-4">
+              <DatePicker
+                placeholder="Select Start Date"
+                onValueChange={setStartDate}
+                value={startDate}
+              />
+              <DatePicker
+                placeholder="Select End Date"
+                onValueChange={setEndDate}
+                value={endDate}
+              />
+            </div>
+          )}
         </div>
       </div>
 
-      {fund1 && fund2 && (
-        // <TrailingReturnsChart
-        //   fundA={fund1}
-        //   fundB={fund2}
-        //   startDate={startDate}
-        //   endDate={endDate}
-        // />
-        <DiscreteReturnsChart fundA={fund1} fundB={fund2} />
+      {fund1 && fund2 && dataOption !== "discrete" && (
+        <TrailingReturnsChart
+          fundA={fund1}
+          fundB={fund2}
+          startDate={startDate}
+          endDate={endDate}
+        />
+      )}
+      {fund1 && fund2 && dataOption === "discrete" && (
+        <DiscreteReturnsChart fundA={fund1} fundB={fund2} period={period} />
       )}
     </>
   );
 }
-
-const transformData = (reports: any[], fundName: string): any[] => {
-  //@typescript-eslint/no-explicit-any
-  return reports.map((report) => {
-    // Convert report date to a readable format (e.g., "Jan 23")
-    const date = new Date(report.ReportDate);
-    const month = date.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
-    const year = date.getFullYear().toString().slice(-2); // "23"
-
-    // Use the 1-month return value as the data
-    const data = report["1_month_return"] || 0; // Default to 0 if null/undefined
-
-    return {
-      month: `${month} ${year}`, // "Jan 23"
-      [fundName]: data,
-    };
-  });
-};
