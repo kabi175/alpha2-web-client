@@ -56,9 +56,7 @@ export default function SearchBar(props: SearchBarProps) {
           aria-expanded={open}
           className="w-[478px] h-[54px] justify-between"
         >
-          {value
-            ? props.options.find((option) => option.value === value)?.label
-            : props.placeholder}
+          {props.selected ? props.selected.label : props.placeholder}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
