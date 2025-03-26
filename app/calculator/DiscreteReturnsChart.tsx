@@ -107,7 +107,7 @@ const fetchData = async (
     }
   );
 
-  return data;
+  return _.sortBy(data, ["date"]);
 };
 
 const transformData = (reports: any[], fundName: string): any[] => {
@@ -123,6 +123,7 @@ const transformData = (reports: any[], fundName: string): any[] => {
 
     return {
       month: `${month} ${year}`, // "Jan 23"
+      date,
       [fundName]: data,
     };
   });

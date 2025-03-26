@@ -38,11 +38,11 @@ export default function TrailingReturnsChart(props: TrailingReturnsChartProps) {
       plots={[
         {
           key: props.fundA.label,
-          color: "#45D0EE",
+          color: "#EEB045",
         },
         {
           key: props.fundB.label,
-          color: "#EEB045",
+          color: "#45D0EE",
         },
       ]}
     />
@@ -77,6 +77,7 @@ const fetchData = async (
       // @typescript-eslint/no-explicit-any
       const data = {
         month: reports[0].month,
+        date: reports[0].date,
         [fund1Label]:
           _.at(reports[0], fundA.value)[0] || _.at(reports[1], fundA.value)[0],
         [fund2Label]:
@@ -86,7 +87,7 @@ const fetchData = async (
     }
   );
 
-  return data;
+  return _.sortBy(data, ["date"]);
 };
 
 const transformData = (reports: any[], fundName: string): any[] => {
@@ -102,6 +103,7 @@ const transformData = (reports: any[], fundName: string): any[] => {
 
     return {
       month: `${month} ${year}`, // "Jan 23"
+      date,
       [fundName]: data,
     };
   });
