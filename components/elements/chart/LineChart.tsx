@@ -46,7 +46,7 @@ export default function Component(props: LineChartData) {
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis tickFormatter={(value) => value + "%"} />
+            <YAxis tickFormatter={(value) => value + "₹"} />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
