@@ -98,6 +98,7 @@ const fetchData = async (
       // @typescript-eslint/no-explicit-any
       const data = {
         month: reports[0].month,
+        date: reports[0].date,
         [fund1Label]:
           _.at(reports[0], fundA.value)[0] || _.at(reports[1], fundA.value)[0],
         [fund2Label]:
