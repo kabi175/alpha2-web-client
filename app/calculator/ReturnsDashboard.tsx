@@ -97,7 +97,7 @@ export default function ReturnsDashboard() {
               }`}
               onClick={() => setDataOption("rolling")}
             >
-              Rolling Returns
+              Point to Point Returns
             </button>
           </div>
 
