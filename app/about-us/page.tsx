@@ -90,7 +90,7 @@ export default function Calculator() {
             {teamData.map((data, index) => (
               <Card key={index} className="bg-zinc-900/50 border-zinc-800 p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <img
+                  <Image
                     src={data.image}
                     alt="Team member"
                     className="w-16 h-16 rounded-full object-cover"
