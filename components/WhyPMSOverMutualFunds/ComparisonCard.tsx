@@ -3,7 +3,6 @@
 import React from "react";
 import { PMSLabel } from "./PMSLabel";
 import { MutualFundLabel } from "./MutualFundLabel";
-import { VsCircle } from "./VsCircle";
 
 interface ComparisonCardProps {
   pmsDescription: string;
