@@ -10,10 +10,10 @@ const PMFUnderstand: React.FC = () => {
       </h1>
 
       <div className="w-full overflow-x-auto pb-4 mt-24 max-md:mt-10 custom-scrollbar">
-        <div className="flex gap-7 items-center px-20 max-md:px-5 min-w-min">
-          <PMSInfoCard />
-          <PMSInfoCard />
-          <PMSInfoCard />
+        <div className="flex gap-7 justify-center px-20 max-md:px-5 min-w-min">
+          <PMSInfoCard image="profit.svg" />
+          <PMSInfoCard image="export.svg" />
+          <PMSInfoCard image="research.svg" />
         </div>
       </div>
     </AlphaSection>
