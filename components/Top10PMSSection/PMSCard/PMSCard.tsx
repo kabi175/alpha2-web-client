@@ -38,12 +38,12 @@ export const PMSCard: React.FC<PMSCardProps> = ({
     >
       <div className="w-full h-[83px] bg-[#F7ECB01F] absolute rounded-t-2xl inset-x-0 top-0 z-0" />
       <div className="pt-[25px] z-10">
-        <div className="size-16 rounded-2xl mb-4 bg-white flex items-center">
+        <div className="w-[70px] h-[70px] rounded-2xl mb-4 bg-white flex items-center justify-center">
           <Image
             src={image != "" ? image : "/logo.svg"}
             alt="logo"
-            width={64}
-            height={64}
+            width={60}
+            height={60}
           />
         </div>
       </div>
