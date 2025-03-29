@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
     products: {
       title: "Products",
       links: [
-        { text: "Calculators", href: "/calculators" },
+        { text: "Calculators", href: "/calculator" },
         { text: "Explore PMS", href: "/pms" },
         { text: "Connect with our Experts", href: "/experts" },
       ],
