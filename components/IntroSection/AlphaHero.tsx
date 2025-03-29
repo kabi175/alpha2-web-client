@@ -2,7 +2,7 @@ import ConnectWithExpert from "@/components/elements/button/ConnectWithExpert";
 
 const AlphaHero = () => {
   return (
-    <section className="mb-20 max-w-[800px]">
+    <section className="mb-20 ml-20 max-w-[800px] ">
       <h1 className="mb-5 text-8xl font-bold tracking-tighter leading-[113.36px] max-md:text-7xl max-sm:text-5xl max-sm:tracking-tighter flex flex-col">
         <span className="font-extralight text-transparent bg-clip-text bg-gradient-to-r from-white to-[#4B4B4B]">
           Amplify your
