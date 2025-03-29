@@ -5,6 +5,26 @@ import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import React from "react";
 
+const teamData = [
+  {
+    name: "Ankit Himatsingka",
+    image: "/ankit.DNG",
+    social: "https://www.linkedin.com/in/ankithimatsingka",
+    summary: `Ankit Himatsingka is a seasoned finance leader with over 15 years of experience spanning multiple industries. 
+He brings deep expertise in financial strategy and capital optimization. 
+An alumnus of Harvard Business School’s prestigious SELP program and a Chartered Accountant, Ankit combines strategic foresight with hands-on execution to drive sustainable growth. His ability to navigate complex financial landscapes has made him a trusted advisor to businesses seeking financial excellence.`,
+  },
+  {
+    name: "Dheeraj Reddy",
+    image: "/ankit.DNG",
+    social:
+      "https://www.linkedin.com/in/dheeraj-kumar-reddy-dosakayala-25876a103",
+    summary: `Dheeraj is a finance professional with a Bachelor's degree from the Indian Institute of Technology, Madras, and is a CFA Level II holder.
+With over five years of experience in global markets and growth equity funds, he has honed his expertise in financial analysis, investment strategies, and portfolio management.
+In his previous role, Dheeraj actively managed portfolio companies and worked with them in their growth journey. He brings a strong data analytics and operations-driven mindset, enabling him to build efficient and scalable investment products that drive innovation and performance.`,
+  },
+];
+
 export default function Calculator() {
   return (
     <div className="pb-24">
@@ -67,17 +87,20 @@ export default function Calculator() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {Array.from({ length: 2 }).map((_, index) => (
+            {teamData.map((data, index) => (
               <Card key={index} className="bg-zinc-900/50 border-zinc-800 p-6">
                 <div className="flex items-center gap-4 mb-4">
                   <img
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src={data.image}
                     alt="Team member"
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   <div>
-                    <h3 className="text-lg font-semibold">Ankit Himatsingka</h3>
-                    <a href="#" className="text-blue-400 hover:text-blue-300">
+                    <h3 className="text-lg font-semibold">{data.name}</h3>
+                    <a
+                      href={data.social}
+                      className="text-blue-400 hover:text-blue-300"
+                    >
                       <svg
                         className="w-6 h-6"
                         fill="currentColor"
@@ -88,12 +111,7 @@ export default function Calculator() {
                     </a>
                   </div>
                 </div>
-                <p className="text-zinc-300">
-                  Lorem ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                </p>
+                <p className="text-zinc-300">{data.summary}</p>
               </Card>
             ))}
           </div>
