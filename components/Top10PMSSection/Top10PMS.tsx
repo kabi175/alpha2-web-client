@@ -17,17 +17,17 @@ const pmsData: PMSData[] = [
   {
     title: "ICICI Prudential",
     percentage: "36.99%",
-    image: "",
+    image: "/fund-logo/ICICI-Pru.png",
   },
   {
     title: "Unique Asset",
     percentage: "32.38%",
-    image: "",
+    image: "/fund-logo/Unique.png",
   },
   {
     title: "Bonanza",
     percentage: "31.16%",
-    image: "",
+    image: "/fund-logo/bonanza.png",
   },
   {
     title: "Asit C Mehta",

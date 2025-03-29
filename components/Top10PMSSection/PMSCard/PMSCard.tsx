@@ -42,8 +42,8 @@ export const PMSCard: React.FC<PMSCardProps> = ({
           <Image
             src={image != "" ? image : "/logo.svg"}
             alt="logo"
-            width={75}
-            height={75}
+            width={64}
+            height={64}
           />
         </div>
       </div>
