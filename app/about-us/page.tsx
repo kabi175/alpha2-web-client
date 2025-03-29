@@ -93,6 +93,8 @@ export default function Calculator() {
                   <Image
                     src={data.image}
                     alt="Team member"
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   <div>
