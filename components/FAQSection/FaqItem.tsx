@@ -29,11 +29,13 @@ export const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
         <ChevronIcon direction={isExpanded ? "up" : "down"} />
       </button>
       {isExpanded && answer && (
-        <div
-          id={`answer-${question.replace(/\s+/g, "-").toLowerCase()}`}
-          className="px-6 pb-6 w-full text-base leading-6 text-white"
-        >
-          {answer.startsWith("A.") ? answer : `A. ${answer}`}
+        <div className="w-full overflow-auto">
+          <pre
+            id={`answer-${question.replace(/\s+/g, "-").toLowerCase()}`}
+            className="px-6 pb-6 w-full text-base leading-6 text-white whitespace-pre"
+          >
+            {answer}
+          </pre>
         </div>
       )}
     </article>
