@@ -21,7 +21,7 @@ export const ComparisonCard: React.FC<ComparisonCardProps> = ({
         <div className="flex gap-5 max-md:flex-col">
           <div className="w-1/2 h-[185px] max-md:ml-0 max-md:w-full">
             <div className="flex grow max-md:mt-7">
-              <div className="flex flex-col grow shrink-0 items-start py-6 pr-16 pl-8 text-lg  basis-0 bg-stone-900 w-fit max-md:px-5">
+              <div className="flex flex-col grow shrink-0 items-start py-6 pr-16 pl-8 text-lg  basis-0 bg-gradient-to-r to-[##000000] from-[#4A9EFF4D] w-fit max-md:px-5">
                 {showLabel && <PMSLabel />}
                 <p className="mt-5 text-zinc-300 w-[271px]">{pmsDescription}</p>
               </div>
@@ -29,7 +29,7 @@ export const ComparisonCard: React.FC<ComparisonCardProps> = ({
           </div>
           <div className="w-1/2 h-[185px] max-md:ml-0 max-md:w-full">
             <div className="flex grow max-md:mt-7">
-              <div className="flex flex-col grow shrink-0 items-start py-6 pr-16 pl-8 text-lg  basis-0 bg-stone-900 w-fit max-md:px-5">
+              <div className="flex flex-col grow shrink-0 items-start py-6 pr-16 pl-8 text-lg  basis-0 bg-gradient-to-r from-[##000000] to-[#4A9EFF4D] w-fit max-md:px-5">
                 {showLabel && <MutualFundLabel />}
                 <p className="mt-5 text-zinc-300 w-[271px]">
                   {mutualFundDescription}
