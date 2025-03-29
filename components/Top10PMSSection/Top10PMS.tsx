@@ -86,7 +86,7 @@ const Top10PMS: React.FC = () => {
         className="w-full overflow-x-auto pb-4 mt-24 max-md:mt-10 custom-scrollbar"
         onScroll={(e) => {
           const { scrollLeft, scrollWidth, clientWidth } = e.currentTarget;
-          let scrollPercentage = scrollLeft / (scrollWidth - clientWidth);
+          const scrollPercentage = scrollLeft / (scrollWidth - clientWidth);
 
           // Move scrollbar along X-axis
           setScrollBarPosition(scrollPercentage * (clientWidth * 0.4));
