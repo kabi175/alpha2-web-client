@@ -4,10 +4,6 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 export default function AlphaNav() {
-  const redirectHandler = (route: string) => {
-    redirect(route);
-  };
-
   return (
     <nav className="flex gap-10 items-center px-8 py-1.5 bg-[color:var(--nav-bg)] rounded-[290px] w-fit max-sm:hidden">
       <div className="px-4 py-2 bg-[color:var(--nav-active)] rounded-[40px]">
