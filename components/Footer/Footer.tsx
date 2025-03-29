@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   const navSections = {
     about: {
       title: "About us",
-      links: [{ text: "More information", href: "/about" }],
+      links: [{ text: "More information", href: "/about-us" }],
     },
     products: {
       title: "Products",

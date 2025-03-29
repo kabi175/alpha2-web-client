@@ -39,7 +39,7 @@ export default function AlphaNav() {
         FAQs
       </a>
       <a
-        href="#about"
+        href="/about-us"
         className="text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >
         About Us
