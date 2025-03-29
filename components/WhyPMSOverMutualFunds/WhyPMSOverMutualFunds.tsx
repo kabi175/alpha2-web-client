@@ -7,7 +7,7 @@ import ConnectWithExpert from "@/components/elements/button/ConnectWithExpert";
 const WhyPMSOverMutualFunds: React.FC = () => {
   return (
     <section className="overflow-hidden">
-      <div className="flex flex-col px-20 pt-28 pb-14 w-full border border-solid bg-neutral-950 border-zinc-800 border-opacity-10 max-md:px-5 max-md:pt-24 max-md:max-w-full">
+      <div className="flex flex-col px-20 pt-28 pb-14 w-full max-md:px-5 max-md:pt-24 max-md:max-w-full">
         <h1 className="self-center text-6xl font-medium tracking-tighter text-center text-white max-md:max-w-full max-md:text-4xl">
           <span className="font-extralight">Why</span> PMS{" "}
           <span className="font-extralight">over</span> Mutual Funds

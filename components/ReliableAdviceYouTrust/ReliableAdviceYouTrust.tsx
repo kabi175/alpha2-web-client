@@ -6,7 +6,7 @@ import ConnectWithExpert from "@/components/elements/button/ConnectWithExpert";
 export const ReliableAdviceYouTrust: React.FC = () => {
   return (
     <section className="overflow-hidden">
-      <div className="flex flex-col items-center px-20 pt-24 pb-12 w-full border border-solid bg-neutral-950 border-zinc-800 border-opacity-10 max-md:px-5 max-md:max-w-full">
+      <div className="flex flex-col items-center px-20 pt-24 pb-12 w-full max-md:px-5 max-md:max-w-full">
         <div className="flex flex-col w-full max-w-[1086px] max-md:max-w-full">
           <header className="flex flex-col pr-12 pl-2 text-white max-md:pr-5 max-md:max-w-full">
             <h1 className="self-start text-5xl font-medium tracking-tighter text-center max-md:max-w-full max-md:text-4xl">

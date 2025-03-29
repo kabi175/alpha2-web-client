@@ -10,13 +10,7 @@ const PMFUnderstand: React.FC = () => {
       </h1>
 
       <div className="w-full overflow-x-auto pb-4 mt-24 max-md:mt-10 custom-scrollbar">
-        <div
-          className="flex gap-7 items-center px-20 max-md:px-5 min-w-min"
-          style={{
-            paddingBottom: "20px",
-            marginBottom: "-20px",
-          }}
-        >
+        <div className="flex gap-7 items-center px-20 max-md:px-5 min-w-min">
           <PMSInfoCard />
           <PMSInfoCard />
           <PMSInfoCard />
