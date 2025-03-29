@@ -21,13 +21,13 @@ export default function AlphaNav() {
         />
       </div>
       <a
-        href="calculator"
+        href="/calculator"
         className="text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >
         Calculator
       </a>
       <a
-        href="#explore"
+        href="/explore"
         className="text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >
         Explore PMS

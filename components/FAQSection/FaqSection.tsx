@@ -178,7 +178,10 @@ A demat account is opened in your name with an accredited custodian, ensuring fu
 
 export const FaqSection: React.FC = () => {
   return (
-    <section className="flex flex-col items-start pt-24 pr-60 pb-36 pl-60 w-full min-h-[screen] max-md:px-32 max-md:py-16 max-sm:px-5 max-sm:py-10">
+    <section
+      id="faqs"
+      className="flex flex-col items-start pt-24 pr-60 pb-36 pl-60 w-full min-h-[screen] max-md:px-32 max-md:py-16 max-sm:px-5 max-sm:py-10"
+    >
       <div className="flex flex-col gap-12 items-start w-full max-w-[1036px]">
         <h1 className="text-5xl font-medium tracking-tighter leading-normal text-white max-md:text-4xl max-sm:text-3xl">
           FAQs
