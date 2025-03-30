@@ -10,7 +10,7 @@ export const ReliableAdviceYouTrust: React.FC = () => {
         <div className="flex flex-col w-full max-w-[1086px] max-md:max-w-full">
           <header className="flex flex-col pr-12 pl-2 text-white max-md:pr-5 max-md:max-w-full">
             <h1 className="self-start text-5xl font-medium tracking-tighter text-center max-md:max-w-full max-md:text-4xl">
-              Reliable advice you trust
+              Reliable advice you can trust
             </h1>
             <p className="mt-10 text-3xl font-extralight tracking-tighter max-md:max-w-full">
               AlphaSqr unlocks PMS for retail investors, offering wealth
