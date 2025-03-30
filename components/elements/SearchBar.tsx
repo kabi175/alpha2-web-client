@@ -16,9 +16,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import _, { set } from "lodash";
+import _ from "lodash";
 import { Badge } from "../ui/badge";
-import { CommandDialog } from "cmdk";
 
 interface Option {
   value: string;

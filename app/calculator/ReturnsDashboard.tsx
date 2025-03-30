@@ -1,16 +1,13 @@
 "use client";
 
 import SearchBar from "@/components/elements/SearchBar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fetchAllFunds } from "@/api";
 import DiscreteReturnsChart from "./DiscreteReturnsChart";
 import TrailingReturnsChart from "./TrailingReturnsChart";
 import DatePicker from "@/components/elements/DatePicker";
 
 export default function ReturnsDashboard() {
-  const [fundList, setFundList] = useState<
-    { value: string; label: string; group: string | undefined }[]
-  >([]);
   const [timeframe, setTimeframe] = useState<string>("5Y");
   const [period, setPeriod] = useState<"Y" | "Q">("Y");
   const [fund1, setFund1] = useState<{ value: string; label: string }>();
@@ -37,10 +34,6 @@ export default function ReturnsDashboard() {
     });
     return flist;
   };
-
-  useEffect(() => {
-    fetchData().then((f) => setFundList(f));
-  }, []);
 
   const onTimeframeChange = async (timeframe: string) => {
     const start = new Date();
