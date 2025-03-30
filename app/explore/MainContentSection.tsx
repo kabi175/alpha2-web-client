@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 
 export const MainContentSection = () => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
-  const [searchParam, setSearchParam] = React.useState<Record<string, string>>({
+  const [searchParam] = React.useState<Record<string, string>>({
     per_page: "10",
     page: "0",
   });
@@ -61,7 +61,6 @@ export const MainContentSection = () => {
   const totalPages = Math.ceil(total / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = tableData.slice(startIndex, endIndex);
 
   return (
     <div className="flex flex-col w-[1122px] items-start">
