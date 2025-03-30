@@ -25,9 +25,9 @@ export default function ReturnsDashboard() {
     "trailing" | "rolling" | "discrete"
   >("trailing");
 
-  const fetchData = async (search?: string) => {
+  const fetchData = async (search?: string, type?: string) => {
     // Fetch data from the API
-    const funds = await fetchAllFunds(search);
+    const funds = await fetchAllFunds(search, type);
     const flist = funds.map((fund) => {
       return {
         value: fund.id.toString(),
@@ -170,15 +170,13 @@ export default function ReturnsDashboard() {
           {/* Search Inputs */}
           <div className="mt-6 flex space-x-4">
             <SearchBar
-              placeholder="Select PMS or MFs"
-              options={fundList}
+              placeholder="Select for Mututal Funds & PMS..."
               selected={fund1}
               onValueChange={setFund1}
               onSearch={fetchData}
             />
             <SearchBar
-              placeholder="Select PMS or MFs"
-              options={fundList}
+              placeholder="Select for Mututal Funds & PMS.."
               selected={fund2}
               onValueChange={setFund2}
               onSearch={fetchData}

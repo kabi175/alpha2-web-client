@@ -1,3 +1,5 @@
+import { queryObjects } from "v8";
+
 interface ReturnsData {
   ReportDate: string;
   "1_month_return": number;
@@ -50,10 +52,23 @@ const fetchDiscreteReturns = async (
   }
 };
 
-const fetchAllFunds = async (name?: string): Promise<FundDetails[]> => {
+const fetchAllFunds = async (
+  name?: string,
+  type?: string
+): Promise<FundDetails[]> => {
   try {
+    const param = new URLSearchParams();
+    if (name) {
+      param.append("name", name);
+    }
+    if (type) {
+      param.append("type", type);
+    }
+
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/funds${name ? `?name=${name}` : ""}`
+      `${process.env.NEXT_PUBLIC_API_URL}/funds${
+        param.size > 0 ? `?${param.toString()}` : ""
+      }`
     );
     if (!response.ok) {
       throw new Error("Failed to fetch data");

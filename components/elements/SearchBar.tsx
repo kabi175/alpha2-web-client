@@ -16,7 +16,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import _ from "lodash";
+import _, { set } from "lodash";
+import { Badge } from "../ui/badge";
+import { CommandDialog } from "cmdk";
 
 interface Option {
   value: string;
@@ -25,10 +27,9 @@ interface Option {
 
 interface SearchBarProps {
   placeholder: string;
-  options: Option[];
   selected?: Option;
   onValueChange?: (option: Option) => void;
-  onSearch?: (query?: string) => Promise<Array<Option>>;
+  onSearch?: (query?: string, type?: string) => Promise<Array<Option>>;
   onBeforeOpen?: () => void;
 }
 
@@ -36,8 +37,64 @@ export default function SearchBar(props: SearchBarProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = [props.selected?.value, props.onValueChange];
   const [groupedOptions, setDroupedOptions] = React.useState(
-    _.groupBy(props.options, "group")
+    _.groupBy([] as Option[], "group")
   );
+  const [fundType, setFundType] = React.useState<
+    "Mutual Fund" | "PMS" | undefined
+  >();
+  function CommandOptions() {
+    if (Object.keys(groupedOptions).length === 0 && fundType == null) {
+      const commands = ["Search Mutual Funds...", "Search PMS..."];
+      return commands.map((command) => (
+        <CommandItem
+          key={command}
+          value={command}
+          onSelect={async () => {
+            const type =
+              command === "Search Mutual Funds..." ? "Mutual Fund" : "PMS";
+            setFundType(type);
+            if (props.onSearch) {
+              const opts = await props.onSearch("", type);
+              setDroupedOptions(_.groupBy(opts, "group"));
+            }
+          }}
+        >
+          {command}
+        </CommandItem>
+      ));
+    }
+    return Object.keys(groupedOptions).map((group) => {
+      const opts = groupedOptions[group];
+      return (
+        <CommandGroup key={group} heading={group} value={group}>
+          {opts.map((option) => (
+            <CommandItem
+              key={option.value}
+              value={option.value}
+              keywords={[option.label]}
+              onSelect={(currentValue) => {
+                const option = groupedOptions[group].find(
+                  (o) => o.value === currentValue
+                );
+                if (option && setValue) {
+                  setValue(option);
+                }
+                setOpen(false);
+              }}
+            >
+              {option.label}
+              <Check
+                className={cn(
+                  "ml-auto",
+                  value === option.label ? "opacity-100" : "opacity-0"
+                )}
+              />
+            </CommandItem>
+          ))}
+        </CommandGroup>
+      );
+    });
+  }
 
   return (
     <Popover
@@ -62,49 +119,28 @@ export default function SearchBar(props: SearchBarProps) {
       </PopoverTrigger>
       <PopoverContent className="w-[478px] p-0">
         <Command>
+          {fundType && (
+            <Badge
+              className="m-2"
+              variant="outline"
+              onClick={() => setFundType(undefined)}
+            >
+              {fundType}
+            </Badge>
+          )}
           <CommandInput
             placeholder={props.placeholder}
             onValueChange={async (search) => {
               if (!props.onSearch) {
                 return;
               }
-              const opts = await props.onSearch(search);
+              const opts = await props.onSearch(search, fundType);
               setDroupedOptions(_.groupBy(opts, "group"));
             }}
           />
           <CommandList>
             <CommandEmpty>No Fund found.</CommandEmpty>
-            {Object.keys(groupedOptions).map((group) => {
-              const opts = groupedOptions[group];
-              return (
-                <CommandGroup key={group} heading={group} value={group}>
-                  {opts.map((option) => (
-                    <CommandItem
-                      key={option.value}
-                      value={option.value}
-                      keywords={[option.label]}
-                      onSelect={(currentValue) => {
-                        const option = groupedOptions[group].find(
-                          (o) => o.value === currentValue
-                        );
-                        if (option && setValue) {
-                          setValue(option);
-                        }
-                        setOpen(false);
-                      }}
-                    >
-                      {option.label}
-                      <Check
-                        className={cn(
-                          "ml-auto",
-                          value === option.label ? "opacity-100" : "opacity-0"
-                        )}
-                      />
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              );
-            })}
+            <CommandOptions />
           </CommandList>
         </Command>
       </PopoverContent>
