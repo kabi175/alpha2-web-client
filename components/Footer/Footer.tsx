@@ -8,28 +8,26 @@ const Footer: React.FC = () => {
   const navSections = {
     about: {
       title: "About us",
-      links: [{ text: "More information", href: "/about-us" }],
+      links: [{ text: "Meet the Team", href: "/about-us" }],
     },
     products: {
       title: "Products",
       links: [
         { text: "Calculators", href: "/calculator" },
         { text: "Explore PMS", href: "/pms" },
-        { text: "Connect with our Experts", href: "/experts" },
-      ],
-    },
-    useful: {
-      title: "Useful Links",
-      links: [
-        { text: "Top PMSs", href: "/top-pms" },
-        { text: "Documentation", href: "/docs" },
+        {
+          text: "Connect with our Experts",
+          href: "https://calendar.app.google/VriTd83Lz2NwsvRB9",
+        },
       ],
     },
     legal: {
       title: "Legal",
       links: [
-        { text: "Privacy Policy", href: "/privacy" },
-        { text: "Terms and Conditions", href: "/terms" },
+        { text: "Privacy Policy", href: "/privacy-policy" },
+        { text: "Terms and Conditions", href: "/terms-and-conditions" },
+        { text: "Code of Conduct", href: "/code-of-conduct" },
+        { text: "Disclaimer", href: "/disclaimer" },
       ],
     },
   };
@@ -42,7 +40,6 @@ const Footer: React.FC = () => {
           <div className="flex gap-8 items-start max-md:flex-wrap max-sm:flex-col">
             <FooterNavSection {...navSections.about} />
             <FooterNavSection {...navSections.products} />
-            <FooterNavSection {...navSections.useful} />
             <FooterNavSection {...navSections.legal} />
           </div>
         </div>
