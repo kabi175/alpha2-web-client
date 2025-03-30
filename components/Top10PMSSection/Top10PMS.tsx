@@ -17,12 +17,12 @@ const pmsData: PMSData[] = [
   {
     title: "ICICI Prudential",
     percentage: "36.99%",
-    image: "/fund-logo/ICICI-Pru.png",
+    image: "/fund-logo/ICICI-Pru.jpg",
   },
   {
     title: "Unique Asset",
     percentage: "32.38%",
-    image: "/fund-logo/Unique.png",
+    image: "/fund-logo/Unique.jpg",
   },
   {
     title: "Bonanza",
@@ -37,7 +37,7 @@ const pmsData: PMSData[] = [
   {
     title: "Motilal Oswal",
     percentage: "30.68%",
-    image: "/fund-logo/MOTILAL-OSWAL.webp",
+    image: "/fund-logo/MOTILAL-OSWAL.jpg",
   },
   {
     title: "Stallion",
