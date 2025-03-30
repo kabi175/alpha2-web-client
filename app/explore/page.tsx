@@ -9,9 +9,6 @@ export const ExplorePms = () => {
   const navItems = [
     { id: 1, label: "All PMS", active: true },
     { id: 2, label: "Top Performing PMS", active: false },
-    { id: 3, label: "All PMS", active: false },
-    { id: 4, label: "All PMS", active: false },
-    { id: 5, label: "All PMS", active: false },
   ];
 
   return (

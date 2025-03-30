@@ -11,6 +11,23 @@ interface FundDetails {
   manager: string;
 }
 
+export interface FundExploreData {
+  schemeName: string;
+  aum: number;
+  threeMonth: number;
+  sixMonth: number;
+  ytd: number;
+  oneYear: number;
+  twoYear: number;
+  threeYear: number;
+  fiveYear: number;
+}
+
+export interface FundExploreDataResponse {
+  data: FundExploreData[];
+  total: number;
+}
+
 const fetchTrailingReturns = async (
   fundId: Number,
   start: Date,
@@ -81,4 +98,34 @@ const fetchAllFunds = async (
   }
 };
 
-export { fetchTrailingReturns, fetchDiscreteReturns, fetchAllFunds };
+const fetchFundsForExplore = async (
+  params: Record<string, string>
+): Promise<FundExploreDataResponse> => {
+  try {
+    const param = new URLSearchParams(params);
+
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/funds/explore${
+        param.size > 0 ? `?${param.toString()}` : ""
+      }`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching trailing returns:", error);
+    return {
+      data: [],
+      total: 0,
+    };
+  }
+};
+
+export {
+  fetchTrailingReturns,
+  fetchDiscreteReturns,
+  fetchAllFunds,
+  fetchFundsForExplore,
+};

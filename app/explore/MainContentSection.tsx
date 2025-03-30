@@ -1,6 +1,6 @@
 "use client";
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -10,15 +10,38 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { fetchFundsForExplore } from "@/api";
+import { FundExploreData } from "@/api/data";
+import { set } from "lodash";
 
 export const MainContentSection = () => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
+  const [searchParam, setSearchParam] = React.useState<Record<string, string>>({
+    per_page: "10",
+    page: "0",
+  });
+  const [tableData, setTableData] = React.useState<FundExploreData[]>([]);
+  const [total, setTotal] = React.useState<number>(0);
+  const [orderBy, setOrderBy] = React.useState<string>("schemeName");
+  const [order, setOrder] = React.useState<string>("asc");
   const itemsPerPage = 10;
+  useEffect(() => {
+    (async () => {
+      const resp = await fetchFundsForExplore({
+        ...searchParam,
+        page: (currentPage - 1).toString(),
+        order_by: orderBy,
+        order,
+      });
+      setTableData(resp.data);
+      setTotal(resp.total);
+    })();
+  }, [searchParam, currentPage, orderBy, order]);
 
   // Define column headers with their labels
   const columns = [
     { id: "schemeName", label: "Scheme Name" },
-    { id: "aum", label: "AuM (Cr)" },
+    { id: "aum", label: "AUM (Cr)" },
     { id: "threeMonth", label: "3M" },
     { id: "sixMonth", label: "6M" },
     { id: "ytd", label: "YTD" },
@@ -28,28 +51,14 @@ export const MainContentSection = () => {
     { id: "fiveYear", label: "5Y" },
   ];
 
-  // Define table data
-  const tableData = Array(12).fill({
-    schemeName: "Flexi Cap Fund",
-    aum: "5,254.65",
-    threeMonth: "-17.16%",
-    sixMonth: "-18.34%",
-    ytd: "-15.26%",
-    oneYear: "2.24%",
-    twoYear: "28.28%",
-    threeYear: "24.09%",
-    fiveYear: "22.09%",
-  });
-
   // Helper function to determine text color based on value
-  const getValueColor = (value: string) => {
-    if (value.startsWith("-")) return "text-[#ff3131]";
-    if (value.startsWith("+") || Number.parseFloat(value) > 0)
-      return "text-[#70b15d]";
+  const getValueColor = (value: number) => {
+    if (value < 0) return "text-[#ff3131]";
+    if (value > 0) return "text-[#70b15d]";
     return "text-[#ababab]";
   };
 
-  const totalPages = Math.ceil(tableData.length / itemsPerPage);
+  const totalPages = Math.ceil(total / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = tableData.slice(startIndex, endIndex);
@@ -66,12 +75,20 @@ export const MainContentSection = () => {
                   index === 0 ? "rounded-tl-[18px]" : ""
                 } ${index === columns.length - 1 ? "rounded-tr-[18px]" : ""}`}
               >
-                <div className="flex items-center">
+                <div
+                  className="flex items-center"
+                  onClick={() => {
+                    setOrderBy(column.id);
+                    setOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+                  }}
+                >
                   {column.label}
-                  {column.id !== "schemeName" && (
+                  {orderBy == column.id && (
                     <div className="flex flex-col ml-1 h-4">
-                      <ArrowUpIcon className="w-3 h-3" />
-                      <ArrowDownIcon className="w-3 h-3 -mt-1" />
+                      {order == "asc" && <ArrowUpIcon className="w-3 h-3" />}
+                      {order == "desc" && (
+                        <ArrowDownIcon className="w-3 h-3 " />
+                      )}
                     </div>
                   )}
                 </div>
@@ -147,8 +164,8 @@ export const MainContentSection = () => {
 
       <div className="flex justify-between items-center w-full mt-4 px-8">
         <div className="text-[#ababab] text-xs">
-          Showing {startIndex + 1} to {Math.min(endIndex, tableData.length)} of{" "}
-          {tableData.length} entries
+          Showing {startIndex + 1} to {Math.min(endIndex, total)} of {total}
+          entries
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -160,26 +177,18 @@ export const MainContentSection = () => {
             Previous
           </Button>
           <div className="flex items-center gap-1">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <Button
-                key={page}
-                variant="ghost"
-                onClick={() => setCurrentPage(page)}
-                className={`w-8 h-8 ${
-                  currentPage === page
-                    ? "bg-[#0076ff] text-white"
-                    : "text-[#ababab] hover:text-white"
-                }`}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              variant="ghost"
+              className={`w-8 h-8 bg-[#0076ff] text-white`}
+            >
+              {currentPage}
+            </Button>
           </div>
           <Button
             variant="ghost"
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
+            onClick={() => {
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+            }}
             disabled={currentPage === totalPages}
             className="text-[#ababab] hover:text-white disabled:opacity-50"
           >
