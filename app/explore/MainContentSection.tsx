@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { fetchFundsForExplore } from "@/api";
 import { FundExploreData } from "@/api/data";
-import { set } from "lodash";
+import { Label } from "@/components/ui/label";
 
 export const MainContentSection = () => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
@@ -64,7 +64,7 @@ export const MainContentSection = () => {
   const currentData = tableData.slice(startIndex, endIndex);
 
   return (
-    <div className="flex flex-col w-full items-start">
+    <div className="flex flex-col w-[1122px] items-start">
       <Table className="border-collapse">
         <TableHeader className="bg-[#2b2b2b]">
           <TableRow>
@@ -103,7 +103,7 @@ export const MainContentSection = () => {
               className={rowIndex % 2 === 0 ? "bg-[#252525]" : "bg-[#2b2b2b]"}
             >
               <TableCell className="px-8 py-2.5 h-[37px] text-[#ababab] text-xs [font-family:'Inter',Helvetica] font-normal">
-                {row.schemeName}
+                <Label className="truncate">{row.schemeName}</Label>
               </TableCell>
               <TableCell className="px-8 py-2.5 h-[37px] text-right text-[#ababab] text-xs [font-family:'Inter',Helvetica] font-normal">
                 {row.aum}
@@ -164,7 +164,7 @@ export const MainContentSection = () => {
 
       <div className="flex justify-between items-center w-full mt-4 px-8">
         <div className="text-[#ababab] text-xs">
-          Showing {startIndex + 1} to {Math.min(endIndex, total)} of {total}
+          Showing {startIndex + 1} to {Math.min(endIndex, total)} of {total}{" "}
           entries
         </div>
         <div className="flex items-center gap-2">
