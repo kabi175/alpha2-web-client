@@ -4,7 +4,7 @@ import { Button } from "../../components/ui/button";
 import { MainContentSection } from "./MainContentSection";
 import AlphaSection from "@/components/AlphaSection";
 
-export const ExplorePms = () => {
+export default function ExplorePms() {
   // Navigation menu items data
   const navItems = [
     { id: 1, label: "All PMS", active: true },
@@ -38,6 +38,4 @@ export const ExplorePms = () => {
       </AlphaSection>
     </div>
   );
-};
-
-export default ExplorePms;
+}
