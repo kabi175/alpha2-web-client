@@ -3,7 +3,7 @@ const AlphaBackground = () => {
     <div>
       <svg
         width="735"
-        height="1124"
+        height="1050"
         viewBox="0 0 735 1124"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
