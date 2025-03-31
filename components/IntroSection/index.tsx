@@ -5,7 +5,7 @@ import AlphaStatCard from "./AlphaStatCard";
 export default function Intro() {
   return (
     <>
-      <main className="overflow-hidden relative px-5 py-10 mx-auto my-0 max-w-[1440px] max-md:max-w-[991px] max-sm:max-w-screen-sm">
+      <main className="overflow-hidden relative px-5 mx-auto my-0 max-w-[1440px] max-md:max-w-[991px] max-sm:max-w-screen-sm">
         <AlphaHero />
         <section className="ml-20 grid gap-8 grid-cols-[repeat(4,1fr)] max-md:grid-cols-[repeat(2,1fr)] max-sm:grid-cols-[1fr]">
           <AlphaStatCard
