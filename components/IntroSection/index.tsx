@@ -40,10 +40,10 @@ export default function Intro() {
           />
           <AlphaStatCard
             label="Diverse"
-            value="25"
+            value="Rs 7 Lakh Crore"
             suffix="+"
-            description="Asset Classes & Sectors"
-            subtext="Optimized Asset Allocation & Diversify your portfolio"
+            description="Investments"
+            subtext="AUM of PMS by HNIs & UHNIs"
             isOdd={false}
           />
         </section>

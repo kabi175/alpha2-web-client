@@ -78,8 +78,7 @@ const Top10PMS: React.FC = () => {
   return (
     <AlphaSection>
       <h1 className="text-5xl font-medium tracking-tighter text-center max-md:max-w-full max-md:text-4xl">
-        <span className="font-semibold italic">Top 10 PMS</span>{" "}
-        <span className="font-light">with their returns</span>
+        <span className="font-light">Leading PMS Funds</span>
       </h1>
 
       <div
@@ -103,6 +102,9 @@ const Top10PMS: React.FC = () => {
           ))}
         </div>
       </div>
+      <div className="w-full text-end">
+        As per SEBI data on {getLastDateOfLastMonthFormatted()}
+      </div>
       <div className="w-full mt-12 flex justify-center gap-2">
         <div className="w-2/5 h-1 bg-zinc-800 rounded-full relative">
           <div
@@ -117,5 +119,10 @@ const Top10PMS: React.FC = () => {
     </AlphaSection>
   );
 };
+function getLastDateOfLastMonthFormatted() {
+  const lastDay = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
+  const month = lastDay.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
+  return `${lastDay.getDate()} ${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
+}
 
 export default Top10PMS;
