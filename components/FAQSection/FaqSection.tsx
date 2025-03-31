@@ -179,10 +179,14 @@ It is noteworthy that while in Mutual Funds tax is payable when the investor red
   },
   {
     question: "What is the minimum ticket size of PMS?",
-    answer: `SEBI mandates a minimum ticket size of Rs 50 lakhs for PMS. However, individual PMS schemes may have a higher cut-off.
+    answer: `SEBI mandates a minimum ticket size of Rs 50 lakhs for PMS. Some PMS schemes may have a higher cut-off.
 <br />
 <br />
-An investor can also transfer their existing shares and demat mutual funds to meet the minimum investment requirement for a Portfolio Management Service (PMS).`,
+This minimum ticket size can be invested by an individual or a group of individuals together in a joint holding account.
+<br />
+<br />
+An investor can also transfer their existing shares and demat mutual funds to meet the minimum investment requirement for a Portfolio Management Service (PMS).
+`,
   },
   {
     question: "Can I do SIP in PMS?",
