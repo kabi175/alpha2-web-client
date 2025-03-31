@@ -3,7 +3,6 @@
 import React from "react";
 import { PMSLabel } from "./PMSLabel";
 import { MutualFundLabel } from "./MutualFundLabel";
-import { VsCircle } from "./VsCircle";
 import Image from "next/image";
 
 interface ComparisonCardProps {
