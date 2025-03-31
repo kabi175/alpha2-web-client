@@ -8,7 +8,7 @@ import React from "react";
 const teamData = [
   {
     name: "Ankit Himatsingka",
-    image: "/ankit.DNG",
+    image: "/ankit.png",
     social: "https://www.linkedin.com/in/ankithimatsingka",
     summary: `Ankit Himatsingka is a seasoned finance leader with over 15 years of experience spanning multiple industries. 
 He brings deep expertise in financial strategy and capital optimization. 
@@ -16,7 +16,7 @@ An alumnus of Harvard Business School’s prestigious SELP program and a Charter
   },
   {
     name: "Dheeraj Reddy",
-    image: "/ankit.DNG",
+    image: "/dheeraj.jpeg",
     social:
       "https://www.linkedin.com/in/dheeraj-kumar-reddy-dosakayala-25876a103",
     summary: `Dheeraj is a finance professional with a Bachelor's degree from the Indian Institute of Technology, Madras, and is a CFA Level II holder.
