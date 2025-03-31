@@ -14,7 +14,7 @@ const WhyPMSOverMutualFunds: React.FC = () => {
         </h1>
 
         <div className="mt-24 max-md:mt-10 max-md:max-w-full flex flex-col gap-5 items-center">
-          <div className="w-6/12 max-md:ml-0 max-md:w-full">
+          <div className="w-2/3 max-md:ml-0 max-md:w-full">
             <ComparisonCard
               showLabel
               image="/fund-money.svg"
@@ -22,21 +22,21 @@ const WhyPMSOverMutualFunds: React.FC = () => {
               mutualFundDescription="More drawdown during downturns"
             />
           </div>
-          <div className="w-6/12 max-md:ml-0 max-md:w-full">
+          <div className="w-2/3 max-md:ml-0 max-md:w-full">
             <ComparisonCard
               image="/med-box-money.svg"
               pmsDescription="PMS can swiftly adjust positions and take cash calls to safeguard alpha during market downturns"
               mutualFundDescription="MFs must maintain at least 65% in equities by regulation even during corrections & bear markets"
             />
           </div>
-          <div className="w-6/12 max-md:ml-0 max-md:w-full">
+          <div className="w-2/3 max-md:ml-0 max-md:w-full">
             <ComparisonCard
               image="/fund-growth.svg"
               pmsDescription="PMS managers face no caps on stock or sector exposure"
               mutualFundDescription="MFs are bound by a 10% per-stock limit, often forcing exits from top-performing stocks"
             />
           </div>
-          <div className="w-6/12 max-md:ml-0 max-md:w-full">
+          <div className="w-2/3 max-md:ml-0 max-md:w-full">
             <ComparisonCard
               image="/percent.svg"
               pmsDescription="PMS emphasizes deep research and strategic stock selection"
