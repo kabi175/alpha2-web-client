@@ -39,7 +39,7 @@ const chartConfig = {
 
 export default function Component() {
   return (
-    <Card className="bg-[#4BD8FF00] w-2/3">
+    <Card className="bg-[#4BD8FF00] w-3/4">
       <CardHeader>
         <CardTitle>Direct Growth Funds 5 year CAGR vs PMS</CardTitle>
       </CardHeader>
