@@ -17,26 +17,30 @@ const WhyPMSOverMutualFunds: React.FC = () => {
           <div className="w-6/12 max-md:ml-0 max-md:w-full">
             <ComparisonCard
               showLabel
-              pmsDescription="Actively managed, aiming for market-beating returns. (Historical CAGR: 15-25%*)"
-              mutualFundDescription="Returns diluted due to diversification. (Historical CAGR: 10-15%*)"
+              image="/fund-money.svg"
+              pmsDescription="Higher CAGR by 3-5% and lower drawdown"
+              mutualFundDescription="More drawdown during downturns"
             />
           </div>
           <div className="w-6/12 max-md:ml-0 max-md:w-full">
             <ComparisonCard
-              pmsDescription="Actively managed, aiming for market-beating returns. (Historical CAGR: 15-25%*)"
-              mutualFundDescription="Returns diluted due to diversification. (Historical CAGR: 10-15%*)"
+              image="/med-box-money.svg"
+              pmsDescription="PMS can swiftly adjust positions and take cash calls to safeguard alpha during market downturns"
+              mutualFundDescription="MFs must maintain at least 65% in equities by regulation even during corrections & bear markets"
             />
           </div>
           <div className="w-6/12 max-md:ml-0 max-md:w-full">
             <ComparisonCard
-              pmsDescription="Actively managed, aiming for market-beating returns. (Historical CAGR: 15-25%*)"
-              mutualFundDescription="Returns diluted due to diversification. (Historical CAGR: 10-15%*)"
+              image="/fund-growth.svg"
+              pmsDescription="PMS managers face no caps on stock or sector exposure"
+              mutualFundDescription="MFs are bound by a 10% per-stock limit, often forcing exits from top-performing stocks"
             />
           </div>
           <div className="w-6/12 max-md:ml-0 max-md:w-full">
             <ComparisonCard
-              pmsDescription="Actively managed, aiming for market-beating returns. (Historical CAGR: 15-25%*)"
-              mutualFundDescription="Returns diluted due to diversification. (Historical CAGR: 10-15%*)"
+              image="/percent.svg"
+              pmsDescription="PMS emphasizes deep research and strategic stock selection"
+              mutualFundDescription="MFs prioritize mass distribution — HDFC AMC operates 84 funds with just 37 researchers among 2,000+ employees"
             />
           </div>
         </div>

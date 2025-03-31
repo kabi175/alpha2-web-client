@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
 
-export const VsCircle: React.FC = () => {
+export const VsCircle: React.FC<{ image: string }> = ({ image }) => {
   return (
-    <div className="self-start px-4 mt-12 text-xl text-white whitespace-nowrap rounded-full border-2 border-solid bg-neutral-900 border-stone-900 h-[60px] w-[60px] flex items-center justify-center max-md:mt-10">
-      VS
+    <div className="">
+      <Image src={image} width={62} height={62} alt="VsCircle" />
     </div>
   );
 };
