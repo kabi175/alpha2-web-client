@@ -44,11 +44,13 @@ export const MainContentSection = () => {
     { id: "aum", label: "AUM (Cr)" },
     { id: "threeMonth", label: "3M" },
     { id: "sixMonth", label: "6M" },
-    { id: "ytd", label: "YTD" },
     { id: "oneYear", label: "1Y" },
     { id: "twoYear", label: "2Y" },
     { id: "threeYear", label: "3Y" },
     { id: "fiveYear", label: "5Y" },
+    { id: "ytd", label: "YTD" },
+    { id: "sharpeRatio", label: "Sharpe Ratio" },
+    { id: "maxDrawdown", label: "Max Drawdown" },
   ];
 
   // Helper function to determine text color based on value
@@ -123,13 +125,6 @@ export const MainContentSection = () => {
               </TableCell>
               <TableCell
                 className={`px-2 py-2.5 h-[37px] text-right text-xs [font-family:'Inter',Helvetica] font-normal ${getValueColor(
-                  row.ytd
-                )}`}
-              >
-                {row.ytd}
-              </TableCell>
-              <TableCell
-                className={`px-2 py-2.5 h-[37px] text-right text-xs [font-family:'Inter',Helvetica] font-normal ${getValueColor(
                   row.oneYear
                 )}`}
               >
@@ -155,6 +150,27 @@ export const MainContentSection = () => {
                 )}`}
               >
                 {row.fiveYear}
+              </TableCell>
+              <TableCell
+                className={`px-2 py-2.5 h-[37px] text-right text-xs [font-family:'Inter',Helvetica] font-normal ${getValueColor(
+                  row.ytd
+                )}`}
+              >
+                {row.ytd}
+              </TableCell>
+              <TableCell
+                className={`px-2 py-2.5 h-[37px] text-right text-xs [font-family:'Inter',Helvetica] font-normal ${getValueColor(
+                  row.sharpeRatio
+                )}`}
+              >
+                {row.sharpeRatio}
+              </TableCell>
+              <TableCell
+                className={`px-2 py-2.5 h-[37px] text-right text-xs [font-family:'Inter',Helvetica] font-normal ${getValueColor(
+                  row.maxDrawdown
+                )}`}
+              >
+                {row.maxDrawdown}
               </TableCell>
             </TableRow>
           ))}
