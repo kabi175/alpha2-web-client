@@ -30,12 +30,11 @@ export const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
       </button>
       {isExpanded && answer && (
         <div className="w-full overflow-auto">
-          <pre
+          <div
             id={`answer-${question.replace(/\s+/g, "-").toLowerCase()}`}
-            className="px-6 pb-6 w-full text-base leading-6 text-white whitespace-pre"
-          >
-            {answer}
-          </pre>
+            className="px-6 pb-6 w-full text-base leading-6 text-white"
+            dangerouslySetInnerHTML={{ __html: answer }}
+          />
         </div>
       )}
     </article>
