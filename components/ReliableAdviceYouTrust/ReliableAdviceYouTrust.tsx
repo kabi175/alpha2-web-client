@@ -12,7 +12,7 @@ export const ReliableAdviceYouTrust: React.FC = () => {
             <h1 className="self-start text-5xl font-medium tracking-tighter text-center max-md:max-w-full max-md:text-4xl">
               Reliable advice you can trust
             </h1>
-            <p className="mt-10 text-3xl font-extralight tracking-tighter max-md:max-w-full">
+            <p className="mt-10 text-3xl font-extralight  max-md:max-w-full">
               AlphaSqr unlocks PMS for retail investors, offering wealth
               opportunities once limited to HNIs and family offices.
             </p>
