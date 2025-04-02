@@ -1,5 +1,6 @@
 import AlphaNav from "./IntroSection/AlphaNav";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -7,7 +8,9 @@ export default function Header() {
       <header className="mt-10 mb-10 ml-20 flex items-center justify-between">
         {/* <AlphaLogo /> */}
 
-        <Image src="/logo.svg" alt="logo" width={102.05} height={48.36} />
+        <Link href="/">
+          <Image src="/logo.svg" alt="logo" width={102.05} height={48.36} />
+        </Link>
 
         <AlphaNav />
         <div className="w-64" />
