@@ -35,7 +35,7 @@ const AlphaStatCard: React.FC<AlphaStatCardProps> = ({
       <div className="px-4 py-1.5 mb-12 text-xs rounded-xl bg-white/10 w-fit">
         {label}
       </div>
-      <div className="mb-8 text-4xl font-light tracking-tighter">
+      <div className="mb-8 text-2xl font-light tracking-tighter">
         <span>{value}</span>
         {suffix && (
           <span className="ml-1.5 text-[color:var(--success-green)]">
