@@ -29,7 +29,7 @@ export default function AlphaNav() {
         Explore PMS
       </a>
       <a
-        href="#faqs"
+        href="/#faqs"
         className="text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >
         FAQs
