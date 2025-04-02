@@ -25,6 +25,8 @@ export interface FundExploreData {
   maxDrawdown: number;
 }
 
+export interface FundData extends FundExploreData {}
+
 export interface FundExploreDataResponse {
   data: FundExploreData[];
   total: number;
@@ -125,9 +127,26 @@ const fetchFundsForExplore = async (
   }
 };
 
+const fetchFundsForImpact = async (): Promise<Array<FundData>> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/funds/impact`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching trailing returns:", error);
+    return [];
+  }
+};
+
 export {
   fetchTrailingReturns,
   fetchDiscreteReturns,
   fetchAllFunds,
   fetchFundsForExplore,
+  fetchFundsForImpact,
 };

@@ -1,8 +1,19 @@
 "use client";
+import { useEffect, useState } from "react";
 import AlphaSection from "./AlphaSection";
 import BarChart from "./elements/chart/BarChart";
+import { fetchFundsForImpact } from "@/api";
+import { FundData } from "@/api/data";
 
 export default function SmallAlphaBigImpact() {
+  const [funds, setFunds] = useState<FundData[]>([]);
+  useEffect(() => {
+    (async () => {
+      const funds = await fetchFundsForImpact();
+      setFunds(funds);
+    })();
+  }, []);
+
   return (
     <AlphaSection>
       <h1 className="text-5xl font-medium tracking-tighter text-center max-md:max-w-full max-md:text-4xl pb-5">
@@ -18,7 +29,8 @@ export default function SmallAlphaBigImpact() {
           grow your corpus by 30%+
         </span>{" "}
       </h3>
-      <BarChart />
+
+      <BarChart chartData={funds} />
     </AlphaSection>
   );
 }

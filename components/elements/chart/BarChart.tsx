@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from "recharts";
 
 import {
   Card,
@@ -9,20 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
+import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { useState } from "react";
+import { FundData } from "@/api/data";
 
 const chartConfig = {
   desktop: {
@@ -35,29 +24,67 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function Component() {
+const keyVal = {
+  "5Y": "fiveYear",
+  "4Y": "fourYear",
+  "3Y": "threeYear",
+  "2Y": "twoYear",
+  "1Y": "oneYear",
+  "6M": "sixMonth",
+  YTD: "ytd",
+  "3M": "threeMonth",
+};
+
+export default function Component({ chartData }: { chartData: FundData[] }) {
+  const [timeframe, setTimeframe] = useState<
+    "5Y" | "4Y" | "3Y" | "2Y" | "1Y" | "1Y" | "6M" | "3M"
+  >("5Y");
   return (
     <Card className="bg-[#4BD8FF00] w-3/4">
       <CardHeader>
         <CardTitle>Direct Growth Funds 5 year CAGR vs PMS</CardTitle>
+        <div className="my-5 bg-gray-700 flex rounded-md text-gray-400 items-baseline w-fit">
+          {["5Y", "3Y", "2Y", "1Y", "6M", "3M"].map((label, index) => (
+            <button
+              onClick={() => setTimeframe(label as any)}
+              key={index}
+              className={`px-4 py-2  flex items-center ${
+                label === timeframe
+                  ? "text-white font-semibold"
+                  : "text-gray-400"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="schemeName"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
             />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
-            />
-            <Bar dataKey="desktop" fill="#4D97EE" radius={4} />
-            <Bar dataKey="mobile" fill="#8CC1FF" radius={4} />
+            <YAxis tickFormatter={(value) => value + "%"} />
+
+            <Bar
+              dataKey={keyVal[timeframe]}
+              fill="#4D97EE"
+              radius={4}
+              barSize={50}
+            >
+              {chartData.map((entry, index) => (
+                <Cell
+                  cursor="pointer"
+                  fill={index % 2 === 0 ? "#4D97EE" : "#8CC1FF"}
+                  key={`cell-${index}`}
+                />
+              ))}
+            </Bar>
           </BarChart>
         </ChartContainer>
       </CardContent>

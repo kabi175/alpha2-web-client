@@ -3,6 +3,7 @@ import {
   fetchDiscreteReturns,
   fetchAllFunds,
   fetchFundsForExplore,
+  fetchFundsForImpact,
 } from "@/api/data";
 
 export {
@@ -10,4 +11,5 @@ export {
   fetchDiscreteReturns,
   fetchAllFunds,
   fetchFundsForExplore,
+  fetchFundsForImpact,
 };
