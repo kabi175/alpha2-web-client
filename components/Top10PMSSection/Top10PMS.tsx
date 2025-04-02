@@ -103,7 +103,7 @@ const Top10PMS: React.FC = () => {
         </div>
       </div>
       <div className="w-full text-end">
-        As per SEBI data on {getLastDateOfLastMonthFormatted()}
+        *5 Year CAGR as per SEBI data on {getLastDateOfLastMonthFormatted()}
       </div>
       <div className="w-full mt-12 flex justify-center gap-2">
         <div className="w-2/5 h-1 bg-zinc-800 rounded-full relative">
