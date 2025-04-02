@@ -163,13 +163,13 @@ export default function ReturnsDashboard() {
           {/* Search Inputs */}
           <div className="mt-6 flex space-x-4">
             <SearchBar
-              placeholder="Select for Mututal Funds & PMS..."
+              placeholder="Select for Mutual Funds & PMS..."
               selected={fund1}
               onValueChange={setFund1}
               onSearch={fetchData}
             />
             <SearchBar
-              placeholder="Select for Mututal Funds & PMS.."
+              placeholder="Select for Mutual Funds & PMS.."
               selected={fund2}
               onValueChange={setFund2}
               onSearch={fetchData}

@@ -39,18 +39,18 @@ export default function SearchBar(props: SearchBarProps) {
     _.groupBy([] as Option[], "group")
   );
   const [fundType, setFundType] = React.useState<
-    "Mutual Fund" | "PMS" | undefined
+    "Mutual Fund" | "PMF" | undefined
   >();
   function CommandOptions() {
     if (Object.keys(groupedOptions).length === 0 && fundType == null) {
-      const commands = ["Search Mutual Funds...", "Search PMS..."];
+      const commands = ["Search Mutual Funds...", "Search PMF..."];
       return commands.map((command) => (
         <CommandItem
           key={command}
           value={command}
           onSelect={async () => {
             const type =
-              command === "Search Mutual Funds..." ? "Mutual Fund" : "PMS";
+              command === "Search Mutual Funds..." ? "Mutual Fund" : "PMF";
             setFundType(type);
             if (props.onSearch) {
               const opts = await props.onSearch("", type);
