@@ -136,7 +136,7 @@ const fetchFundsForImpact = async (): Promise<Array<FundData>> => {
       throw new Error("Failed to fetch data");
     }
     const data = await response.json();
-    return data.data;
+    return data.data || [];
   } catch (error) {
     console.error("Error fetching trailing returns:", error);
     return [];
