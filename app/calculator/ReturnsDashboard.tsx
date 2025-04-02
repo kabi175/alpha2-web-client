@@ -147,13 +147,13 @@ export default function ReturnsDashboard() {
             <div className="flex space-x-4">
               {fund1 && (
                 <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
-                  <span className="w-3 h-3 rounded-full border border-yellow-500"></span>
+                  <span className="w-4 h-4 rounded-full border-2 border-yellow-500"></span>
                   <span>{fund1?.label}</span>
                 </button>
               )}
               {fund2 && (
                 <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
-                  <span className="w-3 h-3 rounded-full border border-blue-400"></span>
+                  <span className="w-4 h-4 rounded-full border-2 border-blue-400"></span>
                   <span>{fund2?.label}</span>
                 </button>
               )}
