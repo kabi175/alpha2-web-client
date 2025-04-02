@@ -24,7 +24,7 @@ export default function ReturnsDashboard() {
 
   const fetchData = async (search?: string, type?: string) => {
     // Fetch data from the API
-    const funds = await fetchAllFunds(search, type);
+    const funds = await fetchAllFunds(search, type === "PMF" ? "PMF" : "MF");
     const flist = funds.map((fund) => {
       return {
         value: fund.id.toString(),
