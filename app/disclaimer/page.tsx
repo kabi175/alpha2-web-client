@@ -49,7 +49,7 @@ const Disclaimer = () => {
                     responsibility.
                   </li>
                   <li>
-                    It's essential that you consult your financial advisor
+                    It&rsquo;s essential that you consult your financial advisor
                     before making any investment decisions to ensure they align
                     with your financial goals and risk tolerance.
                   </li>
@@ -64,10 +64,10 @@ const Disclaimer = () => {
                     any investment decision.
                   </li>
                   <li>
-                    The terms 'Advisor' or 'Expert' used on this website do not
-                    imply a Registered Investment Advisor or Financial Planner
-                    designation. They solely refer to an associate or employee
-                    of AlphaSqr.
+                    The terms &rsquo;Advisor&rsquo; or &rsquo;Expert&rsquo; used
+                    on this website do not imply a Registered Investment Advisor
+                    or Financial Planner designation. They solely refer to an
+                    associate or employee of AlphaSqr.
                   </li>
                 </ul>
               ),

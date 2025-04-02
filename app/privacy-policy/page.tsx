@@ -20,11 +20,12 @@ const PrivacyPolicy = () => {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold   mb-4">1. Introduction</h2>
             <p className=" leading-relaxed">
-              AlphaSqr ("we," "us," or "our") is committed to protecting your
-              privacy. This Privacy Policy outlines how we collect, use,
-              disclose, and safeguard your personal information when you visit
-              our website, AlphaSqr (the "Website"). By using the Website, you
-              consent to the practices described in this policy.
+              AlphaSqr (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is
+              committed to protecting your privacy. This Privacy Policy outlines
+              how we collect, use, disclose, and safeguard your personal
+              information when you visit our website, AlphaSqr (the
+              &quot;Website&quot;). By using the Website, you consent to the
+              practices described in this policy.
             </p>
           </section>
 
@@ -200,7 +201,7 @@ const PrivacyPolicy = () => {
 
           <section className="mb-8">
             <h2 className="text-2xl font-semibold   mb-4">
-              9. Children's Privacy
+              9. Children&apos;s Privacy
             </h2>
             <p className="  leading-relaxed">
               Our Website is not intended for children under the age of 18. We
