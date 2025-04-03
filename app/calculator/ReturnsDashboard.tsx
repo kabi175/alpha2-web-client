@@ -8,7 +8,7 @@ import TrailingReturnsChart from "./TrailingReturnsChart";
 import DatePicker from "@/components/elements/DatePicker";
 
 export default function ReturnsDashboard() {
-  const [timeframe, setTimeframe] = useState<string>("5Y");
+  const [timeframe, setTimeframe] = useState<string>("4Y");
   const [period, setPeriod] = useState<"Y" | "Q">("Y");
   const [fund1, setFund1] = useState<{ value: string; label: string }>();
   const [fund2, setFund2] = useState<{ value: string; label: string }>();
@@ -47,8 +47,6 @@ export default function ReturnsDashboard() {
       start.setFullYear(start.getFullYear() - 3);
     } else if (timeframe === "4Y") {
       start.setFullYear(start.getFullYear() - 4);
-    } else if (timeframe === "5Y") {
-      start.setFullYear(start.getFullYear() - 6);
     } else {
       start.setFullYear(start.getFullYear() - 10);
     }
@@ -102,7 +100,7 @@ export default function ReturnsDashboard() {
             {/* Point to Point Return Section */}
             {dataOption == "trailing" && (
               <div className="bg-gray-700 flex rounded-md text-gray-400 items-baseline">
-                {["5Y", "4Y", "3Y", "2Y", "1Y", "6M"].map((label, index) => (
+                {["4Y", "3Y", "2Y", "1Y", "6M"].map((label, index) => (
                   <button
                     onClick={() => onTimeframeChange(label)}
                     key={index}

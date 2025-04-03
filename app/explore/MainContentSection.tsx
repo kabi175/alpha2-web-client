@@ -47,7 +47,6 @@ export const MainContentSection = () => {
     { id: "oneYear", label: "1Y" },
     { id: "twoYear", label: "2Y" },
     { id: "threeYear", label: "3Y" },
-    { id: "fiveYear", label: "5Y" },
     { id: "ytd", label: "YTD" },
     { id: "sharpeRatio", label: "Sharpe Ratio" },
     { id: "maxDrawdown", label: "Max Drawdown" },

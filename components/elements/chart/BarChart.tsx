@@ -25,7 +25,6 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const keyVal = {
-  "5Y": "fiveYear",
   "4Y": "fourYear",
   "3Y": "threeYear",
   "2Y": "twoYear",
@@ -37,14 +36,14 @@ const keyVal = {
 
 export default function Component({ chartData }: { chartData: FundData[] }) {
   const [timeframe, setTimeframe] = useState<
-    "5Y" | "4Y" | "3Y" | "2Y" | "1Y" | "1Y" | "6M" | "3M"
-  >("5Y");
+    "4Y" | "3Y" | "2Y" | "1Y" | "1Y" | "6M" | "3M"
+  >("4Y");
   return (
     <Card className="bg-[#4BD8FF00] w-3/4">
       <CardHeader>
         <CardTitle>Direct Growth Funds 5 year CAGR vs PMS</CardTitle>
         <div className="my-5 bg-gray-700 flex rounded-md text-gray-400 items-baseline w-fit">
-          {["5Y", "3Y", "2Y", "1Y", "6M", "3M"].map((label, index) => (
+          {["3Y", "2Y", "1Y", "6M", "3M"].map((label, index) => (
             <button
               onClick={() => setTimeframe(label as any)}
               key={index}
