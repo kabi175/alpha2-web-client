@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { fetchFundsForExplore } from "@/api";
 import { FundExploreData } from "@/api/data";
 import { Label } from "@/components/ui/label";
+import SearchBar from "@/components/elements/SearchBar";
 
 export const MainContentSection = () => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
@@ -65,13 +66,16 @@ export const MainContentSection = () => {
 
   return (
     <div className="flex flex-col w-[1122px] items-start">
+      <div className="pb-10">
+        <SearchBar placeholder={""} />
+      </div>
       <Table className="border-collapse">
         <TableHeader className="bg-[#2b2b2b]">
           <TableRow>
             {columns.map((column, index) => (
               <TableHead
                 key={column.id}
-                className={`h-[39px] text-[#ababab] text-xs [font-family:'Inter',Helvetica] font-normal px-8 py-3 ${
+                className={`h-[39px] text-[#ababab] text-base [font-family:'Inter',Helvetica] font-normal px-8 py-3 ${
                   index === 0 ? "rounded-tl-[18px]" : ""
                 } ${index === columns.length - 1 ? "rounded-tr-[18px]" : ""}`}
               >
