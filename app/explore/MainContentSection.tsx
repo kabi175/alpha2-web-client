@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { fetchFundsForExplore } from "@/api";
 import { FundExploreData } from "@/api/data";
 import { Label } from "@/components/ui/label";
-import SearchBar from "@/components/elements/SearchBar";
+import { Input } from "@/components/ui/input";
 
 export const MainContentSection = () => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
@@ -25,6 +25,7 @@ export const MainContentSection = () => {
   const [total, setTotal] = React.useState<number>(0);
   const [orderBy, setOrderBy] = React.useState<string>("schemeName");
   const [order, setOrder] = React.useState<string>("asc");
+  const [searchP, setSearchP] = React.useState<string>("asc");
   const itemsPerPage = 10;
   useEffect(() => {
     (async () => {
@@ -33,11 +34,12 @@ export const MainContentSection = () => {
         page: (currentPage - 1).toString(),
         order_by: orderBy,
         order,
+        search: searchP,
       });
       setTableData(resp.data);
       setTotal(resp.total);
     })();
-  }, [searchParam, currentPage, orderBy, order]);
+  }, [searchParam, currentPage, orderBy, order, searchP]);
 
   // Define column headers with their labels
   const columns = [
@@ -68,7 +70,12 @@ export const MainContentSection = () => {
   return (
     <div className="flex flex-col w-[1122px] items-start">
       <div className="pb-10">
-        <SearchBar placeholder={""} fundType="PMF" />
+        <Input
+          type="text"
+          placeholder="Search Funds..."
+          className="w-[360px] h-[50px]"
+          onChange={(e) => setSearchP(e.target.value)}
+        />
       </div>
       <Table className="border-collapse">
         <TableHeader className="bg-[#2b2b2b]">

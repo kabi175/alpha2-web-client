@@ -117,7 +117,10 @@ const fetchFundsForExplore = async (
       throw new Error("Failed to fetch data");
     }
     const data = await response.json();
-    return data;
+    return {
+      data: data.data || [],
+      total: data.total,
+    };
   } catch (error) {
     console.error("Error fetching trailing returns:", error);
     return {
