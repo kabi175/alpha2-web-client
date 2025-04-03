@@ -145,13 +145,6 @@ export const MainContentSection = () => {
               </TableCell>
               <TableCell
                 className={`px-2 py-2.5 h-[37px] text-right text-xs [font-family:'Inter',Helvetica] font-normal ${getValueColor(
-                  row.fiveYear
-                )}`}
-              >
-                {row.fiveYear}
-              </TableCell>
-              <TableCell
-                className={`px-2 py-2.5 h-[37px] text-right text-xs [font-family:'Inter',Helvetica] font-normal ${getValueColor(
                   row.ytd
                 )}`}
               >
