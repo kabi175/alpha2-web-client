@@ -13,6 +13,7 @@ interface FundDetails {
 
 export interface FundExploreData {
   schemeName: string;
+  manager: string;
   aum: number;
   threeMonth: number;
   sixMonth: number;

@@ -30,6 +30,7 @@ interface SearchBarProps {
   onValueChange?: (option: Option) => void;
   onSearch?: (query?: string, type?: string) => Promise<Array<Option>>;
   onBeforeOpen?: () => void;
+  fundType?: "Mutual Fund" | "PMF";
 }
 
 export default function SearchBar(props: SearchBarProps) {
@@ -40,7 +41,7 @@ export default function SearchBar(props: SearchBarProps) {
   );
   const [fundType, setFundType] = React.useState<
     "Mutual Fund" | "PMF" | undefined
-  >();
+  >(props.fundType);
   function CommandOptions() {
     if (Object.keys(groupedOptions).length === 0 && fundType == null) {
       const commands = ["Search Mutual Funds...", "Search PMF..."];
@@ -122,7 +123,7 @@ export default function SearchBar(props: SearchBarProps) {
             <Badge
               className="m-2"
               variant="outline"
-              onClick={() => setFundType(undefined)}
+              onClick={() => setFundType(props.fundType)}
             >
               {fundType}
             </Badge>

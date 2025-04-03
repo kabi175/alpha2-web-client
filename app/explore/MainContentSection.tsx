@@ -42,6 +42,7 @@ export const MainContentSection = () => {
   // Define column headers with their labels
   const columns = [
     { id: "schemeName", label: "Scheme Name" },
+    { id: "manager", label: "Fund Manager" },
     { id: "aum", label: "AUM (Cr)" },
     { id: "threeMonth", label: "3M" },
     { id: "sixMonth", label: "6M" },
@@ -67,7 +68,7 @@ export const MainContentSection = () => {
   return (
     <div className="flex flex-col w-[1122px] items-start">
       <div className="pb-10">
-        <SearchBar placeholder={""} />
+        <SearchBar placeholder={""} fundType="PMF" />
       </div>
       <Table className="border-collapse">
         <TableHeader className="bg-[#2b2b2b]">
@@ -108,6 +109,9 @@ export const MainContentSection = () => {
             >
               <TableCell className="px-8 py-2.5 h-[37px] text-[#ababab] text-xs [font-family:'Inter',Helvetica] font-normal">
                 <Label className="truncate">{row.schemeName}</Label>
+              </TableCell>
+              <TableCell className="px-8 py-2.5 h-[37px] text-[#ababab] text-xs [font-family:'Inter',Helvetica] font-normal">
+                <Label className="truncate">{row.manager}</Label>
               </TableCell>
               <TableCell className="px-8 py-2.5 h-[37px] text-right text-[#ababab] text-xs [font-family:'Inter',Helvetica] font-normal">
                 {row.aum}
