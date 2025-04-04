@@ -21,6 +21,7 @@ export interface FundExploreData {
   oneYear: number;
   twoYear: number;
   threeYear: number;
+  fiveYear: number;
   sharpeRatio: number;
   maxDrawdown: number;
 }

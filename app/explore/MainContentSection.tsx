@@ -51,6 +51,7 @@ export const MainContentSection = () => {
     { id: "oneYear", label: "1Y" },
     { id: "twoYear", label: "2Y" },
     { id: "threeYear", label: "3Y" },
+    { id: "fiveYear", label: "5Y" },
     { id: "ytd", label: "YTD" },
     { id: "sharpeRatio", label: "Sharpe Ratio" },
     { id: "maxDrawdown", label: "Max Drawdown" },
@@ -157,6 +158,13 @@ export const MainContentSection = () => {
                 )}`}
               >
                 {row.threeYear}
+              </TableCell>
+              <TableCell
+                className={`px-2 py-2.5 h-[37px] text-right text-xs [font-family:'Inter',Helvetica] font-normal ${getValueColor(
+                  row.fiveYear
+                )}`}
+              >
+                {row.fiveYear}
               </TableCell>
               <TableCell
                 className={`px-2 py-2.5 h-[37px] text-right text-xs [font-family:'Inter',Helvetica] font-normal ${getValueColor(
