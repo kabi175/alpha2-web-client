@@ -38,7 +38,7 @@ const WhyPMSOverMutualFunds: React.FC = () => {
           </div>
           <div className="w-2/3 max-md:ml-0 max-md:w-full">
             <ComparisonCard
-              image="/percent.svg"
+              image="/percent.png"
               pmsDescription="PMS emphasizes deep research and strategic stock selection"
               mutualFundDescription="MFs prioritize mass distribution — HDFC AMC operates 84 funds with just 37 researchers among 2,000+ employees"
             />
