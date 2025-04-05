@@ -22,6 +22,13 @@ export default function ReturnsDashboard() {
     "trailing" | "rolling" | "discrete"
   >("trailing");
 
+  const startDataLimit = new Date();
+  startDataLimit.setFullYear(startDataLimit.getFullYear() - 4);
+  startDataLimit.setDate(1);
+  startDataLimit.setMonth(1);
+  const endDataLimit = new Date();
+  endDataLimit.setDate(endDataLimit.getDate() - 1);
+
   const fetchData = async (search?: string, type?: string) => {
     // Fetch data from the API
     const funds = await fetchAllFunds(search, type === "PMF" ? "PMF" : "MF");
@@ -37,8 +44,10 @@ export default function ReturnsDashboard() {
 
   const onTimeframeChange = async (timeframe: string) => {
     const start = new Date();
+    start.setDate(1);
+    start.setMonth(start.getMonth() - 1);
     if (timeframe === "6M") {
-      start.setMonth(start.getMonth() - 5);
+      start.setMonth(start.getMonth() - 7);
     } else if (timeframe === "1Y") {
       start.setFullYear(start.getFullYear() - 1);
     } else if (timeframe === "2Y") {
@@ -180,11 +189,13 @@ export default function ReturnsDashboard() {
                 placeholder="Select Start Date"
                 onValueChange={setStartDate}
                 value={startDate}
+                disabled={{ before: startDataLimit }}
               />
               <DatePicker
                 placeholder="Select End Date"
                 onValueChange={setEndDate}
                 value={endDate}
+                disabled={{ after: endDataLimit }}
               />
             </div>
           )}
