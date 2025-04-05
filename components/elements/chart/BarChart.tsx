@@ -43,10 +43,6 @@ const keyVal: Record<string, string> = {
 };
 
 export default function Component({ chartData }: { chartData: FundData[] }) {
-  chartData = chartData.map((data) => {
-    data.uv = 32.9;
-    return data;
-  });
   const [timeframe] = useState<"5Y" | "3Y" | "1Y" | "6M" | "3M" | "1M">("5Y");
   return (
     <Card className="bg-[#4BD8FF00] w-full border-0">
@@ -55,7 +51,7 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
           Direct Growth Funds 5 year CAGR vs PMS
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="h-[500px]">
         <ChartContainer config={chartConfig} height={500}>
           <BarChart data={chartData}>
             <CartesianGrid vertical={false} />
@@ -99,8 +95,8 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="leading-none text-muted-foreground">
+      <CardFooter className="gap-2 text-sm text-right">
+        <div className="leading-none text-muted-foreground text-right w-full">
           *As reported to SEBI as at {getLastDateOfLastMonthFormatted()}
         </div>
       </CardFooter>
@@ -109,7 +105,7 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
 }
 
 function getLastDateOfLastMonthFormatted() {
-  const lastDay = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
+  const lastDay = new Date(new Date().getFullYear(), 2, 0);
   const month = lastDay.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
-  return `${lastDay.getDate()} ${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
+  return `${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
 }
