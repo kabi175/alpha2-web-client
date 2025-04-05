@@ -167,7 +167,7 @@ export default function ReturnsDashboard() {
               onSearch={fetchData}
             />
             <SearchBar
-              placeholder="Select for Mutual Funds & PMS.."
+              placeholder="Select for Mutual Funds & PMS..."
               selected={fund2}
               onValueChange={setFund2}
               onSearch={fetchData}

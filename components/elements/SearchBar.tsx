@@ -44,7 +44,7 @@ export default function SearchBar(props: SearchBarProps) {
   >(props.fundType);
   function CommandOptions() {
     if (Object.keys(groupedOptions).length === 0 && fundType == null) {
-      const commands = ["Search Mutual Funds...", "Search PMF..."];
+      const commands = ["Search Mutual Funds...", "Search PMS..."];
       return commands.map((command) => (
         <CommandItem
           key={command}

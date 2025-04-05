@@ -15,6 +15,7 @@ export interface FundExploreData {
   schemeName: string;
   manager: string;
   aum: number;
+  oneMonth: number;
   threeMonth: number;
   sixMonth: number;
   ytd: number;
