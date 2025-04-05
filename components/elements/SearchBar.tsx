@@ -30,7 +30,7 @@ interface SearchBarProps {
   onValueChange?: (option: Option) => void;
   onSearch?: (query?: string, type?: string) => Promise<Array<Option>>;
   onBeforeOpen?: () => void;
-  fundType?: "Mutual Fund" | "PMF";
+  fundType?: "Mutual Fund" | "PMS";
 }
 
 export default function SearchBar(props: SearchBarProps) {
@@ -40,7 +40,7 @@ export default function SearchBar(props: SearchBarProps) {
     _.groupBy([] as Option[], "group")
   );
   const [fundType, setFundType] = React.useState<
-    "Mutual Fund" | "PMF" | undefined
+    "Mutual Fund" | "PMS" | undefined
   >();
   function CommandOptions() {
     if (Object.keys(groupedOptions).length === 0 && fundType == null) {
@@ -51,7 +51,7 @@ export default function SearchBar(props: SearchBarProps) {
           value={command}
           onSelect={async () => {
             const type =
-              command === "Search Mutual Funds..." ? "Mutual Fund" : "PMF";
+              command === "Search Mutual Funds..." ? "Mutual Fund" : "PMS";
             setFundType(type);
             if (props.onSearch) {
               const opts = await props.onSearch("", type);
