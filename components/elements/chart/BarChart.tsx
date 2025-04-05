@@ -40,7 +40,7 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
   return (
     <Card className="bg-[#4BD8FF00] w-3/4">
       <CardHeader>
-        <CardTitle>Direct Growth Funds 3 year CAGR vs PMS</CardTitle>
+        <CardTitle>Direct Growth Funds 5 year CAGR vs PMS</CardTitle>
         <div className="my-5 bg-gray-700 flex rounded-md text-gray-400 items-baseline w-fit">
           {["5Y", "3Y", "1Y", "6M", "3M", "1M"].map((label, index) => (
             <button
