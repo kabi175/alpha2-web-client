@@ -35,10 +35,13 @@ export interface FundExploreDataResponse {
 }
 
 const fetchTrailingReturns = async (
-  fundId: Number,
+  fundId: number,
   start: Date,
   end: Date
 ): Promise<ReturnsData[]> => {
+  if (fundId === 0 || isNaN(fundId)) {
+    return [];
+  }
   try {
     const response = await fetch(
       `${

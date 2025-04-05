@@ -191,7 +191,7 @@ export default function ReturnsDashboard() {
         </div>
       </div>
 
-      {fund1 && fund2 && dataOption !== "discrete" && (
+      {(fund1 || fund2) && dataOption !== "discrete" && (
         <TrailingReturnsChart
           fundA={fund1}
           fundB={fund2}

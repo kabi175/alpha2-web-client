@@ -9,8 +9,8 @@ interface Fund {
 }
 
 interface TrailingReturnsChartProps {
-  fundA: Fund;
-  fundB: Fund;
+  fundA?: Fund;
+  fundB?: Fund;
   startDate: Date;
   endDate: Date;
 }
@@ -20,10 +20,10 @@ export default function TrailingReturnsChart(props: TrailingReturnsChartProps) {
   useEffect(() => {
     (async () => {
       const data = await fetchData(
-        props.fundA,
-        props.fundB,
         props.startDate,
-        props.endDate
+        props.endDate,
+        props.fundA,
+        props.fundB
       );
       if (data) {
         setChartData(data);
@@ -37,11 +37,11 @@ export default function TrailingReturnsChart(props: TrailingReturnsChartProps) {
       xplot={"month"}
       plots={[
         {
-          key: props.fundA.label,
+          key: props.fundA?.label || "",
           color: "#EEB045",
         },
         {
-          key: props.fundB.label,
+          key: props.fundB?.label || "",
           color: "#45D0EE",
         },
       ]}
@@ -50,27 +50,30 @@ export default function TrailingReturnsChart(props: TrailingReturnsChartProps) {
 }
 
 const fetchData = async (
-  fundA: Fund,
-  fundB: Fund,
   start: Date,
-  end: Date
+  end: Date,
+  fundA?: Fund,
+  fundB?: Fund
 ): Promise<any[]> => {
-  const fund1Label = fundA.label;
-  const fund2Label = fundB.label;
+  const fund1Label = fundA?.label || "";
+  const fund2Label = fundB?.label || "";
+
+  const fund1Value = fundA?.value || "";
+  const fund2Value = fundB?.value || "";
 
   const report1 = await fetchTrailingReturns(
-    Number.parseInt(fundA.value),
+    Number.parseInt(fund1Value),
     start,
     end
   );
   const report2 = await fetchTrailingReturns(
-    Number.parseInt(fundB.value),
+    Number.parseInt(fund2Value),
     start,
     end
   );
 
-  const reports = transformData(report1, fundA.value).concat(
-    transformData(report2, fundB.value)
+  const reports = transformData(report1, fund1Value).concat(
+    transformData(report2, fund2Value)
   );
   const data = Object.values(_.groupBy(reports, "month")).map(
     (reports: any[]) => {
@@ -79,9 +82,9 @@ const fetchData = async (
         month: reports[0].month,
         date: reports[0].date,
         [fund1Label]:
-          _.at(reports[0], fundA.value)[0] || _.at(reports[1], fundA.value)[0],
+          _.at(reports[0], fund1Value)[0] || _.at(reports[1], fund1Value)[0],
         [fund2Label]:
-          _.at(reports[0], fundB.value)[0] || _.at(reports[1], fundB.value)[0],
+          _.at(reports[0], fund2Value)[0] || _.at(reports[1], fund2Value)[0],
       };
       return data;
     }
