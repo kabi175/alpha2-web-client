@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -41,7 +41,7 @@ export default function SearchBar(props: SearchBarProps) {
   );
   const [fundType, setFundType] = React.useState<
     "Mutual Fund" | "PMF" | undefined
-  >(props.fundType);
+  >();
   function CommandOptions() {
     if (Object.keys(groupedOptions).length === 0 && fundType == null) {
       const commands = ["Search Mutual Funds...", "Search PMS..."];
@@ -123,9 +123,14 @@ export default function SearchBar(props: SearchBarProps) {
             <Badge
               className="m-2"
               variant="outline"
-              onClick={() => setFundType(props.fundType)}
+              onClick={() => {
+                setFundType(undefined);
+                setDroupedOptions([] as any);
+              }}
             >
               {fundType}
+
+              <X className="ml-2 h-4 w-4" />
             </Badge>
           )}
           <CommandInput
