@@ -27,7 +27,9 @@ export interface FundExploreData {
   maxDrawdown: number;
 }
 
-export interface FundData extends FundExploreData {}
+export interface FundData extends FundExploreData {
+  uv?: number;
+}
 
 export interface FundExploreDataResponse {
   data: FundExploreData[];

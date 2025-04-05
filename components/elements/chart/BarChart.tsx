@@ -1,6 +1,15 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Label,
+  ReferenceLine,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 import {
   Card,
@@ -10,8 +19,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
-import { useState } from "react";
 import { FundData } from "@/api/data";
+import { useState } from "react";
 
 const chartConfig = {
   desktop: {
@@ -24,7 +33,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const keyVal = {
+const keyVal: Record<string, string> = {
   "5Y": "fiveYear",
   "3Y": "threeYear",
   "1Y": "oneYear",
@@ -34,41 +43,45 @@ const keyVal = {
 };
 
 export default function Component({ chartData }: { chartData: FundData[] }) {
-  const [timeframe, setTimeframe] = useState<
-    "5Y" | "3Y" | "1Y" | "6M" | "3M" | "1M"
-  >("5Y");
+  chartData = chartData.map((data) => {
+    data.uv = 32.9;
+    return data;
+  });
+  const [timeframe] = useState<"5Y" | "3Y" | "1Y" | "6M" | "3M" | "1M">("5Y");
   return (
-    <Card className="bg-[#4BD8FF00] w-3/4">
+    <Card className="bg-[#4BD8FF00] w-full border-0">
       <CardHeader>
-        <CardTitle>Direct Growth Funds 5 year CAGR vs PMS</CardTitle>
-        <div className="my-5 bg-gray-700 flex rounded-md text-gray-400 items-baseline w-fit">
-          {["5Y", "3Y", "1Y", "6M", "3M", "1M"].map((label, index) => (
-            <button
-              onClick={() => setTimeframe(label as any)}
-              key={index}
-              className={`px-4 py-2  flex items-center ${
-                label === timeframe
-                  ? "text-white font-semibold"
-                  : "text-gray-400"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        <CardTitle className="pl-12">
+          Direct Growth Funds 5 year CAGR vs PMS
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+        <ChartContainer config={chartConfig} height={500}>
+          <BarChart data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="schemeName"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
+              type="category"
+            ></XAxis>
+            <YAxis
+              height={350}
+              tickFormatter={(value) => value + "%"}
+              domain={[0, 40]}
             />
-            <YAxis tickFormatter={(value) => value + "%"} />
-
+            <ReferenceLine
+              y={32.9}
+              stroke="#4A9EFF"
+              strokeDasharray="5 3"
+              strokeWidth={2}
+              pointsAtX={0}
+            >
+              <Label position="left" fill="#4A9EFF" className="font-semibold">
+                32.9%
+              </Label>
+            </ReferenceLine>
             <Bar
               dataKey={keyVal[timeframe]}
               fill="#4D97EE"
