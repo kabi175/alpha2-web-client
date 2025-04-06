@@ -49,8 +49,8 @@ export default function Calculator() {
             <p className="text-lg text-zinc-300 mb-6">
               By aligning with your financial goals and profile, we connect you
               to the right PMS, creating an impact of alpha over alpha. AlphaSqr
-              is where you discover the investment opportunities you've always
-              envisioned.{" "}
+              is where you discover the investment opportunities you&apos;ve
+              always envisioned.{" "}
             </p>
             <p className="text-lg text-zinc-300 mb-6">
               For the first time, AlphaSqr as a platform bridges the gap by
