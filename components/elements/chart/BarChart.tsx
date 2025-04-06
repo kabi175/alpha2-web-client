@@ -21,6 +21,7 @@ import {
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { FundData } from "@/api/data";
 import { useState } from "react";
+import { getLastDateOfLastMonthFormatted } from "./LineChart";
 
 const chartConfig = {
   desktop: {
@@ -103,10 +104,4 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
       </CardFooter>
     </Card>
   );
-}
-
-function getLastDateOfLastMonthFormatted() {
-  const lastDay = new Date(new Date().getFullYear(), 2, 0);
-  const month = lastDay.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
-  return `${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
 }

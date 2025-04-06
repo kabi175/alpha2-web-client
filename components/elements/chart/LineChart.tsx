@@ -95,10 +95,14 @@ export default function Component(props: LineChartData) {
   );
 }
 
-function getLastDateOfLastMonthFormatted() {
-  const lastDay = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
+export function getLastDateOfLastMonthFormatted() {
+  const lastDay = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() - 1,
+    0
+  );
   const month = lastDay.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
-  return `${lastDay.getDate()} ${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
+  return `${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
 }
 
 function formatToTwoDecimals(num: number) {

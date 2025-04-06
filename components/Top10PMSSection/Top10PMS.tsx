@@ -2,6 +2,7 @@
 import PMSCard from "@/components/Top10PMSSection/PMSCard";
 import AlphaSection from "@/components/AlphaSection";
 import { useState } from "react";
+import { getLastDateOfLastMonthFormatted } from "../elements/chart/LineChart";
 
 interface PMSData {
   title: string;
@@ -119,10 +120,5 @@ const Top10PMS: React.FC = () => {
     </AlphaSection>
   );
 };
-function getLastDateOfLastMonthFormatted() {
-  const lastDay = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
-  const month = lastDay.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
-  return `${lastDay.getDate()} ${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
-}
 
 export default Top10PMS;

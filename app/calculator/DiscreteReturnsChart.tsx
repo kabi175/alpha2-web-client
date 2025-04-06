@@ -9,6 +9,7 @@ import { CartesianGrid, XAxis, Bar, BarChart } from "recharts";
 import { useState, useEffect } from "react";
 import { fetchDiscreteReturns } from "@/api";
 import _ from "lodash";
+import { getLastDateOfLastMonthFormatted } from "@/components/elements/chart/LineChart";
 
 interface Fund {
   value: string;
@@ -67,12 +68,6 @@ export default function DiscreteReturnsChart(props: DiscreteReturnsChartProps) {
     </Card>
   );
 }
-function getLastDateOfLastMonthFormatted() {
-  const lastDay = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
-  const month = lastDay.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
-  return `${lastDay.getDate()} ${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
-}
-
 const fetchData = async (
   fundA: Fund,
   fundB: Fund,
