@@ -22,7 +22,7 @@ export const ReliableAdviceYouTrust: React.FC = () => {
             <div className="flex gap-5 max-md:flex-col">
               <div className="w-6/12 max-md:ml-0 max-md:w-full">
                 <InfoCard
-                  title="Independent, transparent, and unbiased."
+                  title="Independent, transparent, and unbiased"
                   description="Our advice is reliable, objective, and always in your best interest."
                 />
               </div>
