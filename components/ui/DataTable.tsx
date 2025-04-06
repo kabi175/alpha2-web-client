@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/table";
 import React, { ReactNode, useEffect } from "react";
 import { Input } from "@/components/ui/input";
-import { DataTableViewOptions } from "./DataTableViewOptions";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -63,7 +62,7 @@ export function DataTable<TData, TValue>({
     if (search) {
       table.getColumn("schemeName")?.setFilterValue(search);
     }
-  }, []);
+  }, [search, table]);
   return (
     <div className="w-full">
       <div className="flex items-center justify-between py-4">

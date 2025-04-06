@@ -250,6 +250,7 @@ export function DataTableFilterOptions({
           .filter((f) => f != filter)
           .map((f) => (
             <DropdownMenuCheckboxItem
+              key={f}
               className="capitalize"
               onClick={() => setFilter(f)}
             >
