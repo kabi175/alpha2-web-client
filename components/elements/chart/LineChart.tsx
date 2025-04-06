@@ -52,7 +52,24 @@ export default function Component(props: LineChartData) {
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={
+                <ChartTooltipContent
+                  formatter={(value, payload, _temp0, _temp1, item) => {
+                    value = Math.round(Number.parseFloat(value.toString()));
+                    if (
+                      typeof payload === "string" &&
+                      typeof item === "object"
+                    ) {
+                      const dd = item as any;
+                      const ret = dd[payload + "returns"];
+                      if (ret) {
+                        return `${payload} - ₹${value} (${ret}%)`;
+                      }
+                    }
+                    return `${payload} - ₹${value}`;
+                  }}
+                />
+              }
             />
             {props.plots.map((plot) => (
               <Line

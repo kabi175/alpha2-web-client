@@ -85,6 +85,13 @@ const fetchData = async (
           _.at(reports[0], fund1Value)[0] || _.at(reports[1], fund1Value)[0],
         [fund2Label]:
           _.at(reports[0], fund2Value)[0] || _.at(reports[1], fund2Value)[0],
+
+        [fund1Label + "returns"]:
+          _.at(reports[0], fund1Value + "returns")[0] ||
+          _.at(reports[1], fund1Value + "returns")[0],
+        [fund2Label + "returns"]:
+          _.at(reports[0], fund2Value + "returns")[0] ||
+          _.at(reports[1], fund2Value + "returns")[0],
       };
       return data;
     }
@@ -97,17 +104,18 @@ const transformData = (reports: any[], fundName: string): any[] => {
   //@typescript-eslint/no-explicit-any
   return reports.map((report) => {
     // Convert report date to a readable format (e.g., "Jan 23")
-    const date = new Date(report.ReportDate);
+    const date = new Date(report.report_date);
     const month = date.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
     const year = date.getFullYear().toString().slice(-2); // "23"
 
     // Use the 1-month return value as the data
-    const data = report["1_month_return"] || 0; // Default to 0 if null/undefined
+    const data = report["amount"] || 0; // Default to 0 if null/undefined
 
     return {
       month: `${month} ${year}`, // "Jan 23"
       date,
       [fundName]: data,
+      [fundName + "returns"]: report["returns"] || 0, // Default to 0 if null/undefined
     };
   });
 };

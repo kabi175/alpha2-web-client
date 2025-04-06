@@ -1,8 +1,9 @@
 import { queryObjects } from "v8";
 
 interface ReturnsData {
-  ReportDate: string;
-  "1_month_return": number;
+  report_date: string;
+  amount: number;
+  returns: number;
 }
 
 interface FundDetails {
