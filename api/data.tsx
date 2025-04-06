@@ -90,7 +90,7 @@ const fetchAllFunds = async (
       param.append("name", name);
     }
     if (type) {
-      param.append("type", type);
+      param.append("type", type == "PMS" ? "PMF" : type);
     }
 
     const response = await fetch(
