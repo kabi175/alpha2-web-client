@@ -51,7 +51,7 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
           Direct Growth Funds 5 year CAGR vs PMS
         </CardTitle>
       </CardHeader>
-      <CardContent className="h-[500px]">
+      <CardContent className="h-[500px] w-full">
         <ChartContainer config={chartConfig} height={500}>
           <BarChart data={chartData}>
             <CartesianGrid vertical={false} />
@@ -61,6 +61,7 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
               tickMargin={10}
               axisLine={false}
               type="category"
+              fontSize={10}
             ></XAxis>
             <YAxis
               height={350}
