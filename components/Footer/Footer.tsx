@@ -13,8 +13,8 @@ const Footer: React.FC = () => {
     products: {
       title: "Products",
       links: [
-        { text: "Calculators", href: "/calculator" },
         { text: "Explore PMS", href: "/explore" },
+        { text: "Compare PMS", href: "/calculator" },
         {
           text: "Connect with our Experts",
           href: "https://calendar.app.google/VriTd83Lz2NwsvRB9",

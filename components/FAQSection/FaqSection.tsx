@@ -114,7 +114,7 @@ Disadvantages:
 2. High Fees: Management fees can be substantial, and underperformance may erode profits.`,
   },
   {
-    question: "What are the important features of PMS",
+    question: "What are the important features of PMS?",
     answer: `Customization: Tailored investment strategies based on individual goals and risk tolerance.
 <br />
 <br />
@@ -212,7 +212,7 @@ Most PMS don’t charge exit loads. Some PMS may charge exit load but the maximu
     answer: `We recommend that investors with an equity and mutual fund corpus of ₹1.5 crore or more, and an investment horizon of at least five years, consider allocating a portion of their portfolio to PMS for enhanced diversification and potential long-term growth.`,
   },
   {
-    question: "How to Choose the Best Performing PMS Schemes in India",
+    question: "How to Choose the Best Performing PMS Schemes in India?",
     answer: `Choosing the right Portfolio Management Service (PMS) can be challenging, given the numerous options available. Here are key factors to consider for making an informed decision:
     
 <br />
@@ -242,7 +242,7 @@ Most PMS don’t charge exit loads. Some PMS may charge exit load but the maximu
       `,
   },
   {
-    question: "How does AlphaSqr Assist in Selection Right PMS Scheme",
+    question: "How does AlphaSqr Assist in Selection Right PMS Scheme?",
     answer: `We are an independent platform dedicated to helping you select the PMS that best aligns with your financial goals and risk tolerance.
 <br />
 <br />
