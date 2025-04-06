@@ -20,7 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import React, { useEffect } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "./DataTableViewOptions";
 
@@ -28,12 +28,14 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   search?: string | null;
+  filterBar?: ReactNode;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   search,
+  filterBar,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -64,7 +66,7 @@ export function DataTable<TData, TValue>({
   }, []);
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex items-center justify-between py-4">
         <Input
           type="text"
           placeholder="Filter Scheme..."
@@ -76,7 +78,11 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-        <DataTableViewOptions table={table} />
+
+        <div className="flex gap-5">
+          {filterBar ? filterBar : null}
+          {/* <DataTableViewOptions table={table} /> */}
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>

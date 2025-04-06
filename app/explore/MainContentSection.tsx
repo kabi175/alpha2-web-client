@@ -6,6 +6,14 @@ import { ColumnDef, Column, Row } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/DataTable";
 import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
 import { useSearchParams } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuCheckboxItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { ListFilterPlus } from "lucide-react";
 
 const getValueColor = (value: number) => {
   if (value < 0) return "text-[#ff3131]";
@@ -179,6 +187,7 @@ export const columns: ColumnDef<FundExploreData>[] = [
 export const MainContentSection = () => {
   // const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [tableData, setTableData] = React.useState<FundExploreData[]>([]);
+  const [filter, setFilter] = React.useState<string>("All Funds");
   const searchParams = useSearchParams();
 
   const search = searchParams.get("search");
@@ -188,17 +197,69 @@ export const MainContentSection = () => {
       const resp = await fetchFundsForExplore({
         per_page: "3000",
         page: "0",
+        filter,
       });
       setTableData(resp.data);
     })();
-  }, []);
+  }, [filter]);
 
   return (
     <div className="flex flex-col w-full items-start rounded-lg pb-20">
-      <DataTable columns={columns} data={tableData} search={search} />
+      <DataTable
+        columns={columns}
+        data={tableData}
+        search={search}
+        filterBar={
+          <DataTableFilterOptions filter={filter} setFilter={setFilter} />
+        }
+      />
     </div>
   );
 };
+
+export function DataTableFilterOptions({
+  filter,
+  setFilter,
+}: {
+  filter: string;
+  setFilter: (filter: string) => void;
+}) {
+  const filters = [
+    "All Funds",
+    "Consistent Compounders",
+    "Top Grossers",
+    "Sector Leaders",
+    "Elite Fund Managers",
+    "Rising Stars",
+  ];
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          className="ml-auto hidden h-8 lg:flex"
+        >
+          <ListFilterPlus />
+          {filter}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="start" className="">
+        {filters
+          .filter((f) => f != filter)
+          .map((f) => (
+            <DropdownMenuCheckboxItem
+              className="capitalize"
+              onClick={() => setFilter(f)}
+            >
+              {f}
+            </DropdownMenuCheckboxItem>
+          ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
 
 function formatToTwoDecimals(num: number, colId: string) {
   if (colId == "aum") {
