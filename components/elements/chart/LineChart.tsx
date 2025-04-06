@@ -63,7 +63,7 @@ export default function Component(props: LineChartData) {
                       const dd = item as any;
                       const ret = dd[payload + "returns"];
                       if (ret) {
-                        return `${payload} - ₹${value} (${formatToTwoDecimals(
+                        return `${payload} : ₹${value} (${formatToTwoDecimals(
                           ret
                         )}%)`;
                       }

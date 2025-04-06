@@ -36,49 +36,51 @@ export default function Calculator() {
               <Image src="/logo.svg" alt="logo" width={200} height={75} />
             </h1>
             <p className="text-xl text-zinc-400 italic mb-12">
-              Find The Right PMS & Amplify Your Alpha
+              Your gateway to smarter investing
             </p>
 
             <p className="text-lg text-zinc-300 mb-6">
-              We’re building a revolutionary platform that unlocks access to
-              Portfolio Management Services ‘PMS’, empowering you with the
-              insights and tools to optimize portfolio performance and generate
-              alpha on top of mutual funds.
+              We are an independent platform that unlocks access to Portfolio
+              Management Services (PMS), equipping you with the insights and
+              tools to optimize portfolio performance and generate alpha beyond
+              mutual funds.{" "}
             </p>
 
             <p className="text-lg text-zinc-300 mb-6">
-              By aligning the right assets with your financial goals, we amplify
-              your potential returns—what we call AlphaSqr.
+              By aligning with your financial goals and profile, we connect you
+              to the right PMS, creating an impact of alpha over alpha. AlphaSqr
+              is where you discover the investment opportunities you've always
+              envisioned.{" "}
             </p>
             <p className="text-lg text-zinc-300 mb-6">
-              For the first time, we’re bringing this exclusive opportunity—once
-              reserved for High Net Worth Individuals, Ultra-High Net Worth
-              Individuals, and Family Offices—within your reach. Tailored, and
-              designed just for you.
+              For the first time, AlphaSqr as a platform bridges the gap by
+              providing access—once limited to HNWIs, UHNIs, and Family Offices.{" "}
             </p>
+
             <p className="text-lg text-zinc-300 mb-6">
               Our journey began when Dheeraj, representing TVS Capital, met
               Ankit, then CFO of Increff, a TVS Capital portfolio company. What
               started as a professional connection quickly turned into a shared
-              vision—to transform the wealth management landscape.
+              vision—to transform the wealth management landscape.{" "}
             </p>
             <p className="text-lg text-zinc-300 mb-6">
-              With Ankit’s 15 years of experience in equity markets and
-              Dheeraj’s expertise in unlisted investments, they discovered a
-              shared passion for investing & wealth management. As investors,
-              they recognized a critical gap—no platform existed to evaluate and
-              navigate the 400+ PMS funds available to find the right fit for
-              their goals and portfolios. An underserved segment in need of a
-              smarter, more accessible solution.
+              With Ankit’s 15 years of experience in finance and Dheeraj’s
+              experience in growth equity, they discovered a shared passion for
+              investing & wealth management. As investors, they recognized a
+              critical gap—no platform existed to evaluate and navigate the PMS/
+              AIF funds available to find the right fit for their goals and
+              portfolios. An underserved segment in need of a smarter, more
+              accessible solution.{" "}
             </p>
             <p className="text-lg text-zinc-300 mb-6">
               Driven by a passion for innovation, we set out to build a
               tech-first platform that delivers unparalleled value, bridging
-              this gap with a seamless, tailored experience.
+              this gap with a seamless, tailored experience.{" "}
             </p>
             <p className="text-lg text-zinc-300 mb-6">
               This personal need sparked the idea for AlphaSqr—a platform
-              designed to simplify and optimize PMS discovery for investors.
+              designed to simplify and optimize PMS discovery for investors as a
+              starting point.{" "}
             </p>
           </div>
 
