@@ -11,7 +11,7 @@ const AlphaHero = () => {
       </h1>
 
       <p className="mb-5 text-3xl font-light tracking-tighter leading-10 max-w-[440px] max-sm:text-2xl">
-        Driving your wealth creation with precision and purpose
+        Find The Right PMS & Amplify Your Alpha
       </p>
 
       <ConnectWithExpert />

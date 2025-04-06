@@ -36,7 +36,7 @@ export default function Calculator() {
               <Image src="/logo.svg" alt="logo" width={200} height={75} />
             </h1>
             <p className="text-xl text-zinc-400 italic mb-12">
-              Driving your wealth creation with precision and purpose
+              Find The Right PMS & Amplify Your Alpha
             </p>
 
             <p className="text-lg text-zinc-300 mb-6">

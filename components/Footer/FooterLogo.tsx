@@ -9,7 +9,7 @@ export const FooterLogo: React.FC = () => {
         <Image src="/logo.svg" alt="Alpha2 Logo" width={102} height={48} />
       </div>
       <p className="text-lg tracking-tight leading-6 text-zinc-400 w-[303px] max-md:w-full">
-        Driving your wealth creation with precision and purpose
+        Find The Right PMS & Amplify Your Alpha
       </p>
     </div>
   );
