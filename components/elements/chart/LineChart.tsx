@@ -63,7 +63,9 @@ export default function Component(props: LineChartData) {
                       const dd = item as any;
                       const ret = dd[payload + "returns"];
                       if (ret) {
-                        return `${payload} - ₹${value} (${ret}%)`;
+                        return `${payload} - ₹${value} (${formatToTwoDecimals(
+                          ret
+                        )}%)`;
                       }
                     }
                     return `${payload} - ₹${value}`;
@@ -97,4 +99,8 @@ function getLastDateOfLastMonthFormatted() {
   const lastDay = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
   const month = lastDay.toLocaleString("default", { month: "short" }); // "Jan", "Feb", etc.
   return `${lastDay.getDate()} ${month} ${lastDay.getFullYear()}`; // Format as YYYY-MM-DD
+}
+
+function formatToTwoDecimals(num: number) {
+  return (Math.floor(num * 100) / 100).toFixed(2);
 }
