@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { Suspense } from "react";
 import { MainContentSection } from "./MainContentSection";
 import AlphaSection from "@/components/AlphaSection";
 
@@ -9,7 +11,9 @@ export default function ExplorePms() {
     <AlphaSection isTop>
       <div className="w-full flex justify-center">
         {/* Main Content */}
-        <MainContentSection />
+        <Suspense>
+          <MainContentSection />
+        </Suspense>
       </div>
     </AlphaSection>
   );
