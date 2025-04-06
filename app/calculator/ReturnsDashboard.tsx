@@ -45,7 +45,7 @@ export default function ReturnsDashboard() {
   const onTimeframeChange = async (timeframe: string) => {
     const start = new Date();
     start.setDate(1);
-    start.setMonth(start.getMonth() - 1);
+    start.setMonth(start.getMonth() - 2);
     if (timeframe === "6M") {
       start.setMonth(start.getMonth() - 7);
     } else if (timeframe === "1Y") {
