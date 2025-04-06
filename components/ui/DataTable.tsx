@@ -20,18 +20,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "./DataTableViewOptions";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  search?: string | null;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  search,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -55,6 +57,11 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  useEffect(() => {
+    if (search) {
+      table.getColumn("schemeName")?.setFilterValue(search);
+    }
+  }, []);
   return (
     <div className="w-full">
       <div className="flex items-center py-4">

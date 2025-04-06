@@ -2,6 +2,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 interface PMSCardProps {
   title: string;
@@ -55,9 +56,11 @@ export const PMSCard: React.FC<PMSCardProps> = ({
         <ArrowUpRight className="w-4 h-4 text-green-500" />
       </div>
       <CardFooter>
-        <Button variant="default" className="w-[167px]">
-          Know more
-        </Button>
+        <Link href={`/explore?search=${title}`}>
+          <Button variant="default" className="w-[167px]">
+            Know more
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

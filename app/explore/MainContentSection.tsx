@@ -5,6 +5,7 @@ import { FundExploreData } from "@/api/data";
 import { ColumnDef, Column, Row } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/DataTable";
 import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
+import { useSearchParams } from "next/navigation";
 
 const getValueColor = (value: number) => {
   if (value < 0) return "text-[#ff3131]";
@@ -178,6 +179,9 @@ export const columns: ColumnDef<FundExploreData>[] = [
 export const MainContentSection = () => {
   // const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [tableData, setTableData] = React.useState<FundExploreData[]>([]);
+  const searchParams = useSearchParams();
+
+  const search = searchParams.get("search");
 
   useEffect(() => {
     (async () => {
@@ -191,7 +195,7 @@ export const MainContentSection = () => {
 
   return (
     <div className="flex flex-col w-full items-start rounded-lg pb-20">
-      <DataTable columns={columns} data={tableData} />
+      <DataTable columns={columns} data={tableData} search={search} />
     </div>
   );
 };
