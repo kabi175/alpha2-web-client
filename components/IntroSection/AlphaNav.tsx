@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default function AlphaNav() {
@@ -16,30 +17,30 @@ export default function AlphaNav() {
           alt="Home"
         />
       </div>
-      <a
+      <Link
         href="/calculator"
         className="text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >
         Compare PMS
-      </a>
-      <a
+      </Link>
+      <Link
         href="/explore"
         className="text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >
         Explore PMS
-      </a>
-      <a
+      </Link>
+      <Link
         href="/#faqs"
         className="text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >
         FAQs
-      </a>
-      <a
+      </Link>
+      <Link
         href="/about-us"
         className="text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >
         About Us
-      </a>
+      </Link>
     </nav>
   );
 }
