@@ -21,6 +21,26 @@ const pmsData: PMSData[] = [
     image: "/fund-logo/ICICI-Pru.jpg",
   },
   {
+    title: "Motilal Oswal",
+    percentage: "30.68%",
+    image: "/fund-logo/MOTILAL-OSWAL.jpg",
+  },
+  {
+    title: "Parag Parikh (PPFAS)",
+    percentage: "26.51%",
+    image: "/fund-logo/PARAG-PAREKH-PPFAS.jpeg",
+  },
+  {
+    title: "Aditya Birla Sunlife",
+    percentage: "25.22%",
+    image: "/fund-logo/ADITYA-BIRLA ABSL.png",
+  },
+  {
+    title: "HDFC AMC",
+    percentage: "23.66%",
+    image: "/fund-logo/HDFC-AMC.avif",
+  },
+  {
     title: "Unique Asset",
     percentage: "32.38%",
     image: "/fund-logo/Unique.jpg",
@@ -36,34 +56,14 @@ const pmsData: PMSData[] = [
     image: "/fund-logo/p.png",
   },
   {
-    title: "Motilal Oswal",
-    percentage: "30.68%",
-    image: "/fund-logo/MOTILAL-OSWAL.jpg",
-  },
-  {
     title: "Stallion",
     percentage: "30.23%",
     image: "/fund-logo/STALLION.png",
   },
   {
-    title: "Parag Parikh (PPFAS)",
-    percentage: "26.51%",
-    image: "/fund-logo/PARAG-PAREKH-PPFAS.jpeg",
-  },
-  {
-    title: "Aditya Birla Sunlife",
-    percentage: "25.22%",
-    image: "/fund-logo/ADITYA-BIRLA ABSL.png",
-  },
-  {
     title: "JM Financial",
     percentage: "24.86%",
     image: "/fund-logo/JM-FINANCIAL.jpeg",
-  },
-  {
-    title: "HDFC AMC",
-    percentage: "23.66%",
-    image: "/fund-logo/HDFC-AMC.avif",
   },
   {
     title: "Unifi Capital",
