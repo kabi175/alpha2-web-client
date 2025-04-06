@@ -15,7 +15,7 @@ const faqData = [
       "Services can be either discretionary (where the fund manager makes investment decisions on behalf of clients) or non-discretionary (where the investor makes the final decision, with the fund manager providing advice), depending on the fund house. In India, most of the funds operate under a discretionary model.",
   },
   {
-    question: "How does Portfolio Management Services work??",
+    question: "How does Portfolio Management Services work?",
     answer:
       "Portfolio Management Services (PMS) function by designing and managing a personalized investment portfolio tailored to the client’s risk tolerance, financial goals, and overall financial situation. Following an initial assessment, the portfolio manager actively oversees the portfolio, making strategic decisions—such as buying or selling assets—to optimize returns and manage risk. Clients receive regular updates and performance reports to keep them informed.",
   },
