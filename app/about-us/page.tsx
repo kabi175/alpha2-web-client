@@ -21,7 +21,7 @@ An alumnus of Harvard Business School’s prestigious SELP program and a Charter
       "https://www.linkedin.com/in/dheeraj-kumar-reddy-dosakayala-25876a103",
     summary: `Dheeraj is a finance professional with a Bachelor's degree from the Indian Institute of Technology, Madras, and is a CFA Level II holder.
 With over five years of experience in global markets and growth equity funds, he has honed his expertise in financial analysis, investment strategies, and portfolio management.
-In his previous role, Dheeraj actively managed portfolio companies and worked with them in their growth journey. He brings a strong data analytics and operations-driven mindset, enabling him to build efficient and scalable investment products that drive innovation and performance.`,
+In his previous role, Dheeraj actively managed portfolio companies and worked with them in their growth journey.`,
   },
 ];
 
