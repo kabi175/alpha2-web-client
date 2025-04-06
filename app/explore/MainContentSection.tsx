@@ -19,7 +19,7 @@ const CellContent = ({
   row: Row<FundExploreData>;
   column: Column<FundExploreData, unknown>;
 }) => {
-  let amount = parseFloat(row.getValue(column.id));
+  const amount = parseFloat(row.getValue(column.id));
   return (
     <div className={`text-center font-medium ${getValueColor(amount)}`}>
       {isNaN(amount) || amount == 0
