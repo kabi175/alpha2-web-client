@@ -46,7 +46,7 @@ export const ReliableAdviceYouTrust: React.FC = () => {
               <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
                 <InfoCard
                   title="No Pressure, Just Guidance"
-                  description="Our consultations are free, with no pressure to buy from AlphaSqr."
+                  description="Our consultations are free, with no pressure to buy from AlphaSqr"
                 />
               </div>
             </div>
