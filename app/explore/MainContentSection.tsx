@@ -19,10 +19,12 @@ const CellContent = ({
   row: Row<FundExploreData>;
   column: Column<FundExploreData, unknown>;
 }) => {
-  const amount = parseFloat(row.getValue(column.id));
+  let amount = parseFloat(row.getValue(column.id));
   return (
     <div className={`text-center font-medium ${getValueColor(amount)}`}>
-      {isNaN(amount) ? "-" : amount}
+      {isNaN(amount) || amount == 0
+        ? "-"
+        : formatToTwoDecimals(amount, column.id)}
     </div>
   );
 };
@@ -194,4 +196,10 @@ export const MainContentSection = () => {
   );
 };
 
+function formatToTwoDecimals(num: number, colId: string) {
+  if (colId == "aum") {
+    return Math.round(num);
+  }
+  return (Math.floor(num * 100) / 100).toFixed(2);
+}
 export default MainContentSection;
