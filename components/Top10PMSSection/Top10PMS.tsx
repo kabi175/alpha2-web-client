@@ -6,67 +6,80 @@ import { getLastDateOfLastMonthFormatted } from "../elements/chart/LineChart";
 
 interface PMSData {
   title: string;
+  search: string;
   percentage: string;
   image: string;
 }
 const pmsData: PMSData[] = [
   {
     title: "Aequitas",
+    search: "Aequitas",
     percentage: "41.78%",
     image: "/fund-logo/Aequitas-Logo.jpg",
   },
   {
     title: "ICICI Prudential",
+    search: "ICICI Pru",
     percentage: "36.99%",
     image: "/fund-logo/ICICI-Pru.jpg",
   },
   {
     title: "Motilal Oswal",
+    search: "Motilal Oswal",
     percentage: "30.68%",
     image: "/fund-logo/MOTILAL-OSWAL.jpg",
   },
   {
     title: "Parag Parikh (PPFAS)",
+    search: "Parag Parikh",
     percentage: "26.51%",
     image: "/fund-logo/PARAG-PAREKH-PPFAS.jpeg",
   },
   {
     title: "Aditya Birla Sunlife",
+    search: "Birla",
     percentage: "25.22%",
     image: "/fund-logo/ADITYA-BIRLA ABSL.png",
   },
   {
     title: "HDFC AMC",
+    search: "HDFC",
     percentage: "23.66%",
     image: "/fund-logo/HDFC-AMC.avif",
   },
   {
     title: "Unique Asset",
+    search: "Unique",
     percentage: "32.38%",
     image: "/fund-logo/Unique.jpg",
   },
   {
     title: "Bonanza",
+    search: "Bonanza",
     percentage: "31.16%",
     image: "/fund-logo/bonanza.png",
   },
   {
     title: "Asit C Mehta",
+    search: "Asit C. Mehta",
     percentage: "30.94%",
     image: "/fund-logo/p.png",
   },
   {
     title: "Stallion",
+    search: "Stallion",
     percentage: "30.23%",
     image: "/fund-logo/STALLION.png",
   },
   {
     title: "JM Financial",
+    search: "JM Financial",
     percentage: "24.86%",
     image: "/fund-logo/JM-FINANCIAL.jpeg",
   },
   {
     title: "Unifi Capital",
+    search: "Unifi",
     percentage: "30.1%",
     image: "/fund-logo/UNIFI.png",
   },
@@ -99,6 +112,7 @@ const Top10PMS: React.FC = () => {
               title={pms.title}
               percentage={pms.percentage}
               image={pms.image}
+              search={pms.search}
             />
           ))}
         </div>

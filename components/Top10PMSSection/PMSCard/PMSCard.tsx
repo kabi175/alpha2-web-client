@@ -8,6 +8,7 @@ interface PMSCardProps {
   title: string;
   percentage: string;
   image: string;
+  search: string;
   isPartial?: boolean;
 }
 
@@ -15,6 +16,7 @@ export const PMSCard: React.FC<PMSCardProps> = ({
   title,
   percentage,
   image,
+  search,
 }) => {
   //   if (isPartial) {
   //     return (
@@ -56,7 +58,7 @@ export const PMSCard: React.FC<PMSCardProps> = ({
         <ArrowUpRight className="w-4 h-4 text-green-500" />
       </div>
       <CardFooter>
-        <Link href={`/explore?search=${title}`}>
+        <Link href={`/explore?search=${search}`}>
           <Button variant="default" className="w-[167px]">
             Know more
           </Button>
