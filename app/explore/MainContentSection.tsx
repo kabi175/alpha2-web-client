@@ -44,10 +44,10 @@ const ColumnIdVsLabel: Record<string, string> = {
   oneMonth: "1M",
   threeMonth: "3M",
   sixMonth: "6M",
-  ytd: "YTD",
   oneYear: "1Y",
   twoYear: "2Y",
   threeYear: "3Y",
+  fourYear: "4Y",
   fiveYear: "5Y",
   sharpeRatio: "Sharpe Ratio",
   maxDrawdown: "Max Drawdown",
@@ -143,7 +143,7 @@ export const columns: ColumnDef<FundExploreData>[] = [
     cell: ({ row, column }) => <CellContent row={row} column={column} />,
   },
   {
-    accessorKey: "fiveYear",
+    accessorKey: "fourYear",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
@@ -153,7 +153,7 @@ export const columns: ColumnDef<FundExploreData>[] = [
     cell: ({ row, column }) => <CellContent row={row} column={column} />,
   },
   {
-    accessorKey: "ytd",
+    accessorKey: "fiveYear",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}

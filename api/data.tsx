@@ -19,10 +19,10 @@ export interface FundExploreData {
   oneMonth: number;
   threeMonth: number;
   sixMonth: number;
-  ytd: number;
   oneYear: number;
   twoYear: number;
   threeYear: number;
+  fourYear: number;
   fiveYear: number;
   sharpeRatio: number;
   maxDrawdown: number;
