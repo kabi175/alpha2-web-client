@@ -139,7 +139,10 @@ export default function SearchBar(props: SearchBarProps) {
               if (!props.onSearch) {
                 return;
               }
-              const opts = await props.onSearch(search, fundType);
+              if (!fundType) {
+                setFundType("PMS");
+              }
+              const opts = await props.onSearch(search, fundType || "PMS");
               setDroupedOptions(_.groupBy(opts, "group"));
             }}
           />
