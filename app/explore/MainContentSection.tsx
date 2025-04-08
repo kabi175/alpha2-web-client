@@ -233,32 +233,29 @@ export function DataTableFilterOptions({
     "Rising Stars",
   ];
 
+  const handleBorder = (index: number) => {
+    if (index == 0) {
+      return "rounded-l-md rounded-r-none";
+    }
+    if (index == filters.length - 1) {
+      return "rounded-r-md rounded-l-none";
+    }
+    return "rounded-none";
+  };
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <div>
+      {filters.map((f, index) => (
         <Button
-          variant="outline"
-          size="sm"
-          className="ml-auto hidden h-8 lg:flex"
+          variant={filter == f ? "default" : "outline"}
+          key={f}
+          className={`capitalize ${handleBorder(index)}`}
+          onClick={() => setFilter(f)}
         >
-          <ListFilterPlus />
-          {filter}
+          {f}
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="">
-        {filters
-          .filter((f) => f != filter)
-          .map((f) => (
-            <DropdownMenuCheckboxItem
-              key={f}
-              className="capitalize"
-              onClick={() => setFilter(f)}
-            >
-              {f}
-            </DropdownMenuCheckboxItem>
-          ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      ))}
+    </div>
   );
 }
 
