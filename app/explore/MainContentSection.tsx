@@ -6,14 +6,7 @@ import { ColumnDef, Column, Row } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/DataTable";
 import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
 import { useSearchParams } from "next/navigation";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuCheckboxItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ListFilterPlus } from "lucide-react";
 
 const getValueColor = (value: number) => {
   if (value < 0) return "text-[#ff3131]";
