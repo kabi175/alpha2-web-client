@@ -14,7 +14,7 @@ const PMFUnderstand: React.FC = () => {
           <PMSInfoCard
             image="profit.svg"
             text1="PMS are SEBI regulated investment products."
-            text2="Held securely in your demat account with a SEBI-regulated custodian."
+            text2="Held securely in your demat account with a SEBI-regulated custodian"
           />
           <PMSInfoCard
             image="export.svg"
@@ -24,7 +24,7 @@ const PMFUnderstand: React.FC = () => {
           <PMSInfoCard
             image="research.svg"
             text1="PMS maintain a well-researched portfolio of  15-30 stocks."
-            text2="This enables it to aim for superior long-term returns."
+            text2="This enables it to aim for superior long-term returns"
           />
         </div>
       </div>
