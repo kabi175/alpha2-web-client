@@ -226,16 +226,6 @@ export function DataTableFilterOptions({
     "Rising Stars",
   ];
 
-  const handleBorder = (index: number) => {
-    if (index == 0) {
-      return "rounded-l-md rounded-r-none";
-    }
-    if (index == filters.length - 1) {
-      return "rounded-r-md rounded-l-none";
-    }
-    return "rounded-none";
-  };
-
   return (
     <div className="flex gap-2 flex-wrap">
       {filters.map((f, index) => (
