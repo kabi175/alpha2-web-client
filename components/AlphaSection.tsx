@@ -7,7 +7,7 @@ export default function AlphaSection({
 }>) {
   return (
     <section
-      className={`flex overflow-hidden flex-col items-center  px-20 text-white max-md:pl-5 ${
+      className={`flex overflow-hidden flex-col items-center text-white px-20 max-md:px-5 ${
         isTop ? "" : "py-24"
       }`}
     >

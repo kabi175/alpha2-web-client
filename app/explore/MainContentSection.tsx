@@ -237,12 +237,12 @@ export function DataTableFilterOptions({
   };
 
   return (
-    <div>
+    <div className="flex gap-2 flex-wrap">
       {filters.map((f, index) => (
         <Button
           variant={filter == f ? "default" : "outline"}
           key={f}
-          className={`capitalize ${handleBorder(index)}`}
+          className={`capitalize`}
           onClick={() => setFilter(f)}
         >
           {f}
