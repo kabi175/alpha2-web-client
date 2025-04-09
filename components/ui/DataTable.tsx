@@ -70,7 +70,7 @@ export function DataTable<TData, TValue>({
   }, [search, table]);
   return (
     <div className="w-full">
-      <div className="flex flex-col-reverse xl:flex-row  justify-between gap-4 py-4">
+      <div className="flex flex-col-reverse 2xl:flex-row  justify-between gap-4 py-4">
         <Input
           type="text"
           placeholder="Filter Scheme..."
