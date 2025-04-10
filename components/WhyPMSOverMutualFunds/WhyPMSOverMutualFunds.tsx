@@ -5,8 +5,7 @@ import { ComparisonCard } from "./ComparisonCard";
 import ConnectWithExpert from "@/components/elements/button/ConnectWithExpert";
 
 const WhyPMSOverMutualFunds: React.FC = () => {
-  const howLabelForAll =
-    typeof screen.width != "undefined" && screen.width < 640;
+  const howLabelForAll = typeof screen != "undefined" && screen.width < 640;
 
   return (
     <section className="overflow-hidden">
