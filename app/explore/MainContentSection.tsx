@@ -228,7 +228,7 @@ export function DataTableFilterOptions({
 
   return (
     <div className="flex gap-2 flex-wrap">
-      {filters.map((f, index) => (
+      {filters.map((f) => (
         <Button
           variant={filter == f ? "default" : "outline"}
           key={f}
