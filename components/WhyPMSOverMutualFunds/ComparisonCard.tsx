@@ -35,7 +35,7 @@ export const ComparisonCard: React.FC<ComparisonCardProps> = ({
           <Image src={image} width={62} height={62} alt="VsCircle" />
           <div className="w-2/5 min-h-[185px] md:h-[185px] max-md:ml-0 max-md:w-full">
             <div className="flex grow h-full">
-              <div className="flex flex-col grow items-center justify-center py-6 pr-16 pl-8 text-lg  basis-0 bg-gradient-to-r max-md:bg-gradient-to-b from-[rgba(30, 30, 30, 0.55)] to-[#4A9EFF4D]  max-md:px-5 rounded-3xl">
+              <div className="flex flex-col grow items-center py-6 pr-16 pl-8 text-lg  basis-0 bg-gradient-to-r max-md:bg-gradient-to-b from-[rgba(30, 30, 30, 0.55)] to-[#4A9EFF4D]  max-md:px-5 rounded-3xl">
                 {showLabel && <MutualFundLabel />}
                 <p className="mt-5 text-zinc-300 text-base lg:text-lg">
                   {mutualFundDescription}
