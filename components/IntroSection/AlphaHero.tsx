@@ -2,7 +2,7 @@ import ConnectWithExpert from "@/components/elements/button/ConnectWithExpert";
 
 const AlphaHero = () => {
   return (
-    <section className="mb-5 ml-20 max-w-[800px] ">
+    <section className="mb-5 max-w-[800px] max-lg:flex flex-col max-md:justify-center">
       <h1 className="mb-1 text-8xl font-bold tracking-tighter leading-[113.36px] max-md:text-7xl max-sm:text-5xl max-sm:tracking-tighter flex flex-col">
         <span className="font-extralight text-transparent bg-clip-text bg-gradient-to-r from-white to-[#4B4B4B]">
           Amplify your
@@ -14,7 +14,9 @@ const AlphaHero = () => {
         Find The Right PMS & Amplify Your Alpha
       </p>
 
-      <ConnectWithExpert />
+      <div className="flex">
+        <ConnectWithExpert />
+      </div>
 
       <p className="text-lg font-light leading-7 max-w-[561px]">
         We help you access SEBI-regulated PMS products, offering lower
