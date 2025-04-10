@@ -37,7 +37,7 @@ export const ReliableAdviceYouTrust: React.FC = () => {
 
           <div className="mt-6 max-md:max-w-full">
             <div className="flex gap-5 max-md:flex-col">
-              <div className="w-6/12 max-md:ml-0 max-md:w-full">
+              <div className="w-6/12 max-md:ml-0 max-md:w-full grow">
                 <InfoCard
                   title="Spam Free"
                   description="No spam— just occasional newsletters, but only if you choose to subscribe"
