@@ -9,8 +9,8 @@ const PMFUnderstand: React.FC = () => {
         <span className="font-semibold italic">PMS</span>
       </h1>
 
-      <div className="w-full overflow-x-auto pb-4 mt-24 max-md:mt-10 custom-scrollbar">
-        <div className="flex gap-7 justify-center px-20 max-md:px-5 min-w-min">
+      <div className="w-full overflow-x-auto pb-4 mt-24 max-md:mt-10">
+        <div className="flex gap-7 justify-center px-20 max-md:px-5 min-w-min overflow-x-auto">
           <PMSInfoCard
             image="profit.svg"
             text1="PMS are SEBI regulated investment products."
