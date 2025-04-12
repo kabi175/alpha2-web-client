@@ -7,7 +7,7 @@ import React from "react";
 export default function Calculator() {
   return (
     <div>
-      <AlphaSection>
+      <AlphaSection isTop>
         <ReturnsDashboard />
       </AlphaSection>
     </div>
