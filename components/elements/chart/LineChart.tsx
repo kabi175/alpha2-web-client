@@ -28,8 +28,8 @@ const chartConfig = {
 
 export default function Component(props: LineChartData) {
   return (
-    <Card className="w-full h-[500px] bg-background border-0">
-      <CardContent className="h-[500px]">
+    <Card className="w-full bg-background border-0">
+      <CardContent className="h-[500px] w-full">
         <ChartContainer config={chartConfig} height={500}>
           <LineChart
             accessibilityLayer
@@ -86,9 +86,9 @@ export default function Component(props: LineChartData) {
           </LineChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="leading-none text-muted-foreground">
-          As reported to SEBI as at {getLastDateOfLastMonthFormatted()}
+      <CardFooter className="gap-2 text-sm text-right">
+        <div className="leading-none text-muted-foreground text-right w-full">
+          *As reported to SEBI as at {getLastDateOfLastMonthFormatted()}
         </div>
       </CardFooter>
     </Card>
