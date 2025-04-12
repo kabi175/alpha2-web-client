@@ -1,7 +1,7 @@
 "use client";
 
 import SearchBar from "@/components/elements/SearchBar";
-import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchAllFunds } from "@/api";
 import DiscreteReturnsChart from "./DiscreteReturnsChart";
 import TrailingReturnsChart from "./TrailingReturnsChart";
