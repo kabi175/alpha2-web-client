@@ -28,9 +28,9 @@ const chartConfig = {
 
 export default function Component(props: LineChartData) {
   return (
-    <Card className="w-full bg-background">
-      <CardContent>
-        <ChartContainer config={chartConfig}>
+    <Card className="w-full h-[500px] bg-background border-0">
+      <CardContent className="h-[500px]">
+        <ChartContainer config={chartConfig} height={500}>
           <LineChart
             accessibilityLayer
             data={props.entries}

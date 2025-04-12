@@ -40,9 +40,9 @@ export default function DiscreteReturnsChart(props: DiscreteReturnsChartProps) {
     })();
   }, [props.fundA, props.fundB, props.period]);
   return (
-    <Card className="w-full bg-background">
-      <CardContent>
-        <ChartContainer config={chartConfig}>
+    <Card className="w-full bg-background h-[500px]">
+      <CardContent className="h-[500px]">
+        <ChartContainer config={chartConfig} height={500}>
           <BarChart accessibilityLayer data={chatData}>
             <CartesianGrid vertical={false} />
             <XAxis

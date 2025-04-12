@@ -1,7 +1,7 @@
 "use client";
 
 import SearchBar from "@/components/elements/SearchBar";
-import { useEffect, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
 import { fetchAllFunds } from "@/api";
 import DiscreteReturnsChart from "./DiscreteReturnsChart";
 import TrailingReturnsChart from "./TrailingReturnsChart";
@@ -47,7 +47,7 @@ export default function ReturnsDashboard() {
     });
     return flist;
   };
-
+  const targetRef = useRef(null);
   useEffect(() => {
     const fetchFunds = async () => {
       const fund1 = await fetchData(
@@ -63,6 +63,22 @@ export default function ReturnsDashboard() {
     };
     fetchFunds();
   }, []);
+
+  useEffect(() => {
+    if (targetRef.current) {
+      (targetRef.current as HTMLDivElement).scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }, [
+    fund1FinalAmount,
+    fund2FinalAmount,
+    fund1,
+    fund2,
+    period,
+    startDate,
+    dataOption,
+  ]);
 
   const onTimeframeChange = async (timeframe: string) => {
     const start = new Date();
@@ -86,10 +102,10 @@ export default function ReturnsDashboard() {
   };
 
   return (
-    <>
+    <div ref={targetRef} className="w-full mb-12">
       <div className="w-full  flex flex-col items-center justify-center pb-8">
         <div className="p-4 rounded-lg w-full ">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center flex-wrap gap-4">
             {/* Tab Section */}
             <div className="flex">
               <button
@@ -175,7 +191,7 @@ export default function ReturnsDashboard() {
             </div>
           </div>
           {/* Search Inputs */}
-          <div className="mt-6 flex space-x-4">
+          <div className="mt-6 flex flex-wrap gap-4 space-x-4">
             <div className="flex flex-col gap-2">
               <SearchBar
                 placeholder="Select for Mutual Funds & PMS..."
@@ -233,7 +249,7 @@ export default function ReturnsDashboard() {
       </div>
 
       {(fund1 || fund2) && dataOption !== "discrete" && (
-        <div className="pb-8 w-full">
+        <div className="w-full h-[500px]">
           <TrailingReturnsChart
             fundA={fund1}
             fundB={fund2}
@@ -247,7 +263,7 @@ export default function ReturnsDashboard() {
       {fund1 && fund2 && dataOption === "discrete" && (
         <DiscreteReturnsChart fundA={fund1} fundB={fund2} period={period} />
       )}
-    </>
+    </div>
   );
 }
 
