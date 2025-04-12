@@ -11,6 +11,8 @@ interface Fund {
 interface TrailingReturnsChartProps {
   fundA?: Fund;
   fundB?: Fund;
+  setFundAFinalAmount: (amount: number) => void;
+  setFundBFinalAmount: (amount: number) => void;
   startDate: Date;
   endDate: Date;
 }
@@ -22,6 +24,8 @@ export default function TrailingReturnsChart(props: TrailingReturnsChartProps) {
       const data = await fetchData(
         props.startDate,
         props.endDate,
+        props.setFundAFinalAmount,
+        props.setFundBFinalAmount,
         props.fundA,
         props.fundB
       );
@@ -52,6 +56,8 @@ export default function TrailingReturnsChart(props: TrailingReturnsChartProps) {
 const fetchData = async (
   start: Date,
   end: Date,
+  setFundAFinalAmount: (amount: number) => void,
+  setFundBFinalAmount: (amount: number) => void,
   fundA?: Fund,
   fundB?: Fund
 ): Promise<any[]> => {
@@ -61,16 +67,13 @@ const fetchData = async (
   const fund1Value = fundA?.value || "";
   const fund2Value = fundB?.value || "";
 
-  const report1 = await fetchTrailingReturns(
-    Number.parseInt(fund1Value),
-    start,
-    end
-  );
-  const report2 = await fetchTrailingReturns(
-    Number.parseInt(fund2Value),
-    start,
-    end
-  );
+  const [report1, report2] = await Promise.all([
+    fetchTrailingReturns(Number.parseInt(fund1Value), start, end),
+    fetchTrailingReturns(Number.parseInt(fund2Value), start, end),
+  ]);
+
+  setFundAFinalAmount(_.last(report1)?.amount || 0);
+  setFundBFinalAmount(_.last(report2)?.amount || 0);
 
   const reports = transformData(report1, fund1Value).concat(
     transformData(report2, fund2Value)

@@ -1,7 +1,7 @@
 "use client";
 
 import SearchBar from "@/components/elements/SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchAllFunds } from "@/api";
 import DiscreteReturnsChart from "./DiscreteReturnsChart";
 import TrailingReturnsChart from "./TrailingReturnsChart";
@@ -12,6 +12,12 @@ export default function ReturnsDashboard() {
   const [period, setPeriod] = useState<"Y" | "Q">("Y");
   const [fund1, setFund1] = useState<{ value: string; label: string }>();
   const [fund2, setFund2] = useState<{ value: string; label: string }>();
+  const [fund1FinalAmount, setFund1FinalAmount] = useState<
+    number | undefined
+  >();
+  const [fund2FinalAmount, setFund2FinalAmount] = useState<
+    number | undefined
+  >();
   const [startDate, setStartDate] = useState<Date>(() => {
     const date = new Date();
     date.setFullYear(date.getFullYear() - 5);
@@ -41,6 +47,22 @@ export default function ReturnsDashboard() {
     });
     return flist;
   };
+
+  useEffect(() => {
+    const fetchFunds = async () => {
+      const fund1 = await fetchData(
+        "Quest Investment : Alpha Opportunities",
+        "PMS"
+      );
+      const fund2 = await fetchData(
+        "2Point2 Capital Advisors : Long Term Value Fund",
+        "PMS"
+      );
+      setFund1(fund1[0]);
+      setFund2(fund2[0]);
+    };
+    fetchFunds();
+  }, []);
 
   const onTimeframeChange = async (timeframe: string) => {
     const start = new Date();
@@ -150,38 +172,45 @@ export default function ReturnsDashboard() {
                   </button>
                 </div>
               )}
-
-              {/* Selected Funds Section */}
-              <div className="flex space-x-4">
-                {fund1 && (
-                  <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
-                    <span className="w-4 h-4 rounded-full border-2 border-yellow-500"></span>
-                    <span>{fund1?.label}</span>
-                  </button>
-                )}
-                {fund2 && (
-                  <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
-                    <span className="w-4 h-4 rounded-full border-2 border-blue-400"></span>
-                    <span>{fund2?.label}</span>
-                  </button>
-                )}
-              </div>
             </div>
           </div>
           {/* Search Inputs */}
           <div className="mt-6 flex space-x-4">
-            <SearchBar
-              placeholder="Select for Mutual Funds & PMS..."
-              selected={fund1}
-              onValueChange={setFund1}
-              onSearch={fetchData}
-            />
-            <SearchBar
-              placeholder="Select for Mutual Funds & PMS..."
-              selected={fund2}
-              onValueChange={setFund2}
-              onSearch={fetchData}
-            />
+            <div className="flex flex-col gap-2">
+              <SearchBar
+                placeholder="Select for Mutual Funds & PMS..."
+                selected={fund1}
+                onValueChange={setFund1}
+                onSearch={fetchData}
+              />
+              {fund1 && calculateCAGR(endDate, startDate, fund1FinalAmount) && (
+                <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
+                  <span className="w-4 h-4 rounded-full border-2 border-yellow-500"></span>
+                  <span>
+                    Over All Returns:{" "}
+                    {calculateCAGR(endDate, startDate, fund1FinalAmount)}%
+                  </span>
+                </button>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <SearchBar
+                placeholder="Select for Mutual Funds & PMS..."
+                selected={fund2}
+                onValueChange={setFund2}
+                onSearch={fetchData}
+              />
+              {fund2 && calculateCAGR(endDate, startDate, fund2FinalAmount) && (
+                <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
+                  <span className="w-4 h-4 rounded-full border-2 border-blue-400"></span>
+                  <span>
+                    Over All Returns:{" "}
+                    {calculateCAGR(endDate, startDate, fund2FinalAmount)}%
+                  </span>
+                </button>
+              )}
+            </div>
           </div>
 
           {dataOption == "rolling" && (
@@ -207,6 +236,8 @@ export default function ReturnsDashboard() {
         <TrailingReturnsChart
           fundA={fund1}
           fundB={fund2}
+          setFundAFinalAmount={setFund1FinalAmount}
+          setFundBFinalAmount={setFund2FinalAmount}
           startDate={startDate}
           endDate={endDate}
         />
@@ -217,3 +248,17 @@ export default function ReturnsDashboard() {
     </>
   );
 }
+
+const cagr = (fr: number, yr: number) => (Math.pow(fr / 100, 1 / yr) - 1) * 100;
+
+const calculateCAGR = (endDate: Date, startDate: Date, fr?: number) => {
+  if (!fr) {
+    return null;
+  }
+  const diffTime = endDate.getTime() - startDate.getTime();
+  let diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25); // convert ms to years  const totalMonths = years * 12 + months;
+  if (diffYears <= 1) {
+    return null;
+  }
+  return (Math.floor(cagr(fr, diffYears) * 100) / 100).toFixed(2);
+};
