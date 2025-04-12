@@ -233,14 +233,16 @@ export default function ReturnsDashboard() {
       </div>
 
       {(fund1 || fund2) && dataOption !== "discrete" && (
-        <TrailingReturnsChart
-          fundA={fund1}
-          fundB={fund2}
-          setFundAFinalAmount={setFund1FinalAmount}
-          setFundBFinalAmount={setFund2FinalAmount}
-          startDate={startDate}
-          endDate={endDate}
-        />
+        <div className="pb-8 w-full">
+          <TrailingReturnsChart
+            fundA={fund1}
+            fundB={fund2}
+            setFundAFinalAmount={setFund1FinalAmount}
+            setFundBFinalAmount={setFund2FinalAmount}
+            startDate={startDate}
+            endDate={endDate}
+          />
+        </div>
       )}
       {fund1 && fund2 && dataOption === "discrete" && (
         <DiscreteReturnsChart fundA={fund1} fundB={fund2} period={period} />
