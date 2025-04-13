@@ -58,7 +58,7 @@ export const PMSCard: React.FC<PMSCardProps> = ({
         <ArrowUpRight className="w-4 h-4 text-green-500" />
       </div>
       <CardFooter>
-        <Link href={`/explore?search=${search}`}>
+        <Link href={`/explore?search=${search}&filter=All Funds`}>
           <Button variant="default" className="w-[167px]">
             Know more
           </Button>

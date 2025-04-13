@@ -278,14 +278,15 @@ const typeVsColumns: Record<string, Array<string>> = {
 };
 
 export const MainContentSection = () => {
-  // const [currentPage, setCurrentPage] = React.useState<number>(1);
+  const searchParams = useSearchParams();
   const [tableData, setTableData] = React.useState<FundExploreData[]>([]);
-  const [filter, setFilter] = React.useState<string>("Top Picks");
+  const [filter, setFilter] = React.useState<string>(
+    searchParams.get("filter") || "Top Picks"
+  );
   const [type, setType] = React.useState<string>("CAGR");
   const [columns, setColumns] = React.useState<ColumnDef<FundExploreData>[]>(
     allcolumns.filter((col) => col.id && typeVsColumns[type].includes(col.id))
   );
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     (async () => {
