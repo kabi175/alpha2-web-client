@@ -272,7 +272,7 @@ const calculateCAGR = (endDate: Date, startDate: Date, fr?: number) => {
     return null;
   }
   const diffTime = endDate.getTime() - startDate.getTime();
-  let diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25); // convert ms to years  const totalMonths = years * 12 + months;
+  const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25); // convert ms to years  const totalMonths = years * 12 + months;
   if (diffYears <= 1) {
     return null;
   }
