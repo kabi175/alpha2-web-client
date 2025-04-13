@@ -218,12 +218,13 @@ export function DataTableFilterOptions({
   setFilter: (filter: string) => void;
 }) {
   const filters = [
-    "All Funds",
+    "Sector Leaders",
+    "Top Picks",
+    "Elite Fund Managers",
     "Consistent Compounders",
     "Top Grossers",
-    "Sector Leaders",
-    "Elite Fund Managers",
     "Rising Stars",
+    "All Funds",
   ];
 
   return (
