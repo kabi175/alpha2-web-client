@@ -22,11 +22,18 @@ const ColumnIdVsLabel: Record<string, string> = {
   oneMonth: "1M",
   threeMonth: "3M",
   sixMonth: "6M",
-  ytd: "YTD",
   oneYear: "1Y",
   twoYear: "2Y",
   threeYear: "3Y",
+  fourYear: "4Y",
   fiveYear: "5Y",
+
+  lastYear: "2025",
+  secondLastYear: "2024",
+  thirdLastYear: "2023",
+  fourthLastYear: "2022",
+  fifthLastYear: "2021",
+
   sharpeRatio: "Sharpe Ratio",
   maxDrawdown: "Max Drawdown",
 };

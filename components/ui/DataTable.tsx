@@ -30,6 +30,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   search?: string | null;
   filterBar?: ReactNode;
+  typeBar?: ReactNode;
 }
 
 export function DataTable<TData, TValue>({
@@ -37,10 +38,14 @@ export function DataTable<TData, TValue>({
   data,
   search,
   filterBar,
+  typeBar,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = React.useState<SortingState>([
-    { id: "fiveYear", desc: true },
-  ]);
+  const [sorting, setSorting] = React.useState<SortingState>(() => {
+    if (columns.find((col) => col.id === "fiveYear")) {
+      return [{ id: "fiveYear", desc: true }];
+    }
+    return [];
+  });
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
@@ -67,21 +72,24 @@ export function DataTable<TData, TValue>({
     if (search) {
       table.getColumn("schemeName")?.setFilterValue(search);
     }
-  }, [search, table]);
+  }, [search, table, columns]);
   return (
     <div className="w-full">
       <div className="flex flex-col-reverse 2xl:flex-row  justify-between gap-4 py-4">
-        <Input
-          type="text"
-          placeholder="Filter Scheme..."
-          value={
-            (table.getColumn("schemeName")?.getFilterValue() as string) ?? ""
-          }
-          onChange={(event) =>
-            table.getColumn("schemeName")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+        <div className="flex gap-2">
+          <Input
+            type="text"
+            placeholder="Filter Scheme..."
+            value={
+              (table.getColumn("schemeName")?.getFilterValue() as string) ?? ""
+            }
+            onChange={(event) =>
+              table.getColumn("schemeName")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+          {typeBar ? typeBar : null}
+        </div>
 
         <div className="flex gap-5">
           {filterBar ? filterBar : null}

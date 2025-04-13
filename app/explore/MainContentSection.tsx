@@ -2,7 +2,12 @@
 import React, { useEffect } from "react";
 import { fetchFundsForExplore } from "@/api";
 import { FundExploreData } from "@/api/data";
-import { ColumnDef, Column, Row } from "@tanstack/react-table";
+import {
+  ColumnDef,
+  Column,
+  Row,
+  AccessorKeyColumnDefBase,
+} from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/DataTable";
 import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
 import { useSearchParams } from "next/navigation";
@@ -42,15 +47,23 @@ const ColumnIdVsLabel: Record<string, string> = {
   threeYear: "3Y",
   fourYear: "4Y",
   fiveYear: "5Y",
+
+  lastYear: getYear(),
+  secondLastYear: getYear(1),
+  thirdLastYear: getYear(2),
+  fourthLastYear: getYear(3),
+  fifthLastYear: getYear(4),
+
   sharpeRatio: "Sharpe Ratio",
   maxDrawdown: "Max Drawdown",
 };
 
-export const columns: ColumnDef<FundExploreData>[] = [
+const allcolumns: ColumnDef<FundExploreData>[] = [
   {
     accessorKey: "schemeName",
     maxSize: 200,
     size: 200,
+    enableHiding: false,
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
@@ -156,6 +169,56 @@ export const columns: ColumnDef<FundExploreData>[] = [
     cell: ({ row, column }) => <CellContent row={row} column={column} />,
   },
   {
+    accessorKey: "lastYear",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title={ColumnIdVsLabel[column.id]}
+      />
+    ),
+    cell: ({ row, column }) => <CellContent row={row} column={column} />,
+  },
+  {
+    accessorKey: "secondLastYear",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title={ColumnIdVsLabel[column.id]}
+      />
+    ),
+    cell: ({ row, column }) => <CellContent row={row} column={column} />,
+  },
+  {
+    accessorKey: "thirdLastYear",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title={ColumnIdVsLabel[column.id]}
+      />
+    ),
+    cell: ({ row, column }) => <CellContent row={row} column={column} />,
+  },
+  {
+    accessorKey: "fourthLastYear",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title={ColumnIdVsLabel[column.id]}
+      />
+    ),
+    cell: ({ row, column }) => <CellContent row={row} column={column} />,
+  },
+  {
+    accessorKey: "fifthLastYear",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title={ColumnIdVsLabel[column.id]}
+      />
+    ),
+    cell: ({ row, column }) => <CellContent row={row} column={column} />,
+  },
+  {
     accessorKey: "sharpeRatio",
     header: ({ column }) => (
       <DataTableColumnHeader
@@ -177,13 +240,52 @@ export const columns: ColumnDef<FundExploreData>[] = [
   },
 ];
 
+(
+  allcolumns as Array<AccessorKeyColumnDefBase<FundExploreData, unknown>>
+).forEach((column) => {
+  if (column.accessorKey && typeof column.accessorKey === "string") {
+    column.id = column.accessorKey;
+  }
+});
+
+const typeVsColumns: Record<string, Array<string>> = {
+  "Periodic Returns": [
+    "schemeName",
+    "aum",
+    "oneMonth",
+    "threeMonth",
+    "sixMonth",
+    "lastYear",
+    "secondLastYear",
+    "thirdLastYear",
+    "fourthLastYear",
+    "fifthLastYear",
+  ],
+  CAGR: [
+    "schemeName",
+    "aum",
+    "oneMonth",
+    "threeMonth",
+    "sixMonth",
+    "oneYear",
+    "twoYear",
+    "threeYear",
+    "fourYear",
+    "fiveYear",
+    "sharpeRatio",
+    "maxDrawdown",
+  ],
+};
+
 export const MainContentSection = () => {
   // const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [tableData, setTableData] = React.useState<FundExploreData[]>([]);
-  const [filter, setFilter] = React.useState<string>("All Funds");
+  const [filter, setFilter] = React.useState<string>("Top Picks");
+  const [type, setType] = React.useState<string>("CAGR");
+  const [columns, setColumns] = React.useState<ColumnDef<FundExploreData>[]>(
+    allcolumns.filter((col) => col.id && typeVsColumns[type].includes(col.id))
+  );
   const searchParams = useSearchParams();
-
-  const search = searchParams.get("search");
 
   useEffect(() => {
     (async () => {
@@ -196,21 +298,28 @@ export const MainContentSection = () => {
     })();
   }, [filter]);
 
+  useEffect(() => {
+    setColumns(
+      allcolumns.filter((col) => col.id && typeVsColumns[type].includes(col.id))
+    );
+  }, [type]);
+
   return (
     <div className="flex flex-col w-full items-start rounded-lg pb-20">
       <DataTable
         columns={columns}
         data={tableData}
-        search={search}
+        search={searchParams.get("search")}
         filterBar={
           <DataTableFilterOptions filter={filter} setFilter={setFilter} />
         }
+        typeBar={<TableTypeBar type={type} setType={setType} />}
       />
     </div>
   );
 };
 
-export function DataTableFilterOptions({
+function DataTableFilterOptions({
   filter,
   setFilter,
 }: {
@@ -218,8 +327,8 @@ export function DataTableFilterOptions({
   setFilter: (filter: string) => void;
 }) {
   const filters = [
-    "Sector Leaders",
     "Top Picks",
+    "Sector Leaders",
     "Elite Fund Managers",
     "Consistent Compounders",
     "Top Grossers",
@@ -243,10 +352,41 @@ export function DataTableFilterOptions({
   );
 }
 
+function TableTypeBar({
+  type,
+  setType,
+}: {
+  type: string;
+  setType: (filter: string) => void;
+}) {
+  const types = ["CAGR", "Periodic Returns"];
+  return (
+    <div className="flex gap-2">
+      {types.map((f) => (
+        <Button
+          key={f}
+          variant={type == f ? "default" : "outline"}
+          className="capitalize"
+          onClick={() => setType(f)}
+        >
+          {f}
+        </Button>
+      ))}
+    </div>
+  );
+}
+
 function formatToTwoDecimals(num: number, colId: string) {
   if (colId == "aum") {
     return Math.round(num);
   }
   return (Math.floor(num * 100) / 100).toFixed(2);
 }
+
+function getYear(offset: number = 0) {
+  const date = new Date();
+  const year = date.getFullYear();
+  return (year - offset).toString();
+}
+
 export default MainContentSection;
