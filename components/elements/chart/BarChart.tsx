@@ -48,7 +48,7 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
   return (
     <Card className="bg-[#4BD8FF00] w-full border-0">
       <CardHeader>
-        <CardTitle className="pl-12">Mutual Funds vs PMS</CardTitle>
+        <CardTitle className="pl-12">5Y CAGR of PMS vs Mutual Fund</CardTitle>
       </CardHeader>
       <CardContent className="h-[500px] w-full">
         <ChartContainer config={chartConfig} height={500}>
