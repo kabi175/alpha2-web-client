@@ -203,8 +203,7 @@ export default function ReturnsDashboard() {
                 <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
                   <span className="w-4 h-4 rounded-full border-2 border-yellow-500"></span>
                   <span>
-                    Over All Returns:{" "}
-                    {calculateCAGR(endDate, startDate, fund1FinalAmount)}%
+                    CAGR: {calculateCAGR(endDate, startDate, fund1FinalAmount)}%
                   </span>
                 </button>
               )}
@@ -221,8 +220,7 @@ export default function ReturnsDashboard() {
                 <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
                   <span className="w-4 h-4 rounded-full border-2 border-blue-400"></span>
                   <span>
-                    Over All Returns:{" "}
-                    {calculateCAGR(endDate, startDate, fund2FinalAmount)}%
+                    CAGR: {calculateCAGR(endDate, startDate, fund2FinalAmount)}%
                   </span>
                 </button>
               )}
