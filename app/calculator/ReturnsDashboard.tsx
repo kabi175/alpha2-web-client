@@ -267,12 +267,14 @@ export default function ReturnsDashboard() {
 
 const cagr = (fr: number, yr: number) => (Math.pow(fr / 100, 1 / yr) - 1) * 100;
 
+// ((final_amount / 100) ^ (1 / yr) - 1) * 100
+
 const calculateCAGR = (endDate: Date, startDate: Date, fr?: number) => {
   if (!fr) {
     return null;
   }
   const diffTime = endDate.getTime() - startDate.getTime();
-  const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25); // convert ms to years  const totalMonths = years * 12 + months;
+  const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365.25)); // convert ms to years  const totalMonths = years * 12 + months;
   if (diffYears <= 1) {
     return null;
   }
