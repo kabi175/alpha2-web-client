@@ -78,6 +78,9 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
               <Label position="left" fill="#4A9EFF" className="font-semibold">
                 32.9%
               </Label>
+              <Label position="top" fill="#fff" className="font-semibold">
+                Median PMF CAGR
+              </Label>
             </ReferenceLine>
             <Bar
               dataKey={keyVal[timeframe]}
