@@ -24,6 +24,9 @@ import {
 import React, { ReactNode, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { DataTablePagination } from "./DataTablePagination";
+import { Button } from "./button";
+import { Info, LinkIcon } from "lucide-react";
+import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -31,6 +34,7 @@ interface DataTableProps<TData, TValue> {
   search?: string | null;
   filterBar?: ReactNode;
   typeBar?: ReactNode;
+  tooltip: string
 }
 
 export function DataTable<TData, TValue>({
@@ -39,6 +43,7 @@ export function DataTable<TData, TValue>({
   search,
   filterBar,
   typeBar,
+  tooltip
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>(() => {
     if (columns.find((col) => col.id === "fiveYear")) {
@@ -96,6 +101,10 @@ export function DataTable<TData, TValue>({
           {/* <DataTableViewOptions table={table} /> */}
         </div>
       </div>
+      <div className="pb-5 flex gap-2 items-center">
+        <Info />
+        {tooltip}
+      </div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -152,7 +161,14 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="pt-4">
-        <DataTablePagination table={table} />
+        <DataTablePagination table={table}>
+          <Link href="/computation-methodology">
+            <Button variant="link">
+              <LinkIcon />
+              Computation Methodology
+            </Button>
+          </Link>
+        </DataTablePagination>
       </div>
     </div>
   );

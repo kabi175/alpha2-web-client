@@ -315,6 +315,10 @@ export const MainContentSection = () => {
           <DataTableFilterOptions filter={filter} setFilter={setFilter} />
         }
         typeBar={<TableTypeBar type={type} setType={setType} />}
+        tooltip={type == "CAGR" ?
+          "CAGR as reported to SEBI for Feb-2025. Returns are net of fees and expenses, pre-tax." :
+          "As reported to SEBI. Returns are as of Feb 2025 for 1M, 3M, 6M, and trailing 12-month periods ending Feb 2025, Feb 2024, Feb 2023, etc. Returns are net of fees and expenses, pre-tax."
+        }
       />
     </div>
   );
