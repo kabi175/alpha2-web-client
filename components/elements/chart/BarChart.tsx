@@ -18,7 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { FundData } from "@/api/data";
 import { useState } from "react";
 import { getLastDateOfLastMonthFormatted } from "./LineChart";
@@ -58,21 +58,22 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
               dataKey="schemeName"
               tickLine={false}
               tickMargin={10}
-              axisLine={false}
-              type="category"
-              fontSize={10}
-            ></XAxis>
+              axisLine={false}>
+
+            </XAxis>
             <YAxis
               height={350}
               tickFormatter={(value) => value + "%"}
               domain={[0, 40]}
             />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent formatter={(label) => label + "%"} />}
+            />
             <ReferenceLine
               y={32.9}
               stroke="#4A9EFF"
               strokeDasharray="5 3"
-              strokeWidth={2}
-              pointsAtX={0}
             >
               <Label position="left" fill="#4A9EFF" className="font-semibold">
                 32.9%
