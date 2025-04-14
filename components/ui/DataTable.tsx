@@ -56,6 +56,9 @@ export function DataTable<TData, TValue>({
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
+
+  const [rowSelection, setRowSelection] = React.useState({})
+
   const table = useReactTable({
     data,
     columns,
@@ -66,10 +69,12 @@ export function DataTable<TData, TValue>({
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     getPaginationRowModel: getPaginationRowModel(),
+    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
+      rowSelection,
     },
   });
 
@@ -94,6 +99,14 @@ export function DataTable<TData, TValue>({
             className="max-w-sm"
           />
           {typeBar ? typeBar : null}
+          <div className="w-full flex justify-end">
+            <Button
+              variant={table.getFilteredSelectedRowModel().rows.length != 0 ? "default" : "outline"}
+              className={`capitalize`}
+            >
+              Compare
+            </Button>
+          </div>
         </div>
 
         <div className="flex gap-5">
@@ -116,9 +129,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   );
                 })}
