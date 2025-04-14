@@ -109,31 +109,28 @@ export default function ReturnsDashboard() {
             {/* Tab Section */}
             <div className="flex">
               <button
-                className={`px-4 py-2 rounded-l-lg ${
-                  dataOption === "trailing"
-                    ? "bg-blue-600 text-white font-semibold"
-                    : "bg-gray-700 text-gray-400"
-                }`}
+                className={`px-4 py-2 rounded-l-lg ${dataOption === "trailing"
+                  ? "bg-blue-600 text-white font-semibold"
+                  : "bg-gray-700 text-gray-400"
+                  }`}
                 onClick={() => setDataOption("trailing")}
               >
                 Trailing Returns
               </button>
               <button
-                className={`px-4 py-2  ${
-                  dataOption === "discrete"
-                    ? "bg-blue-600 text-white font-semibold"
-                    : "bg-gray-700 text-gray-400"
-                }`}
+                className={`px-4 py-2  ${dataOption === "discrete"
+                  ? "bg-blue-600 text-white font-semibold"
+                  : "bg-gray-700 text-gray-400"
+                  }`}
                 onClick={() => setDataOption("discrete")}
               >
                 Discrete Returns
               </button>
               <button
-                className={`px-4 py-2 rounded-r-lg ${
-                  dataOption === "rolling"
-                    ? "bg-blue-600 text-white font-semibold"
-                    : "bg-gray-700 text-gray-400"
-                }`}
+                className={`px-4 py-2 rounded-r-lg ${dataOption === "rolling"
+                  ? "bg-blue-600 text-white font-semibold"
+                  : "bg-gray-700 text-gray-400"
+                  }`}
                 onClick={() => setDataOption("rolling")}
               >
                 Point to Point Returns
@@ -141,9 +138,8 @@ export default function ReturnsDashboard() {
             </div>
 
             <div
-              className={`flex flex-row  ${
-                dataOption == "rolling" ? "justify-end" : "justify-between"
-              }`}
+              className={`flex flex-row  ${dataOption == "rolling" ? "justify-end" : "justify-between"
+                }`}
             >
               {/* Point to Point Return Section */}
               {dataOption == "trailing" && (
@@ -152,11 +148,10 @@ export default function ReturnsDashboard() {
                     <button
                       onClick={() => onTimeframeChange(label)}
                       key={index}
-                      className={`px-4 py-2  flex items-center ${
-                        label === timeframe
-                          ? "text-white font-semibold"
-                          : "text-gray-400"
-                      }`}
+                      className={`px-4 py-2  flex items-center ${label === timeframe
+                        ? "text-white font-semibold"
+                        : "text-gray-400"
+                        }`}
                     >
                       {label}
                     </button>
@@ -168,21 +163,19 @@ export default function ReturnsDashboard() {
                 <div className="bg-gray-700 flex rounded-md text-gray-400">
                   <button
                     onClick={() => setPeriod("Y")}
-                    className={`px-3 py-1  flex items-center ${
-                      period === "Y"
-                        ? "text-white font-semibold"
-                        : "text-gray-400"
-                    }`}
+                    className={`px-3 py-1  flex items-center ${period === "Y"
+                      ? "text-white font-semibold"
+                      : "text-gray-400"
+                      }`}
                   >
                     Annually
                   </button>
                   <button
                     onClick={() => setPeriod("Q")}
-                    className={`px-3 py-1  flex items-center ${
-                      period === "Q"
-                        ? "text-white font-semibold"
-                        : "text-gray-400"
-                    }`}
+                    className={`px-3 py-1  flex items-center ${period === "Q"
+                      ? "text-white font-semibold"
+                      : "text-gray-400"
+                      }`}
                   >
                     Quarterly
                   </button>
@@ -203,7 +196,7 @@ export default function ReturnsDashboard() {
                 <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
                   <span className="w-4 h-4 rounded-full border-2 border-yellow-500"></span>
                   <span>
-                    CAGR: {calculateCAGR(endDate, startDate, fund1FinalAmount)}%
+                    {calculateCAGR(endDate, startDate, fund1FinalAmount)}%
                   </span>
                 </button>
               )}
@@ -220,7 +213,7 @@ export default function ReturnsDashboard() {
                 <button className="border border-gray-500 px-4 py-2 rounded-lg flex items-center space-x-2 text-gray-300">
                   <span className="w-4 h-4 rounded-full border-2 border-blue-400"></span>
                   <span>
-                    CAGR: {calculateCAGR(endDate, startDate, fund2FinalAmount)}%
+                    {calculateCAGR(endDate, startDate, fund2FinalAmount)}%
                   </span>
                 </button>
               )}
@@ -274,7 +267,7 @@ const calculateCAGR = (endDate: Date, startDate: Date, fr?: number) => {
   const diffTime = endDate.getTime() - startDate.getTime();
   const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365.25)); // convert ms to years  const totalMonths = years * 12 + months;
   if (diffYears <= 1) {
-    return null;
+    return "Retunrs:" + (Math.floor(cagr(fr, diffYears) * 100) / 100).toFixed(2);
   }
-  return (Math.floor(cagr(fr, diffYears) * 100) / 100).toFixed(2);
+  return "CAGR:" + (Math.floor(cagr(fr, diffYears) * 100) / 100).toFixed(2);
 };
