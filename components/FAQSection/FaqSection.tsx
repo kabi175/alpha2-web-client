@@ -243,14 +243,15 @@ Most PMS don’t charge exit loads. Some PMS may charge exit load but the maximu
       `,
   },
   {
-    question: "How does AlphaSqr Assist in Selection Right PMS Scheme?",
-    answer: `We are an independent platform dedicated to helping you select the PMS that best aligns with your financial goals and risk tolerance.
+    question: "How does AlphaSqr Assist Its Customers?",
+    answer: `We are an independent platform dedicated to helping you select the PMS and the right fee structure that best aligns with your financial goals and risk tolerance.
 <br />
 <br />
-    Our data scientists actively track and analyze PMS performance, selecting only the best risk-adjusted funds and matching them to the right investor profile.
+Our data scientists actively track and analyze PMS performance, selecting only the best risk-adjusted funds and matching them to the right investor profile.
 <br />
 <br />
-    Our advisors take the time to understand your needs, offering thoughtful and unbiased guidance—just as we would for our own family. Beyond simply recommending PMS options, our goal is to ensure you gain a deep understanding of these products, empowering you to make informed investment decisions.`,
+Post purchase, we monitor the PMS performance and provide timely alerts to the customers to make the right choice about rebalancing etc.
+`,
   },
   {
     question: "What are the service charges of AlphaSqr?",
@@ -270,6 +271,18 @@ A demat account is opened in your name with an accredited custodian, ensuring fu
     answer:
       "Our support team can be reached through whatsapp/calls [+91 99589 05337] and email",
   },
+  {
+    question: "What are the disclaimers?",
+    answer: `The information provided herein is for informational purposes only and should not be construed as investment advice or a recommendation to buy, sell, or hold any financial product. Past performance is not indicative of future results. Investments in securities are subject to market risks and there is no assurance or guarantee of returns.
+<br/><br/>
+   All performance data is based on information obtained from publicly available SEBI website. We have not independently verified the accuracy or completeness of such data. Returns stated are Time-Weighted Rate of Return (TWRR), net of all fees and expenses, but before capital gains tax.
+<br/><br/>
+Investors are advised to make their own informed decisions based on their risk appetite, investment goals, and financial situation. It is strongly recommended that you consult a qualified financial advisor before making any investment decisions.
+<br/><br/>
+Neither the firm nor its representatives shall be liable for any direct or indirect loss arising from the use of the information provided. Past regulatory compliance of a product or manager does not imply future compliance.
+<br/><br/>
+Portfolio Management Services (PMS) are subject to market risks. Please read all scheme-related documents carefully before investing.`,
+  }
 ];
 
 export const FaqSection: React.FC = () => {
