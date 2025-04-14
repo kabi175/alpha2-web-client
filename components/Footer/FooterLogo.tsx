@@ -9,7 +9,7 @@ export const FooterLogo: React.FC = () => {
         <Image src="/logo.svg" alt="Alpha2 Logo" width={102} height={48} />
       </div>
       <p className="text-lg tracking-tight leading-6 text-zinc-400 w-[303px] max-md:w-full">
-        Find The Right PMS & Amplify Your Alpha
+        We specialize in identifying the right PMS for you—driven by data, defined by your persona
       </p>
     </div>
   );

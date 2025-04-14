@@ -11,7 +11,7 @@ const AlphaHero = () => {
       </h1>
 
       <p className="mb-5 text-3xl font-light tracking-tighter leading-10 max-w-[440px] max-sm:text-2xl">
-        Find The Right PMS & Amplify Your Alpha
+        We specialize in identifying the right PMS for you—driven by data, defined by your persona
       </p>
 
       <div className="flex">
@@ -19,8 +19,9 @@ const AlphaHero = () => {
       </div>
 
       <p className="text-lg font-light leading-7 max-w-[561px]">
-        We help you access SEBI-regulated PMS products, offering lower
-        volatility than stocks and higher CAGR than MFs.
+        Experience the ultimate PMS investment experience.
+        We stay with you in every step - offering timely guidance.
+        No bias, no fund-pushing, just transparent advice.
       </p>
     </section>
   );
