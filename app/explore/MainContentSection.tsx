@@ -65,9 +65,8 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
     header: () => null,
     cell: ({ row }) => (
       row.getIsPinned() ?
-        <Button variant="ghost" onClick={() => row.pin(false)}> <PinOff /> </Button> :
-        <Button variant="ghost" onClick={() => row.pin("top")} > <Pin /> </Button>
-
+        <Button variant="ghost" onClick={() => row.pin(false)}> <PinOff color="red" /> </Button> :
+        <Button variant="ghost" onClick={() => row.pin("top")} > <Pin color="#298DFF" /> </Button>
     )
   },
   {
