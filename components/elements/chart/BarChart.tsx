@@ -58,7 +58,9 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
               dataKey="schemeName"
               tickLine={false}
               tickMargin={10}
-              axisLine={false}>
+              axisLine={false}
+              type="category"
+              fontSize={10}>
 
             </XAxis>
             <YAxis
