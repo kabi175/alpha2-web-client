@@ -86,7 +86,7 @@ export default function Home() {
                     className="text-center mb-16"
                 >
                     <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
-                        AlphaSqr's Methodology
+                        AlphaSqr&apos;s Methodology
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         Identifying PMS managers who prioritize consistent compounding and capital preservation through a transparent and rigorous methodology.
