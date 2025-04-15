@@ -6,6 +6,7 @@ import { fetchAllFunds } from "@/api";
 import DiscreteReturnsChart from "./DiscreteReturnsChart";
 import TrailingReturnsChart from "./TrailingReturnsChart";
 import DatePicker from "@/components/elements/DatePicker";
+import { useSearchParams } from "next/navigation";
 
 export default function ReturnsDashboard() {
   const [timeframe, setTimeframe] = useState<string>("4Y");
@@ -27,6 +28,7 @@ export default function ReturnsDashboard() {
   const [dataOption, setDataOption] = useState<
     "trailing" | "rolling" | "discrete"
   >("trailing");
+  const searchParams = useSearchParams();
 
   const startDataLimit = new Date();
   startDataLimit.setFullYear(startDataLimit.getFullYear() - 4);
@@ -51,7 +53,7 @@ export default function ReturnsDashboard() {
   useEffect(() => {
     const fetchFunds = async () => {
       const fund1 = await fetchData(
-        "Quest Investment : Alpha Opportunities",
+        searchParams.get("primary_fund") || "Quest Investment : Alpha Opportunities",
         "PMS"
       );
       const fund2 = await fetchData(

@@ -12,7 +12,9 @@ import { DataTable } from "@/components/ui/DataTable";
 import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Pin, PinOff } from "lucide-react";
+import { MoreHorizontal, Pin, PinOff } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const getValueColor = (value: number) => {
   if (value < 0) return "text-[#ff3131]";
@@ -248,6 +250,25 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
     ),
     cell: ({ row, column }) => <CellContent row={row} column={column} />,
   },
+  {
+    id: 'options',
+    header: () => null,
+    cell: ({ row }) => (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <MoreHorizontal />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem>
+            <Link href={`/calculator?primary_fund=${row.original.schemeName}`}> Open Graph </Link>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    )
+  },
 ];
 
 (
@@ -271,6 +292,7 @@ const typeVsColumns: Record<string, Array<string>> = {
     "thirdLastYear",
     "fourthLastYear",
     "fifthLastYear",
+    "options",
   ],
   CAGR: [
     "pin",
@@ -286,6 +308,7 @@ const typeVsColumns: Record<string, Array<string>> = {
     "fiveYear",
     "sharpeRatio",
     "maxDrawdown",
+    "options",
   ],
 };
 
