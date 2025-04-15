@@ -8,6 +8,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  RowPinningState,
   SortingState,
   useReactTable,
   VisibilityState,
@@ -58,6 +59,11 @@ export function DataTable<TData, TValue>({
     React.useState<VisibilityState>({});
 
   const [rowSelection, setRowSelection] = React.useState({})
+  const [rowPinning, setRowPinning] = React.useState<RowPinningState>({
+    top: [],
+    bottom: [],
+  })
+
 
   const table = useReactTable({
     data,
@@ -70,11 +76,14 @@ export function DataTable<TData, TValue>({
     onColumnVisibilityChange: setColumnVisibility,
     getPaginationRowModel: getPaginationRowModel(),
     onRowSelectionChange: setRowSelection,
+    onRowPinningChange: setRowPinning,
+    keepPinnedRows: true,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
       rowSelection,
+      rowPinning,
     },
   });
 
@@ -99,14 +108,6 @@ export function DataTable<TData, TValue>({
             className="max-w-sm"
           />
           {typeBar ? typeBar : null}
-          <div className="w-full flex justify-end">
-            <Button
-              variant={table.getFilteredSelectedRowModel().rows.length != 0 ? "default" : "outline"}
-              className={`capitalize`}
-            >
-              Compare
-            </Button>
-          </div>
         </div>
 
         <div className="flex gap-5">
@@ -140,26 +141,51 @@ export function DataTable<TData, TValue>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell
-                      key={cell.id}
-                      style={{
-                        width: `${cell.column.getSize()}px`,
-                      }}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+              <>{
+                table.getTopRows().map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell
+                        key={cell.id}
+                        style={{
+                          width: `${cell.column.getSize()}px`,
+                        }}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+
+                {table.getRowModel().rows.filter(row => !row.getIsPinned()).map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell
+                        key={cell.id}
+                        style={{
+                          width: `${cell.column.getSize()}px`,
+                        }}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+                }
+              </>
+
             ) : (
               <TableRow>
                 <TableCell

@@ -12,6 +12,7 @@ import { DataTable } from "@/components/ui/DataTable";
 import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Pin, PinOff } from "lucide-react";
 
 const getValueColor = (value: number) => {
   if (value < 0) return "text-[#ff3131]";
@@ -59,6 +60,16 @@ const ColumnIdVsLabel: Record<string, string> = {
 };
 
 const allcolumns: ColumnDef<FundExploreData>[] = [
+  {
+    id: 'pin',
+    header: () => null,
+    cell: ({ row }) => (
+      row.getIsPinned() ?
+        <Button variant="ghost" onClick={() => row.pin(false)}> <PinOff /> </Button> :
+        <Button variant="ghost" onClick={() => row.pin("top")} > <Pin /> </Button>
+
+    )
+  },
   {
     accessorKey: "schemeName",
     maxSize: 200,
@@ -250,6 +261,7 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
 
 const typeVsColumns: Record<string, Array<string>> = {
   "Periodic Returns": [
+    "pin",
     "schemeName",
     "aum",
     "oneMonth",
@@ -262,6 +274,7 @@ const typeVsColumns: Record<string, Array<string>> = {
     "fifthLastYear",
   ],
   CAGR: [
+    "pin",
     "schemeName",
     "aum",
     "oneMonth",
