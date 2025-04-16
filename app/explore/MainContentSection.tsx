@@ -12,7 +12,7 @@ import { DataTable } from "@/components/ui/DataTable";
 import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, Pin, PinOff } from "lucide-react";
+import { AlignJustify, Squircle } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 
@@ -67,8 +67,8 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
     header: () => null,
     cell: ({ row }) => (
       row.getIsPinned() ?
-        <Button variant="ghost" onClick={() => row.pin(false)}> <PinOff color="red" /> </Button> :
-        <Button variant="ghost" onClick={() => row.pin("top")} > <Pin color="#298DFF" /> </Button>
+        <Button variant="ghost" onClick={() => row.pin(false)}> <Squircle color="#298DFF" /> </Button> :
+        <Button variant="ghost" onClick={() => row.pin("top")} > <Squircle /> </Button>
     )
   },
   {
@@ -258,7 +258,7 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="h-8 w-8 p-0">
             <span className="sr-only">Open menu</span>
-            <MoreHorizontal />
+            <AlignJustify />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
