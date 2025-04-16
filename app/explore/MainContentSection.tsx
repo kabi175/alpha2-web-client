@@ -67,7 +67,7 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
     header: () => null,
     cell: ({ row }) => (
       row.getIsPinned() ?
-        <Button variant="ghost" onClick={() => row.pin(false)}> <Squircle color="#298DFF" /> </Button> :
+        <Button variant="ghost" onClick={() => row.pin(false)}> <Squircle fill="#298DFF" /> </Button> :
         <Button variant="ghost" onClick={() => row.pin("top")} > <Squircle /> </Button>
     )
   },
