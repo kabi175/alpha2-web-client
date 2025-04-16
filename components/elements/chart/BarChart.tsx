@@ -81,7 +81,7 @@ export default function Component({ chartData }: { chartData: FundData[] }) {
                 32.9%
               </Label>
               <Label position="top" fill="#fff" className="font-semibold">
-                Median PMF CAGR
+                Median PMS CAGR
               </Label>
             </ReferenceLine>
             <Bar
