@@ -115,8 +115,8 @@ export function DataTable<TData, TValue>({
           {/* <DataTableViewOptions table={table} /> */}
         </div>
       </div>
-      <div className="pb-5 flex gap-2 items-center">
-        <Info />
+      <div className="pb-5 flex gap-2 items-center text-[#ababab] text-sm">
+        <Info size={"20"} />
         {tooltip}
       </div>
       <div className="rounded-md border">
