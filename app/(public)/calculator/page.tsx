@@ -1,7 +1,7 @@
 "use client";
 
 import AlphaSection from "@/components/AlphaSection";
-import ReturnsDashboard from "@/app/calculator/ReturnsDashboard";
+import ReturnsDashboard from "./ReturnsDashboard";
 import React, { Suspense } from "react";
 
 export default function Calculator() {
