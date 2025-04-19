@@ -158,7 +158,7 @@ function FundHouseForm({ fundHouse }: { fundHouse: FundHouseData }) {
 
 }
 
-export async function fetchFundHouseData(fundID: string): Promise<FundHouseData> {
+async function fetchFundHouseData(fundID: string): Promise<FundHouseData> {
     try {
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL
@@ -179,7 +179,7 @@ export async function fetchFundHouseData(fundID: string): Promise<FundHouseData>
     }
 }
 
-export async function updateFundHouse(fundHouse: FundHouseData) {
+async function updateFundHouse(fundHouse: FundHouseData) {
     try {
         const url = `${process.env.NEXT_PUBLIC_API_URL
             }/admin/fund-house`
