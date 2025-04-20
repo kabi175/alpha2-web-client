@@ -133,11 +133,7 @@ function FundHouseForm({ fundHouse }: { fundHouse: FundHouseData }) {
                                 <FormLabel>Fund House Logo</FormLabel>
                                 <FormControl>
                                     {/* <Image src={"/fund_house_placeholder.png"} alt="Fund House" width={50} height={50} /> */}
-                                    <ImageUpload className="w-1/2" defaultImageUrl={`${process.env.NEXT_PUBLIC_API_URL}${form.getValues("logo_url")}` || "/fund_house_placeholder.png"} onImageUpload={(url) => {
-                                        if (url) {
-                                            form.setValue("logo_url", url);
-                                        }
-                                    }} />
+                                    <ImageUpload className="w-1/2" defaultImageUrl={form.getValues("logo_url") ? `${process.env.NEXT_PUBLIC_API_URL}${form.getValues("logo_url")}` : "/fund_house_placeholder.png"} onImageUpload={(url) => form.setValue("logo_url", url || undefined)} />
                                 </FormControl>
                                 <FormDescription>
                                     Logo of the fund house.
