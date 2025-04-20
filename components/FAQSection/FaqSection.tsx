@@ -289,7 +289,7 @@ export const FaqSection: React.FC = () => {
   return (
     <AlphaSection>
       <div className="flex flex-col gap-12 items-start w-full max-w-[1036px]">
-        <h1 className="text-5xl font-medium tracking-tighter leading-normal text-white max-md:text-4xl max-sm:text-3xl">
+        <h1 id="faqs" className="text-5xl font-medium tracking-tighter leading-normal text-white max-md:text-4xl max-sm:text-3xl">
           FAQs
         </h1>
         <div className="flex flex-col gap-4 justify-center items-start w-full">
