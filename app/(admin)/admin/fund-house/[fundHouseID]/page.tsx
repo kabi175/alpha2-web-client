@@ -201,10 +201,6 @@ function FundHouseForm({ fundHouse }: { fundHouse: FundHouseData }) {
                                         {...form.register(`managers.${index}.contact`)}
                                         placeholder="Contact"
                                     />
-                                    <Input
-                                        {...form.register(`managers.${index}.image`)}
-                                        placeholder="Image URL"
-                                    />
 
                                     <FormField
                                         control={form.control}
