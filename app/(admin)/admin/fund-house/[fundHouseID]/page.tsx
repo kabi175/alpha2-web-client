@@ -1,6 +1,7 @@
 "use client";
 import { ImageUpload } from "@/components/image-upload";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,6 +40,11 @@ export default function FundHousePage({ params }: { params: Promise<{ fundHouseI
 }
 
 function FundHouseForm({ fundHouse }: { fundHouse: FundHouseData }) {
+
+    if (!fundHouse.slug) {
+        fundHouse.slug = slugify(fundHouse.name)
+    }
+
     const formSchema = z.object({
         id: z.string().min(1, {
             message: "Username must be at least 2 characters.",
@@ -49,10 +55,26 @@ function FundHouseForm({ fundHouse }: { fundHouse: FundHouseData }) {
         display_name: z.string().min(2, {
             message: "Username must be at least 2 characters.",
         }),
+        slug: z.string().min(5, {
+            message: "URL must be at least 5 characters.",
+        }),
         description: z.string().min(2, {
             message: "Description must be at least 2 characters.",
         }),
-        logo_url: z.string().optional()
+        logo_url: z.string().optional(),
+        managers: z.array(z.object({
+            id: z.number(),
+            name: z.string().min(2, {
+                message: "Name must be at least 2 characters.",
+            }),
+            title: z.string().readonly(),
+            about: z.string(),
+            image: z.string().optional(),
+            email: z.string().email({
+                message: "Invalid email address",
+            }).optional(),
+            contact: z.string().optional(),
+        })).optional()
     })
 
 
@@ -60,12 +82,9 @@ function FundHouseForm({ fundHouse }: { fundHouse: FundHouseData }) {
         resolver: zodResolver(formSchema),
         defaultValues: fundHouse,
     })
+    const managers = form.watch("managers") ?? [];
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
-
         await updateFundHouse(values)
     }
 
@@ -85,6 +104,22 @@ function FundHouseForm({ fundHouse }: { fundHouse: FundHouseData }) {
                                 </FormControl>
                                 <FormDescription>
                                     Name as per SEBI
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="slug"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Slug</FormLabel>
+                                <FormControl>
+                                    <Input {...field} />
+                                </FormControl>
+                                <FormDescription>
+                                    URL slug for the fund house. This is auto-generated from the name.
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>
@@ -133,7 +168,7 @@ function FundHouseForm({ fundHouse }: { fundHouse: FundHouseData }) {
                                 <FormLabel>Fund House Logo</FormLabel>
                                 <FormControl>
                                     {/* <Image src={"/fund_house_placeholder.png"} alt="Fund House" width={50} height={50} /> */}
-                                    <ImageUpload className="w-1/2" defaultImageUrl={form.getValues("logo_url") ? `${process.env.NEXT_PUBLIC_API_URL}${form.getValues("logo_url")}` : "/fund_house_placeholder.png"} onImageUpload={(url) => form.setValue("logo_url", url || undefined)} />
+                                    <ImageUpload className="w-1/3" defaultImageUrl={form.getValues("logo_url") ? `${process.env.NEXT_PUBLIC_API_URL}${form.getValues("logo_url")}` : "/fund_house_placeholder.png"} onImageUpload={(url) => form.setValue("logo_url", url || undefined)} />
                                 </FormControl>
                                 <FormDescription>
                                     Logo of the fund house.
@@ -143,12 +178,58 @@ function FundHouseForm({ fundHouse }: { fundHouse: FundHouseData }) {
                         )}
                     />
 
+                    <div className="space-y-4">
+                        <h2 className="text-lg font-semibold">Fund Managers</h2>
+                        {managers.map((_, index) => (
+                            <Card key={index} className="bg-[#111111] text-white">
+                                <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                                    <Input {...form.register(`managers.${index}.name`)} placeholder="Name" />
+                                    <Input
+                                        {...form.register(`managers.${index}.title`)}
+                                        readOnly
+                                        placeholder="Title"
+                                    />
+                                    <Textarea
+                                        {...form.register(`managers.${index}.about`)}
+                                        placeholder="About"
+                                    />
+                                    <Input
+                                        {...form.register(`managers.${index}.email`)}
+                                        placeholder="Email"
+                                    />
+                                    <Input
+                                        {...form.register(`managers.${index}.contact`)}
+                                        placeholder="Contact"
+                                    />
+                                    <Input
+                                        {...form.register(`managers.${index}.image`)}
+                                        placeholder="Image URL"
+                                    />
+
+                                    <FormField
+                                        control={form.control}
+                                        name={`managers.${index}.image`}
+                                        render={({ }) => (
+                                            <FormItem>
+                                                <FormLabel>Fund House Logo</FormLabel>
+                                                <FormControl>
+                                                    <ImageUpload className="w-1/3" defaultImageUrl={form.getValues(`managers.${index}.image`) ? `${process.env.NEXT_PUBLIC_API_URL}${form.getValues(`managers.${index}.image`)}` : "/fund_manager_placeholder.png"} onImageUpload={(url) => form.setValue(`managers.${index}.image`, url || undefined)} />
+                                                </FormControl>
+                                            </FormItem>
+                                        )} />
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+
                     <div className="flex gap-2">
                         <Button type="submit" onClick={form.handleSubmit(onSubmit, (err) => console.log(err))}>Submit</Button>
                         <Button variant="outline"> <Link href={"/admin"}>Cancel</Link></Button>
                     </div>
                 </form>
             </Form>
+
+
         </div>
     );
 
@@ -158,7 +239,7 @@ async function fetchFundHouseData(fundID: string): Promise<FundHouseData> {
     try {
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL
-            }/admin/fund-house?id=${fundID}`, {
+            }/admin/fund-house/${fundID}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -168,7 +249,7 @@ async function fetchFundHouseData(fundID: string): Promise<FundHouseData> {
             throw new Error("Failed to fetch data");
         }
         const data = await response.json();
-        return data[0];
+        return data;
     } catch (err) {
         console.error("Error fetching fund house data:", err);
         throw new Error("Error fetching fund house data");
@@ -205,4 +286,27 @@ interface FundHouseData {
     display_name: string;
     description: string;
     logo_url?: string;
+    slug?: string;
+
+    managers?: FundManger[];
+}
+
+interface FundManger {
+    id: number;
+    name?: string;
+    title: string;
+    about?: string;
+    image?: string;
+    email?: string;
+    contact?: string;
+}
+
+function slugify(str: string): string {
+    return str
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')     // Remove non-word characters
+        .replace(/\s+/g, '-')         // Replace spaces with hyphens
+        .replace(/--+/g, '-')         // Replace multiple hyphens with a single one
+        .replace(/^-+|-+$/g, '');     // Trim hyphens from start and end
 }
