@@ -53,7 +53,7 @@ export default function DiscreteReturnsChart(props: DiscreteReturnsChartProps) {
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
+              content={<ChartTooltipContent indicator="dot" />}
             />
             <Bar dataKey={props.fundA.label} fill="#EEB04599" barSize={27} />
             <Bar dataKey={props.fundB.label} fill="#2261D6" barSize={27} />

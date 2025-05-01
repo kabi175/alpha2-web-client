@@ -4,6 +4,8 @@ import {
   fetchAllFunds,
   fetchFundsForExplore,
   fetchFundsForImpact,
+  fetchFundHouse,
+  fetchFundHouseAUM,
 } from "@/api/data";
 
 export {
@@ -12,4 +14,6 @@ export {
   fetchAllFunds,
   fetchFundsForExplore,
   fetchFundsForImpact,
+  fetchFundHouse,
+  fetchFundHouseAUM,
 };

@@ -13,7 +13,12 @@ import { DataTableColumnHeader } from "@/components/ui/DataTableColumnHeader";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { AlignJustify, Squircle } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 
 const getValueColor = (value: number) => {
@@ -63,13 +68,20 @@ const ColumnIdVsLabel: Record<string, string> = {
 
 const allcolumns: ColumnDef<FundExploreData>[] = [
   {
-    id: 'pin',
+    id: "pin",
     header: () => null,
-    cell: ({ row }) => (
-      row.getIsPinned() ?
-        <Button variant="ghost" onClick={() => row.pin(false)}> <Squircle fill="#298DFF" /> </Button> :
-        <Button variant="ghost" onClick={() => row.pin("top")} > <Squircle /> </Button>
-    )
+    cell: ({ row }) =>
+      row.getIsPinned() ? (
+        <Button variant="ghost" onClick={() => row.pin(false)}>
+          {" "}
+          <Squircle fill="#298DFF" />{" "}
+        </Button>
+      ) : (
+        <Button variant="ghost" onClick={() => row.pin("top")}>
+          {" "}
+          <Squircle />{" "}
+        </Button>
+      ),
   },
   {
     accessorKey: "schemeName",
@@ -251,7 +263,7 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
     cell: ({ row, column }) => <CellContent row={row} column={column} />,
   },
   {
-    id: 'options',
+    id: "options",
     header: () => null,
     cell: ({ row }) => (
       <DropdownMenu>
@@ -263,11 +275,14 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuItem>
-            <Link href={`/calculator?primary_fund=${row.original.schemeName}`}> Open Graph </Link>
+            <Link href={`/calculator?primary_fund=${row.original.schemeName}`}>
+              {" "}
+              Open Graph{" "}
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    )
+    ),
   },
 ];
 
@@ -312,7 +327,11 @@ const typeVsColumns: Record<string, Array<string>> = {
   ],
 };
 
-export const MainContentSection = () => {
+export const MainContentSection = ({
+  fundHouseID,
+}: {
+  fundHouseID?: string;
+}) => {
   const searchParams = useSearchParams();
   const [tableData, setTableData] = React.useState<FundExploreData[]>([]);
   const [filter, setFilter] = React.useState<string>(
@@ -325,11 +344,16 @@ export const MainContentSection = () => {
 
   useEffect(() => {
     (async () => {
-      const resp = await fetchFundsForExplore({
+      const params: Record<string, string> = {
         per_page: "3000",
         page: "0",
-        filter,
-      });
+      };
+      if (fundHouseID) {
+        params.fund_house_id = fundHouseID;
+      } else {
+        params.filter = filter;
+      }
+      const resp = await fetchFundsForExplore(params);
       setTableData(resp.data);
     })();
   }, [filter]);
@@ -347,12 +371,15 @@ export const MainContentSection = () => {
         data={tableData}
         search={searchParams.get("search")}
         filterBar={
-          <DataTableFilterOptions filter={filter} setFilter={setFilter} />
+          !fundHouseID && (
+            <DataTableFilterOptions filter={filter} setFilter={setFilter} />
+          )
         }
         typeBar={<TableTypeBar type={type} setType={setType} />}
-        tooltip={type == "CAGR" ?
-          "CAGR as reported to SEBI for Feb-2025. Returns are net of fees and expenses, pre-tax." :
-          "As reported to SEBI. Returns are as of Feb 2025 for 1M, 3M, 6M, and trailing 12-month periods ending Feb 2025, Feb 2024, Feb 2023, etc. Returns are net of fees and expenses, pre-tax."
+        tooltip={
+          type == "CAGR"
+            ? "CAGR as reported to SEBI for Feb-2025. Returns are net of fees and expenses, pre-tax."
+            : "As reported to SEBI. Returns are as of Feb 2025 for 1M, 3M, 6M, and trailing 12-month periods ending Feb 2025, Feb 2024, Feb 2023, etc. Returns are net of fees and expenses, pre-tax."
         }
       />
     </div>

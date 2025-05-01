@@ -154,10 +154,71 @@ const fetchFundsForImpact = async (): Promise<Array<FundData>> => {
   }
 };
 
+export interface FundManager {
+  name: string;
+  title: string;
+  about: string;
+  image: string;
+}
+
+export interface FundHouseData {
+  id: number;
+  display_name: string;
+  logo?: string;
+  description: string;
+  last_updated: string;
+  inception_date: string;
+
+  aum: string;
+  clients: string;
+  strategies: string;
+
+  managers: FundManager[];
+}
+
+const fetchFundHouse = async (slug: string): Promise<FundHouseData> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/fund-house/${slug}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching trailing returns:", error);
+    throw error;
+  }
+};
+
+export interface AUMChartData {
+  report_date: string;
+  aum: number;
+}
+
+const fetchFundHouseAUM = async (slug: string): Promise<AUMChartData[]> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/fund-house/aum/${slug}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching trailing returns:", error);
+    throw error;
+  }
+};
+
 export {
   fetchTrailingReturns,
   fetchDiscreteReturns,
   fetchAllFunds,
   fetchFundsForExplore,
   fetchFundsForImpact,
+  fetchFundHouse,
+  fetchFundHouseAUM,
 };
