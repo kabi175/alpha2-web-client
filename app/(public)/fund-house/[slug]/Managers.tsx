@@ -4,7 +4,6 @@ import React, { JSX } from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Separator } from "../../../../components/ui/separator";
 import { FundManager } from "@/api/data";
-import Image from "next/image";
 
 const Managers = ({
   fundManagers,
