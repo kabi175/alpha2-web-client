@@ -35,7 +35,8 @@ interface DataTableProps<TData, TValue> {
   search?: string | null;
   filterBar?: ReactNode;
   typeBar?: ReactNode;
-  tooltip: string
+  tooltip: string;
+  onClickRow?: (row: TData) => void;
 }
 
 export function DataTable<TData, TValue>({
@@ -44,7 +45,8 @@ export function DataTable<TData, TValue>({
   search,
   filterBar,
   typeBar,
-  tooltip
+  tooltip,
+  onClickRow,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>(() => {
     if (columns.find((col) => col.id === "fiveYear")) {
@@ -58,12 +60,11 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
 
-  const [rowSelection, setRowSelection] = React.useState({})
+  const [rowSelection, setRowSelection] = React.useState({});
   const [rowPinning, setRowPinning] = React.useState<RowPinningState>({
     top: [],
     bottom: [],
-  })
-
+  });
 
   const table = useReactTable({
     data,
@@ -130,9 +131,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
                     </TableHead>
                   );
                 })}
@@ -141,11 +142,12 @@ export function DataTable<TData, TValue>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              <>{
-                table.getTopRows().map((row) => (
+              <>
+                {table.getTopRows().map((row) => (
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
+                    onClick={() => onClickRow && onClickRow(row.original)}
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell
@@ -163,29 +165,31 @@ export function DataTable<TData, TValue>({
                   </TableRow>
                 ))}
 
-                {table.getRowModel().rows.filter(row => !row.getIsPinned()).map((row) => (
-                  <TableRow
-                    key={row.id}
-                    data-state={row.getIsSelected() && "selected"}
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell
-                        key={cell.id}
-                        style={{
-                          width: `${cell.column.getSize()}px`,
-                        }}
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-                }
+                {table
+                  .getRowModel()
+                  .rows.filter((row) => !row.getIsPinned())
+                  .map((row) => (
+                    <TableRow
+                      key={row.id}
+                      data-state={row.getIsSelected() && "selected"}
+                      onClick={() => onClickRow && onClickRow(row.original)}
+                    >
+                      {row.getVisibleCells().map((cell) => (
+                        <TableCell
+                          key={cell.id}
+                          style={{
+                            width: `${cell.column.getSize()}px`,
+                          }}
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
               </>
-
             ) : (
               <TableRow>
                 <TableCell

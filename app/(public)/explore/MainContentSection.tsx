@@ -20,6 +20,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const getValueColor = (value: number) => {
   if (value < 0) return "text-[#ff3131]";
@@ -72,12 +73,24 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
     header: () => null,
     cell: ({ row }) =>
       row.getIsPinned() ? (
-        <Button variant="ghost" onClick={() => row.pin(false)}>
+        <Button
+          variant="ghost"
+          onClick={(e) => {
+            e.stopPropagation();
+            row.pin(false);
+          }}
+        >
           {" "}
           <Squircle fill="#298DFF" />{" "}
         </Button>
       ) : (
-        <Button variant="ghost" onClick={() => row.pin("top")}>
+        <Button
+          variant="ghost"
+          onClick={(e) => {
+            e.stopPropagation();
+            row.pin("top");
+          }}
+        >
           {" "}
           <Squircle />{" "}
         </Button>
@@ -341,7 +354,6 @@ export const MainContentSection = ({
   const [columns, setColumns] = React.useState<ColumnDef<FundExploreData>[]>(
     allcolumns.filter((col) => col.id && typeVsColumns[type].includes(col.id))
   );
-
   useEffect(() => {
     (async () => {
       const params: Record<string, string> = {
@@ -364,6 +376,8 @@ export const MainContentSection = ({
     );
   }, [type]);
 
+  const router = useRouter();
+
   return (
     <div className="flex flex-col w-full items-start rounded-lg pb-20">
       <DataTable
@@ -381,6 +395,12 @@ export const MainContentSection = ({
             ? "CAGR as reported to SEBI for Feb-2025. Returns are net of fees and expenses, pre-tax."
             : "As reported to SEBI. Returns are as of Feb 2025 for 1M, 3M, 6M, and trailing 12-month periods ending Feb 2025, Feb 2024, Feb 2023, etc. Returns are net of fees and expenses, pre-tax."
         }
+        onClickRow={(row) => {
+          if (fundHouseID || row.slug === "") {
+            return;
+          }
+          router.push(`/fund-house/${row.slug}`);
+        }}
       />
     </div>
   );
