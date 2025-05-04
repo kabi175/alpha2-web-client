@@ -396,7 +396,7 @@ export const MainContentSection = ({
             : "As reported to SEBI. Returns are as of Feb 2025 for 1M, 3M, 6M, and trailing 12-month periods ending Feb 2025, Feb 2024, Feb 2023, etc. Returns are net of fees and expenses, pre-tax."
         }
         onClickRow={(row) => {
-          if (fundHouseID || row.slug === "") {
+          if (fundHouseID || row.slug === "" || !row.slug) {
             return;
           }
           router.push(`/fund-house/${row.slug}`);

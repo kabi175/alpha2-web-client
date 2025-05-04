@@ -26,7 +26,7 @@ export interface FundExploreData {
   fiveYear: number;
   sharpeRatio: number;
   maxDrawdown: number;
-  slug: string;
+  slug?: string;
 }
 
 export interface FundData extends FundExploreData {
