@@ -1,8 +1,8 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import {
-  TableCaption,
   TableHeader,
   TableRow,
   TableHead,
@@ -10,25 +10,50 @@ import {
   TableCell,
   Table,
 } from "@/components/ui/table";
+import useFundHouse from "@/hooks/useFundHouse";
 import { DatabaseZap, EyeOff, Merge, ShieldAlert } from "lucide-react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import RefetchDialog from "./RefetchDialog";
 
-export default function Page({
-  params,
-}: {
-  params: Promise<{ fundHouseID: string }>;
-}) {
+export default function Page() {
+  const { fundHouseID } = useParams<{ fundHouseID: string }>();
   const [fundList, setFundList] = useState<Array<Fund>>([]);
+  const fundHouseData = useFundHouse(fundHouseID);
   useEffect(() => {
     const fetchFunds = async () => {
-      const { fundHouseID } = await params;
       const funds = await getFunds(fundHouseID);
       setFundList(funds);
     };
     fetchFunds();
-  }, []);
+  }, [fundHouseID]);
+
+  if (!fundHouseData) {
+    <> Loading.... </>;
+  }
+
   return (
     <div className="h-screen w-screen p-12">
+      <div>
+        <h1 className="text-2xl font-bold">{fundHouseData?.name}</h1>
+        <p className="text-sm text-muted-foreground">
+          Manage your funds and their details.
+        </p>
+      </div>
+      <div className="flex flex-col pt-5">
+        <h3 className="font-bold p-2"> Actions </h3>
+        <div className="flex flex-row items-center gap-5">
+          {/** action here */}
+          <Link href={`/admin/fund-house/${fundHouseID}/edit`}>
+            <Button variant="outline" className="cursor-pointer">
+              Edit Fund House
+            </Button>
+          </Link>
+
+          {fundHouseData && <RefetchDialog fundHouse={fundHouseData} />}
+        </div>
+      </div>
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col gap-2">
           <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
