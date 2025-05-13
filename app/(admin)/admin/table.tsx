@@ -17,13 +17,15 @@ import {
 } from "@/components/ui/table";
 import { ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export function TableDemo() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [records, setRecords] = useState<FundHouseData[]>([]);
-  const [page, setPage] = useState(1);
+  const page = Number.parseInt(searchParams.get("page") || "0");
   const perPage = 10;
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export function TableDemo() {
     };
 
     fetchData();
-  }, [page]);
+  }, []);
 
   return (
     <>
@@ -70,12 +72,7 @@ export function TableDemo() {
         <PaginationContent>
           <PaginationItem
             onClick={() =>
-              setPage((p) => {
-                if (p > 1) {
-                  return p - 1;
-                }
-                return p;
-              })
+              router.push(`/admin/${page-1}`)
             }
           >
             <PaginationPrevious href="#" />
@@ -86,7 +83,7 @@ export function TableDemo() {
               {page}
             </PaginationLink>
           </PaginationItem>
-          <PaginationItem onClick={() => setPage((p) => p + 1)}>
+          <PaginationItem onClick={() => router.push(`/admin/${page+1}`)}>
             <PaginationNext href="#" hidden={records.length < perPage} />
           </PaginationItem>
         </PaginationContent>
