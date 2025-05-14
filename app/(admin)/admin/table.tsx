@@ -72,7 +72,7 @@ export function TableDemo() {
         <PaginationContent>
           <PaginationItem
             onClick={() =>
-              router.push(`/admin/${page-1}`)
+              router.push(`/admin?page=${page-1}`)
             }
           >
             <PaginationPrevious href="#" />
@@ -83,7 +83,7 @@ export function TableDemo() {
               {page}
             </PaginationLink>
           </PaginationItem>
-          <PaginationItem onClick={() => router.push(`/admin/${page+1}`)}>
+          <PaginationItem onClick={() => router.push(`/admin?page=${page+1}`)}>
             <PaginationNext href="#" hidden={records.length < perPage} />
           </PaginationItem>
         </PaginationContent>
