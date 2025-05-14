@@ -25,7 +25,7 @@ export function TableDemo() {
   const searchParams = useSearchParams();
 
   const [records, setRecords] = useState<FundHouseData[]>([]);
-  const page = Number.parseInt(searchParams.get("page") || "0");
+  const page = Number.parseInt(searchParams.get("page") || "1");
   const perPage = 10;
 
   useEffect(() => {
@@ -70,12 +70,8 @@ export function TableDemo() {
       </Table>
       <Pagination>
         <PaginationContent>
-          <PaginationItem
-            onClick={() =>
-              router.push(`/admin?page=${page-1}`)
-            }
-          >
-            <PaginationPrevious href="#" />
+          <PaginationItem>
+            <PaginationPrevious href={`/admin?page=${page - 1}`} />
           </PaginationItem>
           <PaginationItem>
             <PaginationLink href="#" isActive>
@@ -83,8 +79,11 @@ export function TableDemo() {
               {page}
             </PaginationLink>
           </PaginationItem>
-          <PaginationItem onClick={() => router.push(`/admin?page=${page+1}`)}>
-            <PaginationNext href="#" hidden={records.length < perPage} />
+          <PaginationItem>
+            <PaginationNext
+              href={`/admin?page=${page + 1}`}
+              hidden={records.length < perPage}
+            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
