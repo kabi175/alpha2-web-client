@@ -26,6 +26,7 @@ export function TableDemo() {
 
   const [records, setRecords] = useState<FundHouseData[]>([]);
   const page = Number.parseInt(searchParams.get("page") || "1");
+  const unverified = searchParams.get("unverified") === "true";
   const perPage = 10;
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export function TableDemo() {
       const data = await fetchFundHouseData({
         page: page,
         per_page: perPage,
+        unverified: unverified,
         cb: () => router.push("/login"),
       });
       setRecords(data);
@@ -71,7 +73,9 @@ export function TableDemo() {
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious href={`/admin?page=${page - 1}`} />
+            <PaginationPrevious
+              href={`/admin?page=${page - 1}&unverified=${unverified}`}
+            />
           </PaginationItem>
           <PaginationItem>
             <PaginationLink href="#" isActive>
@@ -81,7 +85,7 @@ export function TableDemo() {
           </PaginationItem>
           <PaginationItem>
             <PaginationNext
-              href={`/admin?page=${page + 1}`}
+              href={`/admin?page=${page + 1}&unverified=${unverified}`}
               hidden={records.length < perPage}
             />
           </PaginationItem>
@@ -94,15 +98,17 @@ export function TableDemo() {
 export async function fetchFundHouseData({
   page = 1,
   per_page = 10,
+  unverified = false,
   cb,
 }: {
   page?: number;
   per_page?: number;
+  unverified?: boolean;
   cb: () => void;
 }) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/admin/fund-house?page=${page}&per_page=${per_page}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/admin/fund-house?page=${page}&per_page=${per_page}&unverified=${unverified}`,
       {
         credentials: "include",
         headers: {
