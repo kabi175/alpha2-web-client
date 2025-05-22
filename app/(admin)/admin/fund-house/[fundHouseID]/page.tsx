@@ -11,11 +11,28 @@ import {
   Table,
 } from "@/components/ui/table";
 import useFundHouse from "@/hooks/useFundHouse";
-import { DatabaseZap, EyeOff, Merge, ShieldAlert } from "lucide-react";
+import {
+  DatabaseZap,
+  Ellipsis,
+  EyeOff,
+  Merge,
+  ShieldAlert,
+} from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import RefetchDialog from "./RefetchDialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Page() {
   const { fundHouseID } = useParams<{ fundHouseID: string }>();
@@ -129,6 +146,42 @@ export default function Page() {
                   </Badge>
                 </TableCell>
                 <TableCell>{fund.merged_with || "N/A"}</TableCell>
+                <TableCell>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <Ellipsis />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel>Manage</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>
+                        {fund.is_hidden ? "Unhide" : "Hide"}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        {fund.merged_with ? (
+                          "UnMerge"
+                        ) : (
+                          <DropdownMenuSub>
+                            <DropdownMenuSubTrigger>
+                              Merge
+                            </DropdownMenuSubTrigger>
+                            <DropdownMenuPortal>
+                              <DropdownMenuContent>
+                                {fundList
+                                  .filter((fund) => fund.merged_with == null)
+                                  .map((fund) => (
+                                    <DropdownMenuItem key={fund.id}>
+                                      {fund.display_name}
+                                    </DropdownMenuItem>
+                                  ))}
+                              </DropdownMenuContent>
+                            </DropdownMenuPortal>
+                          </DropdownMenuSub>
+                        )}
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
