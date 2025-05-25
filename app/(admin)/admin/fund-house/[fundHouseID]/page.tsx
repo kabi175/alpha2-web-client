@@ -19,7 +19,7 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import RefetchDialog from "./RefetchDialog";
 import {
@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function Page() {
+  const router = useRouter();
   const { fundHouseID } = useParams<{ fundHouseID: string }>();
   const [fundList, setFundList] = useState<Array<Fund>>([]);
   const fundHouseData = useFundHouse(fundHouseID);
@@ -49,6 +50,70 @@ export default function Page() {
   if (!fundHouseData) {
     <> Loading.... </>;
   }
+
+  const hideUnhideFund = async (fundHouseID: string, fund: Fund) => {
+    try {
+      const response = await fetch(
+        `${
+          process.env.NEXT_PUBLIC_API_URL
+        }/admin/fund-house/${fundHouseID}/fund/${fund.id}/action/${
+          fund.is_hidden ? "unhide" : "hide"
+        }`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update fund visibility");
+      }
+      router.refresh();
+    } catch (error) {
+      console.error("Error updating fund visibility:", error);
+    }
+  };
+
+  const mergeFunds = async (
+    fundHouseID: string,
+    fund: Fund,
+    mergeFund: Fund
+  ) => {
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/fund-house/${fundHouseID}/fund/${fund.id}/action/merge/${mergeFund.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Error merging funds:", error);
+    }
+  };
+
+  const unMergeFund = async (fund: Fund) => {
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/fund-house/${fundHouseID}/fund/${fund.id}/action/unmerge`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Error unmerging fund:", error);
+    }
+  };
 
   return (
     <div className="h-screen w-screen p-12">
@@ -154,13 +219,18 @@ export default function Page() {
                     <DropdownMenuContent>
                       <DropdownMenuLabel>Manage</DropdownMenuLabel>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => hideUnhideFund(fundHouseID, fund)}
+                      >
                         {fund.is_hidden ? "Unhide" : "Hide"}
                       </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        {fund.merged_with ? (
-                          "UnMerge"
-                        ) : (
+                      {fund.merged_with && (
+                        <DropdownMenuItem onClick={() => unMergeFund(fund)}>
+                          UnMerge
+                        </DropdownMenuItem>
+                      )}
+                      {!fund.merged_with && (
+                        <DropdownMenuItem>
                           <DropdownMenuSub>
                             <DropdownMenuSubTrigger>
                               Merge
@@ -169,16 +239,21 @@ export default function Page() {
                               <DropdownMenuContent>
                                 {fundList
                                   .filter((fund) => fund.merged_with == null)
-                                  .map((fund) => (
-                                    <DropdownMenuItem key={fund.id}>
-                                      {fund.display_name}
+                                  .map((mfund) => (
+                                    <DropdownMenuItem
+                                      key={mfund.id}
+                                      onClick={() =>
+                                        mergeFunds(fundHouseID, fund, mfund)
+                                      }
+                                    >
+                                      {mfund.display_name}
                                     </DropdownMenuItem>
                                   ))}
                               </DropdownMenuContent>
                             </DropdownMenuPortal>
                           </DropdownMenuSub>
-                        )}
-                      </DropdownMenuItem>
+                        </DropdownMenuItem>
+                      )}
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </TableCell>
