@@ -1,6 +1,7 @@
 import AlphaNav from "./IntroSection/AlphaNav";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export default function Header() {
   return (
@@ -13,7 +14,14 @@ export default function Header() {
         </Link>
 
         <AlphaNav />
-        <div className="w-64" />
+        <div className="w-64">
+          <Button
+            variant="outline"
+            className="dark:border-[#077AFF] dark:bg-background"
+          >
+            Start Investing
+          </Button>
+        </div>
       </header>
     </main>
   );
