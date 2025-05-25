@@ -392,8 +392,8 @@ export const MainContentSection = ({
         typeBar={<TableTypeBar type={type} setType={setType} />}
         tooltip={
           type == "CAGR"
-            ? "CAGR as reported to SEBI for Feb-2025. Returns are net of fees and expenses, pre-tax."
-            : "As reported to SEBI. Returns are as of Feb 2025 for 1M, 3M, 6M, and trailing 12-month periods ending Feb 2025, Feb 2024, Feb 2023, etc. Returns are net of fees and expenses, pre-tax."
+            ? "CAGR as reported to SEBI for April-2025. Returns are net of fees and expenses, pre-tax."
+            : "As reported to SEBI. Returns are as of April 2025 for 1M, 3M, 6M, and trailing 12-month periods ending April 2025, April 2024, April 2023, etc. Returns are net of fees and expenses, pre-tax."
         }
         onClickRow={(row) => {
           if (fundHouseID || row.slug === "" || !row.slug) {
