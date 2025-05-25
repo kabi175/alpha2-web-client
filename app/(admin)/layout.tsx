@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import "./globals.css";
 import ThemeProvider from "@/components/theme-provider";
+
+export const metadata: Metadata = {
+  title: "Admin | Alpha Square",
+  description: "Amplify your Alpha",
+};
 
 export default function RootLayout({
   children,
@@ -11,7 +17,7 @@ export default function RootLayout({
       <body className="bg-background">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           disableTransitionOnChange
         >
           {children}
