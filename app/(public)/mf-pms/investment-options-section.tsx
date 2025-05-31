@@ -1,5 +1,6 @@
 import React from "react";
 import Section from "./section";
+import { Button } from "@/components/ui/button";
 
 export default function InvestmentOptionsSection() {
   const data = [
@@ -56,6 +57,27 @@ export default function InvestmentOptionsSection() {
               ))}
             </React.Fragment>
           ))}
+        </div>
+
+        <div className="flex justify-center items-center">
+          <div className="relative bg-[#151515] rounded-2xl w-full lg:w-2/3 px-8 py-12 flex items-center justify-center overflow-hidden">
+            <div className="absolute right-0 top-0 w-2/3 h-full bg-[radial-gradient(ellipse_at_center,_rgba(0,123,255,0.6)_0%,_transparent_80%)] z-0"></div>
+
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-6xl">
+              <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight mb-6 md:mb-0">
+                <span className="block">
+                  Start your <span className="text-gray-300">MF - PMS</span>
+                </span>
+                <span className="block text-gray-300">Journey Today</span>
+              </h1>
+              <Button
+                variant="default"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg px-6 py-7 rounded-lg transition"
+              >
+                Start Investing
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </Section>
