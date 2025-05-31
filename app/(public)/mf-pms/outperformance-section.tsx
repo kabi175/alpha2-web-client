@@ -15,21 +15,21 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const chartData = [
-  { year: "2011", nifty: 56.9, pms: 20.9 },
-  { year: "2012", nifty: 20.9, pms: 56.9 },
-  { year: "2013", nifty: 128.9, pms: 128.9 },
-  { year: "2014", nifty: 20.9, pms: 118 },
-  { year: "2015", nifty: 128.9, pms: 56 },
-  { year: "2016", nifty: 20.9, pms: 27.8 },
-  { year: "2017", nifty: 27.5, pms: 57.1 },
-  { year: "2018", nifty: 56.5, pms: 128.6 },
-  { year: "2019", nifty: -5, pms: -8 },
-  { year: "2020", nifty: -20, pms: 5 },
-  { year: "2021", nifty: 61.0, pms: 162.1 },
-  { year: "2022", nifty: 61.0, pms: 162.1 },
-  { year: "2023", nifty: 61.0, pms: 162.1 },
-  { year: "2024", nifty: 61.0, pms: 162.1 },
-  { year: "2025", nifty: 61.0, pms: 162.1 },
+  { year: "2011", nifty: 11.04, pms: 12.74 },
+  { year: "2012", nifty: -8.69, pms: -8.51 },
+  { year: "2013", nifty: 7.16, pms: 8.53 },
+  { year: "2014", nifty: 17.19, pms: 18.39 },
+  { year: "2015", nifty: 26.99, pms: 26.99 },
+  { year: "2016", nifty: -6.99, pms: -9.89 },
+  { year: "2017", nifty: 18.58, pms: 32.75 },
+  { year: "2018", nifty: 12.77, pms: 14.82 },
+  { year: "2019", nifty: 15.38, pms: -8.82 },
+  { year: "2020", nifty: -24.69, pms: 0.71 },
+  { year: "2021", nifty: 70.94, pms: 72.38 },
+  { year: "2022", nifty: 20.18, pms: 30.75 },
+  { year: "2023", nifty: 0.52, pms: 22.5 },
+  { year: "2024", nifty: 30.72, pms: 67.75 },
+  { year: "2025", nifty: 4.6, pms: 38.84 },
 ];
 
 export default function OutperformanceSection() {
