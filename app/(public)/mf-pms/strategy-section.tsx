@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Section from "./section";
 
 export default function StrategySection() {
   const steps = [
@@ -27,17 +28,19 @@ export default function StrategySection() {
   ];
 
   return (
-    <section className="p-20">
+    <Section>
       <div className="flex flex-col justify-around gap-8">
         <div>
-          <h1 className="font-semibold text-6xl">Investment Strategy</h1>
-          <p className="text-2xl font-normal text-[#8E8E8E] pt-4">
+          <h1 className="font-semibold text-4xl lg:text-6xl">
+            Investment Strategy
+          </h1>
+          <p className="text-xl lg:text-2xl font-normal text-[#8E8E8E] pt-4">
             Invesment Strategy is based on three pillars
           </p>
         </div>
 
-        <div className="w-full flex rounded-md">
-          <div className="w-1/2 bg-[#151515] rounded-l-md">
+        <div className="w-full flex flex-wrap rounded-md">
+          <div className="md:w-1/2 bg-[#151515] rounded-l-md">
             <Tabs
               defaultValue={strategies[0].titile}
               className="h-full flex p-12 justify-center items-center"
@@ -46,13 +49,13 @@ export default function StrategySection() {
                 <TabsContent
                   key={s.titile}
                   value={s.titile}
-                  className="h-3/4 text-4xl"
+                  className="h-3/4 text-2xl lg:text-4xl"
                 >
                   {s.content}
                 </TabsContent>
               ))}
 
-              <TabsList className="grid grid-cols-3 bg-[#0C0C0C]">
+              <TabsList className="grid grid-cols-3 bg-[#0C0C0C] mt-4">
                 {strategies.map((s) => (
                   <TabsTrigger
                     key={s.titile}
@@ -65,13 +68,13 @@ export default function StrategySection() {
               </TabsList>
             </Tabs>
           </div>
-          <div className="w-1/2 bg-[#1B1B1B] p-12 rounded-r-md">
+          <div className="md:w-1/2 bg-[#1B1B1B] p-12 rounded-r-md">
             {steps.map((step, index) => (
               <div key={index} className="flex flex-col">
                 {index != 0 && <Separator className="my-5" />}
                 <div className="flex flex-col">
                   <p className="font-medium">Step {index + 1}</p>
-                  <p className="pt-2 text-xl font-normal text-[#8E8E8E]">
+                  <p className="pt-2 text-lg lg:text-xl font-normal text-[#8E8E8E]">
                     {step}
                   </p>
                 </div>
@@ -80,6 +83,6 @@ export default function StrategySection() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

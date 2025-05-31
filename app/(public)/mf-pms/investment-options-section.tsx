@@ -1,4 +1,5 @@
 import React from "react";
+import Section from "./section";
 
 export default function InvestmentOptionsSection() {
   const data = [
@@ -28,11 +29,13 @@ export default function InvestmentOptionsSection() {
     ["Minimum Investment", "₹50 lakh", "₹20 lakh"],
   ];
   return (
-    <section className="p-20">
+    <Section>
       <div className="flex flex-col justify-around gap-8">
         <div>
-          <h1 className="font-semibold text-6xl">Investment Options</h1>
-          <p className="text-2xl font-normal text-[#8E8E8E] pt-4">
+          <h1 className="font-semibold text-4xl lg:text-6xl">
+            Investment Options
+          </h1>
+          <p className="text-xl lg:text-2xl font-normal text-[#8E8E8E] pt-4">
             Pick what suits you — we support both.
           </p>
         </div>
@@ -43,7 +46,7 @@ export default function InvestmentOptionsSection() {
               {row.map((cell, cellIndex) => (
                 <span
                   key={cellIndex}
-                  className={`border p-4 text-center font-semibold ${
+                  className={`border p-2 lg:p-4 text-sm lg:text-base text-center font-semibold ${
                     index == 0 && cellIndex == 0 && "text-[#848484]"
                   }
                     ${index % 2 == 0 && "bg-[#151515]"}`}
@@ -55,6 +58,6 @@ export default function InvestmentOptionsSection() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

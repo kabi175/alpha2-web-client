@@ -1,6 +1,7 @@
 "use client";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from "recharts";
+import Section from "./section";
 
 const chartData = [
   { month: "2007", reblance: 1 },
@@ -32,11 +33,13 @@ const chartConfig = {
 
 export default function PortfolioChurnSection() {
   return (
-    <section className="p-20">
+    <Section>
       <div className="flex flex-col justify-around gap-8">
         <div>
-          <h1 className="font-semibold text-6xl">Portfolio Churn</h1>
-          <p className="text-2xl font-normal text-[#8E8E8E] pt-4">
+          <h1 className="font-semibold text-4xl lg:text-6xl">
+            Portfolio Churn
+          </h1>
+          <p className="text-xl lg:text-2xl font-normal text-[#8E8E8E] pt-4">
             Usual rebalance is every twelve to eighteen months to optimize exit
             loads and capital gains tax
           </p>
@@ -70,7 +73,7 @@ export default function PortfolioChurnSection() {
 
             <Legend
               formatter={() => (
-                <span className="text-2xl text-white text-center p-2">
+                <span className="text-xl lg:text-2xl text-white text-center p-2">
                   Count of Rebalance
                 </span>
               )}
@@ -96,6 +99,6 @@ export default function PortfolioChurnSection() {
           </LineChart>
         </ChartContainer>
       </div>
-    </section>
+    </Section>
   );
 }

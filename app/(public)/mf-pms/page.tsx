@@ -12,7 +12,7 @@ import PortfolioChurnSection from "./portfolio-churn-section";
 
 export default function Page() {
   return (
-    <div className="mt-8">
+    <div>
       <IntroSection />
       <ProblemSection />
       <OutcomeSection />

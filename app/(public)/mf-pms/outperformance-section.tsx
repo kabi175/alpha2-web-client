@@ -2,6 +2,7 @@
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { Bar, BarChart, CartesianGrid, Legend, XAxis, YAxis } from "recharts";
 import { Payload } from "recharts/types/component/DefaultLegendContent";
+import Section from "./section";
 
 const chartConfig = {
   nifty: {
@@ -39,7 +40,10 @@ export default function OutperformanceSection() {
       <div className="flex flex-col gap-6 pb-4">
         <div className="flex gap-4">
           {payload?.map((entry, index) => (
-            <div className="text-2xl flex gap-2" key={`item-${index}`}>
+            <div
+              className="text-xl lg:text-2xl flex gap-2"
+              key={`item-${index}`}
+            >
               <span
                 className="block size-[35px]"
                 style={{ backgroundColor: entry.color }}
@@ -53,18 +57,20 @@ export default function OutperformanceSection() {
   };
 
   return (
-    <section className="p-20">
+    <Section>
       <div className="flex flex-col justify-around gap-8">
         <div>
-          <h1 className="font-semibold text-6xl">Relative Outperformance</h1>
-          <p className="text-2xl font-normal text-[#8E8E8E] pt-4">
+          <h1 className="font-semibold text-4xl lg:text-6xl">
+            Relative Outperformance
+          </h1>
+          <p className="text-xl lg:text-2xl font-normal text-[#8E8E8E] pt-4">
             Outperformance is not limited to specific period but is repeated
             over and over for multiple years
           </p>
         </div>
 
         <div className="flex justify-end">
-          <ChartContainer config={chartConfig} className="h-[500px] w-full">
+          <ChartContainer config={chartConfig} height={500}>
             <BarChart accessibilityLayer data={chartData}>
               <XAxis
                 dataKey="year"
@@ -78,7 +84,7 @@ export default function OutperformanceSection() {
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(value) => value + "%"}
-                domain={["min", "max"]}
+                domain={[-25, 75]}
               />
 
               <Legend verticalAlign="top" align="left" content={renderLegend} />
@@ -87,27 +93,25 @@ export default function OutperformanceSection() {
                 dataKey="nifty"
                 name="Nifty 50"
                 fill="#2A2A2A"
-                radius={[12, 12, 0, 0]}
-                barSize={66}
-                order={1}
+                radius={[6, 6, 0, 0]}
+                barSize={28}
               />
 
               <Bar
                 dataKey="pms"
                 name="MF-PMS"
                 fill="#025AE3"
-                radius={[12, 12, 0, 0]}
-                barSize={66}
-                order={2}
+                radius={[6, 6, 0, 0]}
+                barSize={28}
               />
             </BarChart>
           </ChartContainer>
         </div>
 
-        <div className="bg-[#151515] py-8 w-full text-2xl  text-[#C2C2C2] flex justify-center rounded-md">
+        <div className="bg-[#151515] px-4 py-8 w-full text-xl lg:text-2xl  text-[#C2C2C2] flex justify-center rounded-md">
           MF-PMS outperformed Nifty50 in thirteen out of fifteen financial years
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

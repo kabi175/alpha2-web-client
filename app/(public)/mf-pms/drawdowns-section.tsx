@@ -1,6 +1,7 @@
 "use client";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import Section from "./section";
 
 const chartData = [
   { month: "January", pms: -18, nifty: -77 },
@@ -21,11 +22,13 @@ const chartConfig = {
 
 export default function DrawdownsSection() {
   return (
-    <section className="p-20">
+    <Section>
       <div className="flex flex-col justify-around gap-8">
         <div>
-          <h1 className="font-semibold text-6xl">Lower Drawdowns</h1>
-          <p className="text-2xl font-normal text-[#8E8E8E] pt-4">
+          <h1 className="font-semibold text-4xl lg:text-6xl">
+            Lower Drawdowns
+          </h1>
+          <p className="text-xl lg:text-2xl font-normal text-[#8E8E8E] pt-4">
             MF-PMS has fallen less than Nifty50 in every major market correction
           </p>
         </div>
@@ -65,7 +68,7 @@ export default function DrawdownsSection() {
           </AreaChart>
         </ChartContainer>
 
-        <div className="bg-[#151515] text-[#C2C2C2] p-8 w-full text-xl flex flex-col gap-8 rounded-md">
+        <div className="bg-[#151515] text-[#C2C2C2] p-8 w-full text-lg lg:text-xl flex flex-col gap-8 rounded-md">
           <p>
             In 2008 crash Nifty fell by 56% but MF-PMS portfolio was down only
             18%.
@@ -80,6 +83,6 @@ export default function DrawdownsSection() {
           </p>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

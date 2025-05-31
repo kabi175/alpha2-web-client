@@ -1,4 +1,5 @@
 import React from "react";
+import Section from "./section";
 
 export default function SomeMissesSection() {
   const data = [
@@ -9,11 +10,11 @@ export default function SomeMissesSection() {
     ["Apr - 2019", "-13.70%", "9.61%", "-23.31%"],
   ];
   return (
-    <section className="p-20">
+    <Section>
       <div className="flex flex-col justify-around gap-8">
         <div>
-          <h1 className="font-semibold text-6xl">Some Misses</h1>
-          <p className="text-2xl font-normal text-[#8E8E8E] pt-4">
+          <h1 className="font-semibold text-4xl lg:text-6xl">Some Misses</h1>
+          <p className="text-xl lg:text-2xl font-normal text-[#8E8E8E] pt-4">
             Performance may lag intermittently due to subdued returns from
             sectors selected by the model
           </p>
@@ -25,7 +26,8 @@ export default function SomeMissesSection() {
               {row.map((cell, cellIndex) => (
                 <span
                   key={cellIndex}
-                  className={`border p-4 text-center font-semibold
+                  className={`border p-2 lg:p-4 text-center font-semibold
+                    truncate
                     ${(cellIndex == 0 || cellIndex == 2) && "bg-[#151515]"}
                     ${cellIndex == 1 && "bg-[#025AE3]"}
                     ${cellIndex == 3 && "bg-[#262626]"}
@@ -38,11 +40,11 @@ export default function SomeMissesSection() {
           ))}
         </div>
 
-        <p className="text-[#C2C2C2] text-xl">
+        <p className="text-[#C2C2C2] text-lg lg:text-xl">
           Intermittent periods of underperformance cannot be ruled out and are
           part of the investment process.
         </p>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -3,6 +3,8 @@
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { XAxis, Bar, BarChart, LabelList, Legend } from "recharts";
 import { Payload } from "recharts/types/component/DefaultLegendContent";
+import Section from "./section";
+import useIsSmallScreen from "@/hooks/useIsSmallScreen";
 
 const chartConfig = {
   nifty: {
@@ -29,13 +31,18 @@ const chartData = [
 ];
 
 export default function OutcomeSection() {
+  const chatDisplayData = useIsSmallScreen() ? chartData.slice(5) : chartData;
+
   const renderLegend = (props: { payload?: Array<Payload> }) => {
     const { payload } = props;
     return (
       <div className="flex flex-col gap-6">
         <div className="flex gap-4">
           {payload?.map((entry, index) => (
-            <div className="text-2xl flex gap-2" key={`item-${index}`}>
+            <div
+              className="text-xl lg:text-2xl flex gap-2"
+              key={`item-${index}`}
+            >
               <span
                 className="block size-[35px]"
                 style={{ backgroundColor: entry.color }}
@@ -44,23 +51,23 @@ export default function OutcomeSection() {
             </div>
           ))}
         </div>
-        <p className="text-2xl">Value of Rs 20 lakhs invested</p>
+        <p className="text-xl lg:text-2xl">Value of Rs 20 lakhs invested</p>
       </div>
     );
   };
 
   return (
-    <section className="p-20">
+    <Section>
       <div className="flex flex-col justify-around gap-8">
         <div className="flex flex-col gap-4">
-          <h1 className="font-semibold text-6xl">The Outcome</h1>
-          <p className="text-2xl font-normal text-[#8E8E8E]">
+          <h1 className="font-semibold text-4xl lg:text-6xl">The Outcome</h1>
+          <p className="text-xl lg:text-2xl font-normal text-[#8E8E8E]">
             Strategy outcome is high CAGR for more than one decade
           </p>
 
           <div className="flex justify-end">
             <ChartContainer config={chartConfig} className="h-[500px] w-full">
-              <BarChart accessibilityLayer data={chartData}>
+              <BarChart accessibilityLayer data={chatDisplayData} barGap={16}>
                 <XAxis
                   dataKey="month"
                   tickLine={false}
@@ -110,6 +117,6 @@ export default function OutcomeSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
