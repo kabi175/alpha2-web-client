@@ -27,6 +27,12 @@ export default function AlphaNav() {
         Explore PMS
       </Link>
       <Link
+        href="/mf-pms"
+        className="text-xs lg:text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
+      >
+        MF-PMS
+      </Link>
+      <Link
         href="/#faqs"
         className="text-xs lg:text-base text-white no-underline duration-[0.3s] transition-[color] hover:text-[color:var(--primary-blue)]"
       >

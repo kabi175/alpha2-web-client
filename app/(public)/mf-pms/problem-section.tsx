@@ -6,9 +6,9 @@ import Section from "./section";
 export default function ProblemSection() {
   const problems = [
     {
-      title: "Largecap Underperformance",
+      title: "No Rebalancing",
       description:
-        "Less than 30% of top 5 large-cap funds retain their rank year-over-year",
+        "Most MF investors hold laggards too long, lacking timely exit or rebalancing guidance",
     },
     {
       title: "Survivorship Bias",
@@ -16,9 +16,9 @@ export default function ProblemSection() {
         "Most MF investments are done basis recent performance/ themes which produces mediocre portfolio level returns",
     },
     {
-      title: "Midcap Volatility",
+      title: "Volatility",
       description:
-        "Midcap mutual funds deliver strong alpha in bull-runs but fall significantly during downturns",
+        "Valuations go-ahead of time and hence underperformance in few periods.",
     },
   ];
   return (

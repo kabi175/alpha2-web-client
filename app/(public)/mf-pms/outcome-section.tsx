@@ -5,6 +5,7 @@ import { XAxis, Bar, BarChart, LabelList, Legend } from "recharts";
 import { Payload } from "recharts/types/component/DefaultLegendContent";
 import Section from "./section";
 import useIsSmallScreen from "@/hooks/useIsSmallScreen";
+import { useVisibilityAnimation } from "@/hooks/useVisibilityAnimation";
 
 const chartConfig = {
   nifty: {
@@ -23,15 +24,18 @@ const chartData = [
   { month: "", nifty: undefined, pms: undefined },
   { month: "", nifty: undefined, pms: undefined },
   { month: "", nifty: undefined, pms: undefined },
-  { month: "Year 1", nifty: 20.9, pms: 27.8 },
-  { month: "Year 3", nifty: 27.5, pms: 57.1 },
-  { month: "Year 5", nifty: 56.5, pms: 128.6 },
-  { month: "Year 7", nifty: 49.1, pms: 118.1 },
-  { month: "Year 10", nifty: 61.0, pms: 162.1 },
+  { month: "1 Year", nifty: 20.9, pms: 27.8 },
+  { month: "3 Year", nifty: 27.5, pms: 57.1 },
+  { month: "5 Year", nifty: 56.5, pms: 128.6 },
+  { month: "7 Year", nifty: 49.1, pms: 118.1 },
+  { month: "10 Year", nifty: 61.0, pms: 162.1 },
 ];
 
 export default function OutcomeSection() {
   const chatDisplayData = useIsSmallScreen() ? chartData.slice(5) : chartData;
+
+  const { ref, visible } = useVisibilityAnimation(0.5);
+  const animateKey = visible ? "animate" : "initial";
 
   const renderLegend = (props: { payload?: Array<Payload> }) => {
     const { payload } = props;
@@ -65,7 +69,7 @@ export default function OutcomeSection() {
             Strategy outcome is high CAGR for more than one decade
           </p>
 
-          <div className="flex justify-end">
+          <div ref={ref} className="flex justify-end">
             <ChartContainer config={chartConfig} className="h-[500px] w-full">
               <BarChart accessibilityLayer data={chatDisplayData} barGap={16}>
                 <XAxis
@@ -82,12 +86,12 @@ export default function OutcomeSection() {
                 />
 
                 <Bar
+                  key={"nifty" + animateKey} // This forces Bar to re-mount on focus
                   dataKey="nifty"
                   name="Nifty 50"
                   fill="#2A2A2A"
                   radius={[12, 12, 0, 0]}
                   barSize={66}
-                  order={1}
                 >
                   <LabelList
                     position="top"
@@ -98,6 +102,7 @@ export default function OutcomeSection() {
                 </Bar>
 
                 <Bar
+                  key={"pms" + animateKey} // This forces Bar to re-mount on focus
                   dataKey="pms"
                   name="MF-PMS"
                   fill="#025AE3"
@@ -109,7 +114,7 @@ export default function OutcomeSection() {
                     position="top"
                     offset={12}
                     className="fill-foreground"
-                    fontSize={12}
+                    fontSize={14}
                   />
                 </Bar>
               </BarChart>

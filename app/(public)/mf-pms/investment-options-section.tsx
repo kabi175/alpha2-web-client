@@ -27,7 +27,7 @@ export default function InvestmentOptionsSection() {
       "New MF account under new ARN code",
     ],
     ["SIP Amount", "Multiples of ₹1 lakh", "Starts from ₹500"],
-    ["Minimum Investment", "₹50 lakh", "₹20 lakh"],
+    ["Minimum Investment", "₹50 lakh", "₹5 lakh"],
   ];
   return (
     <Section>
@@ -74,7 +74,7 @@ export default function InvestmentOptionsSection() {
                 variant="default"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg px-6 py-7 rounded-lg transition"
               >
-                Start Investing
+                Schedule a call
               </Button>
             </div>
           </div>

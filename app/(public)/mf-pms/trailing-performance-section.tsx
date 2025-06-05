@@ -125,7 +125,7 @@ export default function TrailingPerformanceSection() {
           Trailing 12 Months (T12M) returns show how an asset has performed over
           the last 12 months from a specific date (not a calendar year).
         </p>
-        <div className="bg-[#151515] p-8 w-full text-lg lg:text-xl flex flex-col rounded-md">
+        <div className="bg-[#151515] p-8 w-full text-sm flex flex-col rounded-md">
           <h3>For Example.,</h3>
           <p className="text-[#C2C2C2]">
             If you&apos;re looking at TTM returns as of Dec 2024, you&apos;re

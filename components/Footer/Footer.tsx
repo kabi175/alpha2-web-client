@@ -15,6 +15,7 @@ const Footer: React.FC = () => {
       links: [
         { text: "Explore PMS", href: "/explore" },
         { text: "Compare PMS", href: "/calculator" },
+        { text: "MF-PMS", href: "/mf-pms" },
         {
           text: "Connect with our Experts",
           href: "https://calendar.app.google/VriTd83Lz2NwsvRB9",

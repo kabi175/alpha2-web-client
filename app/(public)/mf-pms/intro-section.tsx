@@ -12,11 +12,10 @@ export default function IntroSection() {
           <h1 className="font-semibold text-5xl lg:text-8xl"> MF - PMS</h1>
         </div>
         <p className="text-xl lg:text-2xl font-normal text-[#8E8E8E]">
-          PMS-like returns with the flexibility and accessibility of a mutual
-          fund
+          Select and rebalance mutual funds to target consistently higher alpha
         </p>
         <Button variant="default" className="w-[250px] text-xl lg:text-2xl p-6">
-          Start Investing
+          Schedule a call
         </Button>
       </div>
       <div className="grow">
