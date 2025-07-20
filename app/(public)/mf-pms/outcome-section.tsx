@@ -120,6 +120,9 @@ export default function OutcomeSection() {
               </BarChart>
             </ChartContainer>
           </div>
+          <div className="w-full flex justify-end">
+            <p className="text-sm">As at 31-Mar-2025</p>
+          </div>
         </div>
       </div>
     </Section>
