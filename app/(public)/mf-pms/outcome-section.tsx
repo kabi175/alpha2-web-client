@@ -25,10 +25,10 @@ const chartData = [
   { month: "", nifty: undefined, pms: undefined },
   { month: "", nifty: undefined, pms: undefined },
   { month: "1 Year", nifty: 20.9, pms: 27.8 },
-  { month: "3 Year", nifty: 27.5, pms: 57.1 },
-  { month: "5 Year", nifty: 56.5, pms: 128.6 },
-  { month: "7 Year", nifty: 49.1, pms: 118.1 },
-  { month: "10 Year", nifty: 61.0, pms: 162.1 },
+  { month: "3 Years", nifty: 27.5, pms: 57.1 },
+  { month: "5 Years", nifty: 56.5, pms: 128.6 },
+  { month: "7 Years", nifty: 49.1, pms: 118.1 },
+  { month: "10 Years", nifty: 61.0, pms: 162.1 },
 ];
 
 export default function OutcomeSection() {
