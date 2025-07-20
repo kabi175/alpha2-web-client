@@ -1,6 +1,7 @@
 import React from "react";
 import Section from "./section";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function InvestmentOptionsSection() {
   const data = [
@@ -70,12 +71,14 @@ export default function InvestmentOptionsSection() {
                 </span>
                 <span className="block text-gray-300">Journey Today</span>
               </h1>
-              <Button
-                variant="default"
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg px-6 py-7 rounded-lg transition"
-              >
-                Schedule a call
-              </Button>
+              <Link href="https://calendar.app.google/VriTd83Lz2NwsvRB9">
+                <Button
+                  variant="default"
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg px-6 py-7 rounded-lg transition"
+                >
+                  Schedule a call
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

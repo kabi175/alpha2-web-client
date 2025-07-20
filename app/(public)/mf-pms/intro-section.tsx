@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Check, Sparkles } from "lucide-react";
 import Section from "./section";
+import Link from "next/link";
 
 export default function IntroSection() {
   return (
@@ -14,9 +15,14 @@ export default function IntroSection() {
         <p className="text-xl lg:text-2xl font-normal text-[#8E8E8E]">
           Select and rebalance mutual funds to target consistently higher alpha
         </p>
-        <Button variant="default" className="w-[250px] text-xl lg:text-2xl p-6">
-          Schedule a call
-        </Button>
+        <Link href="https://calendar.app.google/VriTd83Lz2NwsvRB9">
+          <Button
+            variant="default"
+            className="w-[250px] text-xl lg:text-2xl p-6"
+          >
+            Schedule a call
+          </Button>
+        </Link>
       </div>
       <div className="grow">
         <Box />
