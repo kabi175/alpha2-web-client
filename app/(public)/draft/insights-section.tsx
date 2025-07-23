@@ -183,7 +183,7 @@ const PMSCard = () => {
                 content={<ChartTooltipContent indicator="line" />}
               /> */}
 
-              <Bar dataKey="nifty" fill="#5D9CE7E5" radius={4}>
+              <Bar dataKey="nifty" fill="#5D9CE7E5" radius={4} label="Nifty 50">
                 <LabelList
                   position="top"
                   offset={12}
@@ -193,7 +193,7 @@ const PMSCard = () => {
                   formatter={(value: string) => `${value}%`}
                 />
               </Bar>
-              <Bar dataKey="alpha2" fill="#FFFFFF" radius={4}>
+              <Bar dataKey="alpha2" fill="#FFFFFF" radius={4} label="MF-PMS">
                 <LabelList
                   position="top"
                   offset={12}
