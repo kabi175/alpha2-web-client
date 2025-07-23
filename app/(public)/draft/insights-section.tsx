@@ -4,7 +4,8 @@ import Section from "./section";
 import { Header, SubHeader } from "./ui";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
-import { XAxis, Bar, BarChart } from "recharts";
+import { XAxis, Bar, BarChart, LabelList, Legend } from "recharts";
+import { Payload } from "recharts/types/component/DefaultLegendContent";
 
 const chartData = [
   { month: undefined, nifty: undefined, alpha2: undefined },
@@ -16,14 +17,45 @@ const chartData = [
 
 const chartConfig = {
   nifty: {
-    label: "nifty",
+    label: "Nifty 50",
     color: "var(--chart-1)",
   },
   alpha2: {
-    label: "alpha2",
+    label: "Alpha2 PMS",
     color: "var(--chart-2)",
   },
 } satisfies ChartConfig;
+
+const PMSLabel = () => (
+  <div className="flex items-center gap-2">
+    <Image src="/logo-black.svg" alt="logo" width={56} height={26} />
+    suggested PMS
+  </div>
+);
+
+const renderLegend = (props: { payload?: Array<Payload> }) => {
+  const { payload } = props;
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="flex gap-4">
+        {payload?.map((entry, index) => (
+          <div
+            className="text-xl lg:text-2xl flex items-center gap-2"
+            key={`item-${index}`}
+          >
+            <span
+              className="block size-[15px]"
+              style={{ backgroundColor: entry.color }}
+            />
+            <p className="text-sm text-black">
+              {entry.value == "nifty" ? "Nifty 50" : <PMSLabel />}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default function InsightsSection() {
   return (
@@ -68,20 +100,42 @@ export default function InsightsSection() {
                 </div>
               </div>
 
-              <ChartContainer config={chartConfig}>
-                <BarChart data={chartData}>
+              <ChartContainer config={chartConfig} className="relative">
+                <BarChart data={chartData} className="top-[-100px]">
                   <XAxis
                     dataKey="month"
                     tickLine={false}
                     tickMargin={10}
                     lightingColor={"#D9D9D9"}
                   />
+
+                  <Legend
+                    verticalAlign="bottom"
+                    align="left"
+                    content={renderLegend}
+                  />
                   {/* <ChartTooltip
                     cursor={false}
                     content={<ChartTooltipContent indicator="dashed" />}
                   /> */}
-                  <Bar dataKey="nifty" fill="#D9D9D9" radius={4} />
-                  <Bar dataKey="alpha2" fill="#111111" radius={4} />
+                  <Bar dataKey="nifty" fill="#D9D9D9" radius={4}>
+                    <LabelList
+                      position="top"
+                      offset={12}
+                      fontSize={14}
+                      fill="black"
+                      fontWeight={500}
+                    />
+                  </Bar>
+                  <Bar dataKey="alpha2" fill="#111111" radius={4}>
+                    <LabelList
+                      position="top"
+                      offset={12}
+                      fontSize={14}
+                      fill="black"
+                      fontWeight={500}
+                    />
+                  </Bar>
                 </BarChart>
               </ChartContainer>
             </CardContent>
