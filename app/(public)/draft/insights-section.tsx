@@ -18,37 +18,6 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const PMSLabel = () => (
-  <div className="flex items-center gap-2">
-    <Image src="/logo-black.svg" alt="logo" width={56} height={26} />
-    suggested PMS
-  </div>
-);
-
-const renderLegend = (props: { payload?: Array<Payload> }) => {
-  const { payload } = props;
-  return (
-    <div className="flex flex-col gap-6">
-      <div className="flex gap-4">
-        {payload?.map((entry, index) => (
-          <div
-            className="text-xl lg:text-2xl flex items-center gap-2"
-            key={`item-${index}`}
-          >
-            <span
-              className="block size-[15px]"
-              style={{ backgroundColor: entry.color }}
-            />
-            <p className="text-sm text-black">
-              {entry.value == "nifty" ? "Nifty 50" : <PMSLabel />}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
 export default function InsightsSection() {
   return (
     <Section>
@@ -80,6 +49,37 @@ const FinancialOutcome = () => {
     { month: "Year 3", nifty: 1.37, alpha2: 1.73 },
     { month: "Year 5", nifty: 2.82, alpha2: 4.58 },
   ];
+
+  const PMSLabel = () => (
+    <div className="flex items-center gap-2">
+      <Image src="/logo-black.svg" alt="logo" width={56} height={26} />
+      suggested PMS
+    </div>
+  );
+
+  const renderLegend = (props: { payload?: Array<Payload> }) => {
+    const { payload } = props;
+    return (
+      <div className="flex flex-col gap-6">
+        <div className="flex gap-4">
+          {payload?.map((entry, index) => (
+            <div
+              className="text-xl lg:text-2xl flex items-center gap-2"
+              key={`item-${index}`}
+            >
+              <span
+                className="block size-[15px]"
+                style={{ backgroundColor: entry.color }}
+              />
+              <p className="text-sm text-black">
+                {entry.value == "nifty" ? "Nifty 50" : <PMSLabel />}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -160,6 +160,30 @@ const PMSCard = () => {
     { month: "Year 5", nifty: 11.8, alpha2: 23.3 },
   ];
 
+  const renderLegend = (props: { payload?: Array<Payload> }) => {
+    const { payload } = props;
+    return (
+      <div className="flex flex-col gap-6">
+        <div className="flex gap-4">
+          {payload?.map((entry, index) => (
+            <div
+              className="text-xl lg:text-2xl flex items-center gap-2"
+              key={`item-${index}`}
+            >
+              <span
+                className="block size-[15px]"
+                style={{ backgroundColor: entry.color }}
+              />
+              <p className="text-sm text-white">
+                {entry.value == "nifty" ? "Nifty 50" : "MF-PMS"}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <Card className="bg-[#0076FF] w-[640px] h-[380px]">
@@ -176,7 +200,12 @@ const PMSCard = () => {
             <BarChart data={chartData} className="top-[-50px]">
               <XAxis dataKey="month" tickLine={false} tickMargin={10} />
 
-              <Legend verticalAlign="bottom" align="left" color="white" />
+              <Legend
+                verticalAlign="bottom"
+                align="left"
+                color="white"
+                content={renderLegend}
+              />
 
               {/* <ChartTooltip
                 cursor={false}
