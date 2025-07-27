@@ -14,28 +14,30 @@ interface Testimonial {
   name: string;
   title: string;
   userAvatar: string;
-  brand: string;
+  brand?: string;
   content: string;
 }
 
 const testimonials: Testimonial[] = [
   {
-    name: "Rohit Mehra",
-    title: "Product Manager",
+    name: "Nishant Drolia",
+    title: "CA",
     userAvatar: "https://github.com/shadcn.png",
     brand:
       "https://www.gstatic.com/marketing-cms/assets/images/c5/3a/200414104c669203c62270f7884f/google-wordmarks-2x.webp=n-w200-h64-fcrop64=1,00000000ffffffff-rw",
-    content:
-      "AlphaSqr helped me cut through the noise and invest with clarity. Their approach is thoughtful, transparent, and truly aligned with my long-term goals.",
+    content: `Invested with @alphasqr recently, and I must say—truly impressed.
+The clarity of thought the team brings, the time they spend understanding your goals, and the genuine handholding throughout the portfolio process make a real difference.
+Love seeing a team build something thoughtful and solid in the wealth-tech space.
+`,
   },
   {
-    name: "Rohit Mehra",
-    title: "Product Manager",
+    name: "Parepalli Tharun Kumar",
+    title: "Country Manager",
     userAvatar: "https://github.com/shadcn.png",
-    brand:
-      "https://www.gstatic.com/marketing-cms/assets/images/c5/3a/200414104c669203c62270f7884f/google-wordmarks-2x.webp=n-w200-h64-fcrop64=1,00000000ffffffff-rw",
-    content:
-      "AlphaSqr helped me cut through the noise and invest with clarity. Their approach is thoughtful, transparent, and truly aligned with my long-term goals.",
+    content: ` I’ve had the pleasure of investing through AlphaSqr, and their approach truly stands out.
+
+Right from the beginning, they made the effort to understand my goals rather than offering one-size-fits-all suggestions. What really earned my trust was their commitment to guiding me in the right direction — even when it meant lower commissions for them.
+`,
   },
   {
     name: "Rohit Mehra",
@@ -135,9 +137,11 @@ const TestimonialCard = ({
           </div>
         </div>
 
-        <div>
-          <Image src={brand} alt=" Logo" width={100} height={32} />
-        </div>
+        {brand && (
+          <div>
+            <Image src={brand} alt=" Logo" width={100} height={32} />
+          </div>
+        )}
       </div>
     </Card>
   );
