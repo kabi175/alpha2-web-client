@@ -255,26 +255,26 @@ const allcolumns: ColumnDef<FundExploreData>[] = [
     ),
     cell: ({ row, column }) => <CellContent row={row} column={column} />,
   },
-  {
-    accessorKey: "sharpeRatio",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={ColumnIdVsLabel[column.id]}
-      />
-    ),
-    cell: ({ row, column }) => <CellContent row={row} column={column} />,
-  },
-  {
-    accessorKey: "maxDrawdown",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={ColumnIdVsLabel[column.id]}
-      />
-    ),
-    cell: ({ row, column }) => <CellContent row={row} column={column} />,
-  },
+  // {
+  //   accessorKey: "sharpeRatio",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader
+  //       column={column}
+  //       title={ColumnIdVsLabel[column.id]}
+  //     />
+  //   ),
+  //   cell: ({ row, column }) => <CellContent row={row} column={column} />,
+  // },
+  // {
+  //   accessorKey: "maxDrawdown",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader
+  //       column={column}
+  //       title={ColumnIdVsLabel[column.id]}
+  //     />
+  //   ),
+  //   cell: ({ row, column }) => <CellContent row={row} column={column} />,
+  // },
   {
     id: "options",
     header: () => null,
