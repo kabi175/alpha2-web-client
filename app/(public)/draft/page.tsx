@@ -5,15 +5,17 @@ import IntroSection from "./intro-section";
 import InvestorSection from "./investors-section";
 import SolutionsSection from "./solutions-section";
 import TestimonialSection from "./testimonial-section";
+import { TrustedBy } from "./trusted-by";
 
 export default function Page() {
   return (
     <div>
       <IntroSection />
-      <InvestorSection />
       <DiversifiedSection />
+      <InvestorSection />
       <SolutionsSection />
       <BuiltBySection />
+      <TrustedBy />
       <TestimonialSection />
       <InsightsSection />
     </div>
