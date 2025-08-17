@@ -42,22 +42,28 @@ export default function DiversifiedSection() {
         Many portfolios look diversified but lack strategy.
       </SubHeader>
 
-      <div className="flex justify-center items-center gap-6">
+      <div className="pt-8 flex flex-col md:flex-row justify-center items-center gap-6">
         <div className="grid grid-cols-2 grid-rows-2 w-1/2">
           {data.map((item, index) => (
             <div
               key={index}
               className={`${
                 [0, 3].includes(index) && "bg-[#1C1C1C]"
-              }  p-6 borderrounded-lg shadow-md`}
+              }  p-6 borderrounded-lg shadow-md h-[240]`}
             >
               <h3 className="text-lg font-semibold">{item.title}</h3>
               <p className="mt-2 text-gray-600">{item.content}</p>
             </div>
           ))}
         </div>
-        <div className="w-1/2 h-full bg-[#1A1A1A] p-8 rounded-4xl">
-          <Chart />
+        <div className="w-1/2 h-full bg-[#0060CF] p-6 rounded-4xl">
+          <div className="bg-white rounded-3xl p-2">
+            <Chart />
+          </div>
+
+          <div className="mt-4 p-4 bg-white text-blue-700 flex justify-start gap-4 rounded-4xl">
+            <Circle fill={"#1447e6"} /> We help you invest in the right ones
+          </div>
         </div>
       </div>
     </Section>
@@ -71,7 +77,7 @@ const chartConfig = {
   },
   nifty: {
     label: "Nifty 50",
-    color: "#595959",
+    color: "#CCE4FF",
   },
 } satisfies ChartConfig;
 
@@ -83,7 +89,7 @@ const chartData = [
 const renderLegend = (props: { payload?: Array<Payload> }) => {
   const { payload } = props;
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 text-black">
       <div className="flex flex-col gap-4">
         {payload?.map((entry, index) => (
           <div
@@ -95,35 +101,24 @@ const renderLegend = (props: { payload?: Array<Payload> }) => {
               style={{ backgroundColor: entry.color }}
             />
             <p className="text-sm ">
-              {entry.value == "nifty"
+              {entry.value != "nifty"
                 ? "Your returns in investing on 10+ Mutual funds"
                 : "Your returns if you invested only on Nifty 50"}
             </p>
           </div>
         ))}
-
-        <div className="flex items-center gap-2 text-sm">
-          <Circle fill="#0076FF" color="#0076FF" size={12} /> We help you invest
-          in the right ones
-        </div>
       </div>
     </div>
   );
 };
 
 const Chart = () => (
-  <ChartContainer config={chartConfig} className="">
+  <ChartContainer config={chartConfig}>
     <BarChart data={chartData} width={555} height={555}>
       <XAxis dataKey={"dummykey"} tickLine={false} tickMargin={10} />
 
       <Legend verticalAlign="top" align="center" content={renderLegend} />
-      <Bar
-        dataKey="yours"
-        fill={chartConfig.yours.color}
-        radius={4}
-        width={70}
-        maxBarSize={120}
-      >
+      <Bar dataKey="yours" fill={chartConfig.yours.color} radius={4} width={70}>
         <LabelList
           position="top"
           offset={12}
@@ -141,13 +136,7 @@ const Chart = () => (
         />
       </Bar>
 
-      <Bar
-        dataKey="nifty"
-        fill={chartConfig.nifty.color}
-        radius={4}
-        width={70}
-        maxBarSize={120}
-      >
+      <Bar dataKey="nifty" fill={chartConfig.nifty.color} radius={4} width={70}>
         <LabelList
           position="top"
           offset={12}
