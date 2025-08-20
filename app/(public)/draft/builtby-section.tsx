@@ -2,7 +2,7 @@ import Image from "next/image";
 import Section from "./section";
 import { Header, SubHeader } from "./ui";
 
-const investors = ["working-professional.png", "nri-investors.png"];
+const investors = ["/ankit.png", "/dheeraj.jpeg"];
 
 export default function BuiltBySection() {
   return (
@@ -17,8 +17,9 @@ export default function BuiltBySection() {
       <div className="flex justify-start items-center gap-8 flex-wrap pt-10">
         {investors.map((item, index) => (
           <Image
+            className="w-[400px] h-[500px]"
             key={index}
-            src={`/landing-page/${item}`}
+            src={item}
             alt={item}
             width={317}
             height={360}
